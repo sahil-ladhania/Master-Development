@@ -230,7 +230,7 @@ Explanation :-
 * Expressions - An expression in JavaScript is any valid unit of code that resolves to a value. Expressions can include variables, literals, and operators.
 * Operators - Operators are symbols used in expressions to perform operations on operands (values and variables).
 	•	Conditional Operators : Ternary (? :). -------------------------------------------------------------------> IMP
-	•	Comma Operators : , (evaluates multiple expressions). ----------------------------------------------------> IMP
+	•	Comma Operators : ,  Evaluates each of its operands (from left to right) and returns the value of the last operand. ----------------------------------------------------> IMP
 	•	Unary Operators : +, -, !, etc.
 	•	Relational Operators : <, >, <=, >=.
 	•	Assignment Operators : =, +=, -=, etc.

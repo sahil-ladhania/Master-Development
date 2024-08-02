@@ -181,15 +181,15 @@ console.log ("End");
 // 3. Code to Check How Event Listeners works behind the scenes in Browsers ?
 $.on('button', 'click', function onClick() {
     setTimeout(function timer() {
-        console.log('You clicked the button!');    
-        }, 2000);
+        console.log('You clicked the button!');
+    }, 2000);
 });
 
 console.log("Hi!");
 
 setTimeout(function timeout() {
     console.log("Click the button!");
-    }, 5000);
+}, 5000);
 
 console.log("Welcome to loupe.");
 
@@ -198,12 +198,12 @@ console.log("Start");
 
 setTimeout(function cbT() {
     console.log("CB SetTimeout");
-    }, 5000);
+}, 5000);
 
 fetch("https://api.netflix.com")
-  .then(function cbF() {
-      console.log("CB Netflix");
-  });
+    .then(function cbF() {
+        console.log("CB Netflix");
+    });
 
 console.log("End");
 
