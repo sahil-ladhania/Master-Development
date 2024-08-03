@@ -5,6 +5,7 @@
 // * Parsing user input (e.g., age) from a form as an integer.
 // * Converting a string representation of a numeric ID to an integer.
 // * Extracting numerical data from a mixed-type string.
+console.log("ParseInt Method");
 const chaptersRead = '5';
 console.log(chaptersRead);
 console.log(typeof (chaptersRead));
@@ -16,6 +17,7 @@ console.log(typeof (parseInt(chaptersRead)));
 // * Handling decimal values in user-inputted numeric data.
 // * Parsing GPS coordinates or financial data involving decimals.
 // * Extracting floating-point numbers from a text document.
+console.log("ParseFloat Method");
 const userRating = '4.2';
 console.log(userRating);
 console.log(typeof (userRating));

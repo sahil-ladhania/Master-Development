@@ -300,6 +300,180 @@ Explanation :-
 * Interfaces for interacting with HTML and XML documents.
 * Examples include document.getElementById(), element.addEventListener().
 
+2. What is the Bird’s Eye View of How JS runs in the Browser ?
+Explanation :-
+* Refer to the Image.
+* window :
+    DOM
+    BOM
+    JS
+* There’s a “root” object called window. It has two roles :
+    First, it is a global object for JavaScript code, as described in the chapter Global object.
+    Second, it represents the “browser window” and provides methods to control it.
+
+3. What is DOM ?
+Explanation :-
+* The Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+* The document object is the main “entry point” to the page. We can change or create anything on the page using it.
+* DOM is not only for browsers.
+
+4. What is BOM ?
+Explanation :-
+* The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
+* Provides :
+    navigator
+    screen
+    location
+    frames
+    history
+    XMLHttpRequest
+* The functions | alert | confirm | prompt | are also a part of the BOM - they are not directly related to the document, but represent pure browser methods for communicating with the user.
+* The BOM is a part of the general HTML specification.
+
+5. What is DOM Tree ?
+Explanation :-
+* The backbone of an HTML document is tags.
+* According to the Document Object Model (DOM), every HTML tag is an object.
+* Nested tags are “children” of the enclosing one.
+* The text inside a tag is an object as well.
+* Every tree node is an object.
+* Tags are element nodes (or just elements) and form the tree structure.
+* <html> is at the root, then <head> and <body> are its children, etc.
+* The text inside elements forms text nodes, labelled as #text.
+* A text node contains only a string.
+* It may not have children and is always a leaf of the tree.
+* Please note the special characters in text nodes:
+    a newline : ↵ (in JavaScript known as \n)
+    a space : ␣
+* Spaces and newlines are totally valid characters, like letters and digits.
+* They form text nodes and become a part of the DOM.
+* So, for instance, in the example above the <head> tag contains some spaces before <title>, and that text becomes a #text node (it contains a newline and some spaces only).
+* There are only two top-level exclusions :
+    Spaces and newlines before <head> are ignored for historical reasons.
+    If we put something after </body>, then that is automatically moved inside the body, at the end, as the HTML spec requires that all content must be inside <body>. So there can’t be any spaces after </body>.
+* Spaces at string start/end and space-only text nodes are usually hidden in tools.
+
+6. What is Auto-Correction in DOM ?
+Explanation :-
+* If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
+* For instance, the top tag is always <html>. Even if it doesn’t exist in the document, it will exist in the DOM, because the browser will create it. The same goes for <body>.
+* While generating the DOM, browsers automatically process errors in the document, close tags and so on.
+* A document with unclosed tags will become a normal DOM as the browser reads tags and restores the missing parts.
+* An interesting “special case” is tables. By DOM specification they must have <tbody> tag, but HTML text may omit it. Then the browser creates <tbody> in the DOM automatically.
+
+7. What are some Other Node Types ?
+Explanation :-
+* Why is a comment added to the DOM when It doesn’t affect the visual representation in any way. But there’s a rule –> If something’s in HTML, then it also must be in the DOM tree.
+* Everything in HTML, even comments, becomes a part of the DOM.
+* Even the <!DOCTYPE...> directive at the very beginning of HTML is also a DOM node. It’s in the DOM tree right before <html>. Few people know about that. We are not going to touch that node, we even don’t draw it on diagrams, but it’s there.
+* The document object that represents the whole document is, formally, a DOM node as well.
+* There are 12 node types. In practice we usually work with 4 of them :
+    document – the “entry point” into DOM.
+    element nodes – HTML-tags, the tree building blocks.
+    text nodes – contain text.
+    comments – sometimes we can put information there, it won’t be shown, but JS can read it from the DOM.
+
+8. What is On Top of the DOM ?
+Explanation :-
+* The topmost tree nodes are available directly as document properties :
+    <html> = document.documentElement
+        The topmost document node is document.documentElement. That’s the DOM node of the <html> tag.
+    <body> = document.body
+        Another widely used DOM node is the <body> element – document.body.
+    <head> = document.head
+        The <head> tag is available as document.head.
+* There’s a catch - document.body can be null.
+    A script cannot access an element that doesn’t exist at the moment of running.
+    In particular, if a script is inside <head>, then document.body is unavailable, because the browser did not read it yet.
+    In the DOM world null means “doesn’t exist”.
+    In the DOM, the null value means “doesn’t exist” or “no such node”.
+
+9. What is Children in DOM , like childNodes, firstChild, lastChild ?
+Explanation :-
+* There are two terms that we’ll use from now on :
+    Child nodes (or children)
+    Descendants
+* Child nodes (or children) - Elements that are direct children. In other words, they are nested exactly in the given one. For instance, <head> and <body> are children of <html> element.
+* Descendants - All elements that are nested in the given one, including children, their children and so on.
+
+10. What are DOM Collections ?
+Explanation :-
+* As we can see, childNodes looks like an array. But actually it’s not an array, but rather a collection – a special array-like iterable object.
+* There are two important consequences :
+    We can use for..of to iterate over it.
+        for (let node of document.body.childNodes) {
+            alert(node); // shows all nodes from the collection
+        }
+        That’s because it’s iterable (provides the Symbol.iterator property, as required).
+    Array methods won’t work, because it’s not an array.
+        alert(document.body.childNodes.filter); // undefined (there's no filter method!)
+        The first thing is nice. The second is tolerable, because we can use Array.from to create a “real” array from the collection, if we want array methods.
+        alert( Array.from(document.body.childNodes).filter ); // function
+* DOM collections are read-only.
+    DOM collections, and even more – all navigation properties listed in this chapter are read-only.
+    We can’t replace a child by something else by assigning childNodes[i] = ....
+    Changing DOM needs other methods. We will see them in the next chapter.
+* DOM collections are live.
+    Almost all DOM collections with minor exceptions are live. In other words, they reflect the current state of DOM.
+    If we keep a reference to elem.childNodes, and add/remove nodes into DOM, then they appear in the collection automatically.
+* Don’t use for..in to loop over collections.
+    Collections are iterable using for..of. Sometimes people try to use for..in for that.
+    Please, don’t. The for..in loop iterates over all enumerable properties. And collections have some “extra” rarely used properties that we usually do not want to get.
+
+11. What are Siblings and Parent in DOM ?
+Explanation :-
+* Siblings are nodes that are children of the same parent.
+* For instance, here <head> and <body> are siblings.
+* <body> is said to be the “next” or “right” sibling of <head>,
+* <head> is said to be the “previous” or “left” sibling of <body>.
+* The next sibling is in nextSibling property, and the previous one – in previousSibling.
+* The parent is available as parentNode.
+
+12. How to Search in a DOM ?
+Explanation :-
+* There are 6 main methods to search for nodes in DOM.
+    querySelector :
+        Searches By - CSS-selector
+        Can call on an element ? Yes
+        Live ? No
+    querySelectorAll :
+        Searches By - CSS-selector
+        Can call on an element ? Yes
+        Live ? No
+    getElementById :
+        Searches By - id
+        Can call on an element ? No
+        Live ? No
+    getElementsByName :
+        Searches By - name
+        Can call on an element ? No
+        Live ? Yes
+    getElementsByTagName :
+        Searches By - tag or *
+        Can call on an element ? Yes
+        Live ? Yes
+    getElementsByClassName :
+        Searches By - class
+        Can call on an element ? Yes
+        Live ? Yes
+
+13. How to Modify the Document in DOM ?
+Explanation :-
+* DOM modification is the key to creating “live” pages.
+* Creating an element.
+    To create DOM nodes, there are two methods :
+        document.createElement(tag) - Creates a new element node with the given tag.
+        document.createTextNode(text) - Creates a new text node with the given text.
+* Insertion methods.
+    To make the div show up, we need to insert it somewhere into document. For instance, into <body> element, referenced by document.body.
+    There’s a special method append for that - document.body.append(div).
+    Here are more insertion methods, they specify different places where to insert :
+        node.append(...nodes or strings) – append nodes or strings at the end of node.
+        node.prepend(...nodes or strings) – insert nodes or strings at the beginning of node.
+        node.before(...nodes or strings) – insert nodes or strings before node.
+        node.after(...nodes or strings) – insert nodes or strings after node.
+        node.replaceWith(...nodes or strings) - replaces node with the given nodes or strings.
+
 -----Strict Mode-----
 
 1. What is Strict Mode in JS ? -----------------------------------------------------------------------------------> IMP
@@ -348,30 +522,37 @@ Explanation :-
 1. What is Event Loop ? -------------------------------------------------------------------------------------------> IMP
 Explanation :-
 * The mechanism that handles asynchronous operations by executing code, handling events, and executing messages in a queue.
+* Refer to Asynchronous Part-1 EventLoop.js File.
 
 2. What are Callbacks ? -------------------------------------------------------------------------------------------> IMP
 Explanation :-
 * Functions passed as arguments to other functions that are executed after the completion of some operation.
+* Refer to Asynchronous Part-1 Callbacks.js File.
 
 3. What is Callback Hell ? ----------------------------------------------------------------------------------------> IMP
 Explanation :-
 * The phenomenon where callbacks are nested within other callbacks, making code hard to read and maintain.
+* Refer to Asynchronous Part-1 Callback-Hell.js File.
 
 4. What are Promises ? -------------------------------------------------------------------------------------------> IMP
 Explanation :-
 * Objects representing the eventual completion (or failure) of an asynchronous operation and its resulting value.
+* Refer to Asynchronous Part-2 Promises.js File.
 
 5. What is async/await ? ------------------------------------------------------------------------------------------> IMP
 Explanation :-
 * Syntax for working with asynchronous code that makes it look and behave like synchronous code.
+* Refer to Asynchronous Part-2 Async-Await.js File.
 
 6. What is setTimeout ? -------------------------------------------------------------------------------------------> IMP
 Explanation :-
 * Function that executes a callback after a specified delay.
+* Refer to Asynchronous Part-2 SetTimeout.js File.
 
 7. What is setInterval ? -----------------------------------------------------------------------------------------> IMP
 Explanation :-
 * Function that repeatedly executes a callback with a fixed time delay between each call.
+* Refer to Asynchronous Part-2 SetTimeout.js File.
 
 -----Working with APIs-----
 

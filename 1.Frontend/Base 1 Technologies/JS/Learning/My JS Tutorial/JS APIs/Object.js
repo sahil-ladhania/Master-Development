@@ -11,6 +11,7 @@ const sampleObject = {
 // * Iterating through keys in an object for specific operations.
 // * Dynamically accessing and manipulating object properties.
 // * Checking the existence of specific properties.
+console.log("Keys Method");
 const keysArray = Object.keys(sampleObject);
 console.log(keysArray);
 
@@ -19,6 +20,7 @@ console.log(keysArray);
 // * Extracting values for further processing or display.
 // * Converting object values for specific calculations.
 // * Comparing or validating values within an object.
+console.log("Values Method");
 const valuesArray = Object.values(sampleObject);
 console.log(valuesArray);
 
@@ -27,6 +29,7 @@ console.log(valuesArray);
 // * Iterating through both keys and values simultaneously.
 // * Transforming object data for specific output formats.
 // * Checking properties and their values conditionally.
+console.log("Entries Method");
 const entriesArray = Object.entries(sampleObject);
 console.log(entriesArray);
 
@@ -35,6 +38,7 @@ console.log(entriesArray);
 // * Checking for the existence of a specific property.
 // * Avoiding unintended prototype property access.
 // * Conditionally handling object properties.
+console.log("HasOwnProperty Method");
 const hasOwnProperty = sampleObject.hasOwnProperty('age');
 console.log(hasOwnProperty);
 
@@ -43,6 +47,7 @@ console.log(hasOwnProperty);
 // * Merging properties from multiple objects into a single object.
 // * Creating a shallow copy of an object.
 // * Updating an object with new values.
+console.log("Assign Method");
 const targetObject = {
     name : "John"
 };

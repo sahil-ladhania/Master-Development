@@ -5,6 +5,7 @@
 // * Rounding off user-inputted decimals for display.
 // * Calculating scores in a game to ensure fairness.
 // * Formatting currency values.
+console.log("Round Method");
 const roundedNumber = Math.round(4.6);
 console.log(roundedNumber);
 
@@ -13,6 +14,7 @@ console.log(roundedNumber);
 // * Calculating the number of pages needed for a document.
 // * Ensuring there are enough resources by rounding up.
 // * Aligning elements in a grid layout.
+console.log("Ciel Method");
 const roundedUpNumber = Math.ceil(3.1);
 console.log(roundedUpNumber);
 
@@ -21,6 +23,7 @@ console.log(roundedUpNumber);
 // * Determining the total number of containers needed for items.
 // * Truncating decimal places in measurements.
 // * Ensuring a minimum quantity in stock.
+console.log("Floor Method");
 const roundedDownNumber = Math.floor(5.8);
 console.log(roundedDownNumber);
 
@@ -29,6 +32,7 @@ console.log(roundedDownNumber);
 // * Simulating dice rolls in a game.
 // * Creating random passwords or tokens.
 // * Shuffling elements in an array.
+console.log("Random Method");
 const randomNumber = Math.random();
 console.log(randomNumber);
 
@@ -37,6 +41,7 @@ console.log(randomNumber);
 // * Finding the maximum value in an array of numbers.
 // * Determining the maximum display resolution.
 // * Selecting the highest score among players.
+console.log("Max Method");
 const maxValue = Math.max(10 , 5 , 8);
 console.log(maxValue);
 
@@ -45,6 +50,7 @@ console.log(maxValue);
 // * Identifying the minimum system requirements for software.
 // * Selecting the smallest duration among multiple time intervals.
 // * Ensuring a minimum threshold for user inputs.
+console.log("Min Method");
 const minValue = Math.min(3 , 7 , 4);
 console.log(minValue);
 
@@ -53,6 +59,7 @@ console.log(minValue);
 // * Calculating compound interest.
 // * Determining the area of geometric shapes.
 // * Performing exponential calculations.
+console.log("Pow Method");
 const result = Math.pow(2,3);
 console.log(result);
 
@@ -61,5 +68,6 @@ console.log(result);
 // * Determining the side length of a square given its area.
 // * Estimating distances in applications.
 // * Normalizing values in statistical analysis.
+console.log("SQRT Method");
 const squareRootValue = Math.sqrt(25);
 console.log(squareRootValue);

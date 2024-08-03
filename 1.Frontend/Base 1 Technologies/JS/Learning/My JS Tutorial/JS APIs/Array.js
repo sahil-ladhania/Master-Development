@@ -5,6 +5,7 @@
 // * Input validation based on the array size.
 // * Dynamic rendering of components based on array length.
 // * Server-side pagination calculations.
+console.log("Length Method");
 const arr1 = [1,2,3,4,5];
 console.log(arr1.length);
 
@@ -13,6 +14,7 @@ console.log(arr1.length);
 // * Dynamic addition of form fields.
 // * Real-time updates in collaborative environments.
 // * Event handling for real-time chat messages.
+console.log("Push Method");
 const arr2 = [1,2,3,4];
 console.log(arr2.push(5));
 console.log(arr2);
@@ -22,6 +24,7 @@ console.log(arr2);
 // * Implementing undo functionality in document editing.
 // * Removing the last completed task in a to-do list.
 // * Stack-based algorithm processing.
+console.log("Pop Method");
 const arr3 = [1,2,3,4,5,6];
 console.log(arr3.pop());
 console.log(arr3);
@@ -31,6 +34,7 @@ console.log(arr3);
 // * Queue-based processing in job systems.
 // * Sliding window operations for real-time analysis.
 // * Handling data streams with a rolling buffer.
+console.log("Shift Method");
 const arr4 = [0,1,2,3,4,5];
 console.log(arr4.shift());
 console.log(arr4);
@@ -40,6 +44,7 @@ console.log(arr4);
 // * Prepending new items in social media feeds.
 // * Dynamic array updates for collaborative document editing.
 // * Historical data tracking with chronological logging.
+console.log("UnShift Method");
 const arr5 = [2,3,4,5];
 console.log(arr5.unshift(1)); // Why I am getting 5 in console ? -> Giving the new length of the arr5 as we are adding 1.
 console.log(arr5);
@@ -49,6 +54,7 @@ console.log(arr5);
 // * Data integration from different sources.
 // * Creating complex data structures, like graphs.
 // * Combining data for multi-step form handling.
+console.log("Concat Method");
 const arr6 = [1,2,3];
 const arr7 = [4,5];
 console.log(arr6);
@@ -60,6 +66,7 @@ console.log(arr6.concat(arr7));
 // * Iterative data processing for analytics.
 // * Asynchronous task execution in backend systems.
 // * Event handling for dynamic frontend lists.
+console.log("ForEach Method");
 const arr8 = [1,2,3,4,5];
 console.log(arr8);
 arr8.forEach(item => console.log(item));
@@ -69,6 +76,7 @@ arr8.forEach(item => console.log(item));
 // * Data transformation when retrieving API responses.
 // * Calculating derived data, like ROI.
 // * Dynamic UI generation based on array data.
+console.log("Map Method");
 const arr9 = [1,2,3,4,5];
 const doubledArr9 = arr9.map(item => item * 2);
 console.log(doubledArr9);
@@ -78,6 +86,7 @@ console.log(doubledArr9);
 // * Data filtering for search functionality.
 // * Selecting subsets based on user preferences.
 // * Applying custom logic for item selection.
+console.log("Filter Method");
 const arr10 = [1,2,3,4,5];
 const filteredArr10 = arr10.filter(item => item > 3);
 console.log(filteredArr10);
@@ -87,6 +96,7 @@ console.log(filteredArr10);
 // * Efficient element retrieval based on specific criteria.
 // * Searching for items that meet particular conditions.
 // * Identifying the first occurrence of an element.
+console.log("Find Method");
 const arr11 = [1,2,3,4,5];
 const foundElementInArr11 = arr11.find(item => item === 3);
 console.log(foundElementInArr11);
@@ -96,6 +106,7 @@ console.log(foundElementInArr11);
 // * Organizing data in ascending or descending order.
 // * Preparing data for efficient searching or processing.
 // * Custom sorting based on specific criteria.
+console.log("Sort Method");
 const arr12 = [2,3,4,1,5];
 const arr13 = ['ball' , 'ant' , 'cat' , 'elephant' , 'dog' , 'apple'];
 console.log(arr12.sort());

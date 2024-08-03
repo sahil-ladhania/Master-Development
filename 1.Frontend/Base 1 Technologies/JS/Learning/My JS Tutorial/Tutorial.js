@@ -166,6 +166,48 @@ console.log("Primitive Datatype Example");
     console.log(symbol1 == symbol2);
 
 // Non-Primitive Datatypes
+    // Arrays
+    console.log("Array Example");
+    let array = [1,2,3,4,5];
+    console.log(array);
+    // Accessing Array elements
+    console.log(array[0]);
+    // Modifying Array elements
+    array[1] = 3;
+    console.log(array);
+    // Adding Array elements
+    array.push(6);
+    console.log(array);
+    // Removing Array elements
+    array.pop();
+    console.log(array);
+    // Iterating over elements
+    array.forEach((element , index) => {
+        console.log(`${index}: ${element}`);
+    })
+
+    // Objects
+    console.log("Object Example");
+    let object = {
+        firstName : "Sahil",
+        lastName : "Ladhania"
+    }
+    console.log(object);
+    // Accessing Object properties
+    console.log(object.firstName);
+    // Modifying Object properties
+    object.firstName = "Harshit";
+    console.log(object);
+    // Adding Object properties
+    object.age = 22;
+    console.log(object);
+    // Deleting Object properties
+    delete object.lastName;
+    console.log(object);
+    // Iterating over Object properties
+    for(let key in object){
+        console.log(`${key}: ${object[key]}`);
+    }
 
 // Type Conversion
     // Type Coersion(Implicit Type Conversion) -> "Apne Aap Conversion"
@@ -219,6 +261,26 @@ console.log("Primitive Datatype Example");
     console.log(message);
 
 // Functions
+    // Function Statement
+    function a1(){
+        console.log("This way of creating Function is called Function Statement.");
+    }
+    // Function Expression
+    var a2 = function (){
+        console.log("This way of creating Function is called Function Expression.")
+    }
+    // Named Function Expression
+    var a3 = function xyz(){
+    console.log("This way of creating Function is called Function Expression.")
+    }
+    // Normal Function
+    function normalFunction() {
+        console.log("I am a Normal Function.");
+    }
+    // Arrow Function
+    let arrowFunction = () => {
+        console.log("I am an Arrow Function.");
+    }
 
 // DOM APIs
 
