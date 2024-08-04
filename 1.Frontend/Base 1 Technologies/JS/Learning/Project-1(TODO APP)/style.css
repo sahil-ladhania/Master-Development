@@ -1,0 +1,55 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right , pink , lightblue);
+    padding-top: 100px;
+    font-family: "Roboto", sans-serif;
+}
+.todolist-container{
+    height: auto;
+    width: 50%;
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+}
+.heading{
+    color: darkblue;
+    font-size: 40px;
+    font-family: "Roboto", sans-serif;
+}
+.input-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+.input-box{
+    height: 25px;
+    width: 80%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-right: 5px;
+    outline: none;
+    border: none;
+    background: whitesmoke;
+    font-family: "Roboto", sans-serif;
+}
+.add-task{
+    height: 45px;
+    width: 20%;
+    border-radius: 10px;
+    margin-left: 5px;
+    border: none;
+    background: orange;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+}
+.task-container{
+
+}
