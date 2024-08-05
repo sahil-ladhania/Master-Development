@@ -61,8 +61,8 @@ console.log("Scopes Example");
     }
     letExample();
     let y2 = "Hello";
-    // let y = "World"; -----> Error: Identifier 'y' has already been declared
-    y2 = "World";
+    // let y2 = "World"; -----> Error: Identifier 'y2' has already been declared
+    y2 = "World"; // Can be Updated
     console.log(y2);
 
     // 3. const Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Cannot be Reassigned | Mutable if it's an Object or Array |
@@ -77,9 +77,10 @@ console.log("Scopes Example");
         console.log(x3);
     }
     constExample();
-    // const y3 = "Hello"; -----> Error: Identifier 'y' has already been declared
+    // const y3 = "Hello"; -----> Error: Identifier 'y3' has already been declared
     // const y3  = "World"; -----> Error: Assignment to constant variable
-    y3 = "World";
+    const y3 = "World"
+    console.log(y3);
     const obj1 = {
         name : "Sahil"
     }
@@ -283,5 +284,28 @@ console.log("Primitive Datatype Example");
     }
 
 // DOM APIs
-
 // Asynchronous JS
+
+// How JS Code is Executed ?
+console.log("JS Code Execution !!!");
+var n = 2;
+function square(num) {
+    var ans = num * num;
+    return ans;
+}
+var square2 = square(n);
+var square4 = square(4);
+
+// How Functions work in JS ?
+// What is the Shortest JS Program ?
+// What is Undefined vs Not Defined ?
+// What is Scope Chain in JS ?
+// What is Temporal Dead Zone ?
+// What is Block Scope and Shadowing ?
+// What are Closures in JS ?
+// What are First Class Functions ?
+// What are Callback Functions ?
+// What is setTimeout ?
+// What is map ?
+// What is filter ?
+// What is reduce ?

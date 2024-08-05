@@ -36,6 +36,11 @@ Explanation :-
 3. What is Hoisting ? ----------------------------------------------------------------------------> IMP
 Explanation :-
 * JavaScript’s behavior of moving variable and function declarations to the top of their containing scope during compilation.
+* JavaScript mein hoisting ka matlab hai ki variables aur function declarations ko unki scope ke top pe move kar diya jaata hai execution ke time pe, chahe wo physically code ke bottom mein declare kiye gaye ho. Lekin, hoisting ke time pe variables ko unka value assign nahi hota hai (initialization nahi hota hai).
+* Hoisting in var : | Declarations are Hoisted and Initialized with Undefined | No Temporal Dead Zone |
+* Hoisting in let : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
+* Hoisting in const : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
+* Jab let aur const keywords use hote hain, to unki declarations hoist hoti hain, matlab unhe unki scope ke top pe move kar diya jaata hai, lekin unhe initialize nahi kiya jaata hai jab tak unki actual declaration line nahi aati. Isliye, unhe use karne se pehle ek “Temporal Dead Zone” (TDZ) mein hoti hain. TDZ wo period hai jahan variable hoisted hai lekin initialized nahi hai.
 
 4. What is Variable Naming Rules ?
 Explanation :-
@@ -644,5 +649,69 @@ Explanation :-
 * Interpreting Results :
 	•	Review the performance metrics and suggestions provided.
 	•	Refer to linked resources for deeper insights into each test result to understand how to improve performance.
+
+-----JS In-Depth-----
+1. How JS Works ?
+Explanation :-
+* Before understanding How JS really works , we need to understand few terms.
+    Execution Context :
+        Execution Context ek environment hota hai jahan JavaScript code execute hota hai. Isme code ka execution kaise ho raha hai, uski scope, aur variables ka reference maintain hota hai. Jab bhi ek function call hota hai, ek naya execution context create hota hai.
+        Example - Agar aap ek function call karte hain, to ek execution context create hota hai jahan function ka code execute hota hai. Ye context function ke execution ke dauran variables, function arguments, aur function ke andar ke local variables ko track karta hai.
+    Variable Envrionment :
+        Variable Environment ek part hota hai execution context ka jahan variables aur functions declare kiye jaate hain. Yeh basically ek mapping hai jo variable names ko unke values se link karti hai. Jab ek function execute hota hai, iska variable environment us function ke local variables aur parameters ko track karta hai.
+        Example - Agar aap function ke andar let a = 10; likhte hain, to a variable ka value 10 ho jayega aur variable environment me store ho jayega.
+    Thread of Execution :
+        Thread of Execution wo sequence hai jisme JavaScript code line by line execute hota hai. JavaScript ek single-threaded language hai, isliye ek waqt me sirf ek hi thread hi code execute kar sakta hai.
+        Example - Agar aapke paas ek function hai jo asynchronous code ko handle karta hai, to JavaScript thread asynchronous task ko queue me daal dega aur pehle se running synchronous code ko continue karega.
+    Synchronous :
+        Synchronous code ka matlab hai ki code sequentially execute hota hai, line by line, bina kisi interruption ke. Jab ek synchronous task execute hota hai, tab tak dusra task wait karta hai.
+        Synchronous refers to the execution model of code where operations are executed one after the other without interruption.
+        Example - Agar aap console.log("Hello"); aur console.log("World"); likhte hain, to pehle “Hello” print hoga aur uske baad “World” print hoga, bina kisi delay ke.
+    Single Threaded :
+        Single Threaded ka matlab hai ki JavaScript ek waqt me sirf ek hi operation ko execute kar sakta hai. JavaScript ka ek hi thread hota hai jo code ko line by line execute karta hai, aur asynchronous operations ke liye event loop ka use hota hai.
+        Single Threaded refers to the fact that the JavaScript runtime uses only one thread to execute code, handle events, and manage asynchronous tasks.
+        Example - Jab aap ek asynchronous operation (jaise setTimeout) perform karte hain, JavaScript thread asynchronous task ko event queue me daal deta hai aur synchronous code ko pehle execute karta hai.
+* Refer to Namaste JS Ep-1 for Detailed Explanation.
+
+2. How JS Code is Executed ?
+Explanation :-
+* Before understanding How JS Code is Executed , we need to understand few terms.
+    Call Stack :
+        Call Stack ek mechanism hai jo function calls ko track karta hai. Jab bhi ek function call hota hai, wo stack me push hota hai aur jab function return karta hai, to wo stack se pop hota hai. Yeh stack LIFO (Last In, First Out) principle follow karta hai.
+        Example - Is example mein, jab second function call hota hai, to wo stack me push hota hai, phir first function call hota hai to wo bhi stack me push hota hai. Jab first execute ho jata hai, to wo stack se pop hota hai aur phir second continue hota hai.
+            function first() {
+                console.log("First");
+            }
+            function second() {
+                first();
+                console.log("Second");
+            }
+            second();
+    Global Execution Context :
+        Global Execution Context sabse pehla context hota hai jo JavaScript engine create karti hai jab script run hoti hai. Is context mein global scope aur global variables included hote hain. Global Execution Context script ke initial code ko execute karta hai.
+        Example - Jab yeh script run hoti hai, to Global Execution Context create hota hai jo a variable aur greet function ko memory mein allocate karta hai aur phir greet function ko call karta hai.
+            let a = 10;
+            function greet() {
+                console.log("Hello");
+            }
+            greet();
+    Execution Context vs Global Execution Context :
+        Execution Context - Yeh broader term hai jo kisi bhi function ya global code ke execution environment ko refer karta hai. Jab bhi ek function call hota hai, ek naya execution context create hota hai.
+        Global Execution Context - Yeh specific type ka execution context hai jo tab create hota hai jab script sabse pehli baar run hoti hai. Isme global variables aur global scope included hote hain. Yeh sabse pehla context hota hai jo JavaScript engine create karti hai.
+* Refer to Namaste JS Ep-2 for Detailed Explanation.
+
+How Functions work in JS ?
+What is the Shortest JS Program ?
+What is Undefined vs Not Defined ?
+What is Scope Chain in JS ?
+What is Temporal Dead Zone ?
+What is Block Scope and Shadowing ?
+What are Closures in JS ?
+What are First Class Functions ?
+What are Callback Functions ?
+What is setTimeout ?
+What is map ?
+What is filter ?
+What is reduce ?
 
 */
