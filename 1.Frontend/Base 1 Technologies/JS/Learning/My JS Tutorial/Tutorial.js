@@ -297,8 +297,37 @@ var square2 = square(n);
 var square4 = square(4);
 
 // How Functions work in JS ?
+console.log("Function Working !!!") // ----> Debug this in Sources Panel to See How Functions Work
+var x = 1;
+a();
+b();
+console.log(a);
+function a() {
+    var x = 10;
+    console.log(x);
+}
+function b() {
+    var x = 100;
+    console.log(x);
+}
+
 // What is the Shortest JS Program ?
+    // Empty .js File. ---> Debug this in sources Panel on Chrome.
+    var a = 10;
+    function b() {
+        var x = 10;
+    }
+    console.log(window.a);
+    console.log(a);
+    // console.log(x); ----> ReferenceError : x is not defined
+    console.log(this.a);
+
 // What is Undefined vs Not Defined ?
+console.log(s); // This will Give undefined
+var s = 10;
+console.log(s);
+console.log(z); // This will Give Not Defined
+
 // What is Scope Chain in JS ?
 // What is Temporal Dead Zone ?
 // What is Block Scope and Shadowing ?

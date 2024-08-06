@@ -41,6 +41,7 @@ Explanation :-
 * Hoisting in let : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
 * Hoisting in const : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
 * Jab let aur const keywords use hote hain, to unki declarations hoist hoti hain, matlab unhe unki scope ke top pe move kar diya jaata hai, lekin unhe initialize nahi kiya jaata hai jab tak unki actual declaration line nahi aati. Isliye, unhe use karne se pehle ek “Temporal Dead Zone” (TDZ) mein hoti hain. TDZ wo period hai jahan variable hoisted hai lekin initialized nahi hai.
+* Refer to Namaste JS Ep-3 for Detail Explanation.
 
 4. What is Variable Naming Rules ?
 Explanation :-
@@ -700,9 +701,51 @@ Explanation :-
         Global Execution Context - Yeh specific type ka execution context hai jo tab create hota hai jab script sabse pehli baar run hoti hai. Isme global variables aur global scope included hote hain. Yeh sabse pehla context hota hai jo JavaScript engine create karti hai.
 * Refer to Namaste JS Ep-2 for Detailed Explanation.
 
-How Functions work in JS ?
-What is the Shortest JS Program ?
-What is Undefined vs Not Defined ?
+3. How Functions work in JS ?
+Explanation :-
+    * Refer to Namaste JS Ep-4 for Detailed Explanation.
+
+4. What is the Shortest JS Program ?
+Explanation :-
+* Before understanding the Shortest JS Code , we need to understand few terms.
+* window :
+    In a browser environment, window is a global object that represents the window in which the script is running.
+    It provides access to the browser’s features, such as the DOM, location, and history.
+    window ek global object hai jo browser ke window ko represent karta hai.
+* this :
+    this is a special keyword in JavaScript that refers to the context in which the current code is executing.
+    The value of this depends on how a function is called.
+    this ek special keyword hai jo context ke hisaab se refer karta hai.
+* How it works in Global Scope :
+    When you run JavaScript code directly in the browser’s global scope (like in a script tag in an HTML file), this points to the window object.
+* How it works in Inside Function :
+    In a function, the value of this depends on how the function is called.
+    Regular Function Call - In non-strict mode, this still refers to the window object.
+    Method Call - When a function is a method of an object, this refers to the object.
+    Constructor Call - When a function is used as a constructor (with new), this refers to the newly created object.
+* Why this === window is true :
+    In a browser environment, when you’re executing code in the global scope (outside any function or object), this refers to the window object. Therefore, this === window is true.
+* Jab tum global scope mein code likhte ho, this window object ko refer karta hai, isliye this === window true hai.
+* Functions ke context mein this ka value call ke method pe depend karta hai. Strict mode mein this global scope mein undefined hota hai.
+
+5. What is Undefined vs Not Defined ?
+Explanation :-
+* Undefined -
+    When it has been declared but not assigned a value.
+    It means the variable exists, but its value is absent or unknown.
+    A variable is declared but not initialized, so it has a default value of undefined.
+    Common Scenarios when we get undefined -
+        A variable declared but not initialized.
+        Function parameters that are not provided when the function is called.
+        Accessing an object property that doesn’t exist.
+* Not Defined -
+    If it has not been declared at all in the current scope.
+    Trying to access such a variable results in a ReferenceError because it does not exist in the code.
+    A variable that has not been declared at all, leading to a ReferenceError when accessed.
+    Common Scenarios when we get Not Defined -
+        Typographical errors in variable names.
+        Using a variable before declaring it (in non-hoisted contexts).
+
 What is Scope Chain in JS ?
 What is Temporal Dead Zone ?
 What is Block Scope and Shadowing ?
