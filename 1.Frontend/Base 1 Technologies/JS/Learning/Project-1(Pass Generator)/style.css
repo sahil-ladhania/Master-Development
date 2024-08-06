@@ -30,7 +30,7 @@ body{
     border: none;
     margin-bottom: 20px;
 }
-.generate-pasword , .copy-password{
+.generate-password , .copy-password{
     height: 70px;
     width: 20%;
     border-radius: 10px;
