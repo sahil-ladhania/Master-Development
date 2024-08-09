@@ -746,13 +746,211 @@ Explanation :-
         Typographical errors in variable names.
         Using a variable before declaring it (in non-hoisted contexts).
 
-What is Scope Chain in JS ?
-What is Temporal Dead Zone ?
-What is Block Scope and Shadowing ?
-What are Closures in JS ?
-What are First Class Functions ?
-What are Callback Functions ?
-What is setTimeout ?
+6. What is Scope | Scope Chain | Lexical Environment in JS ?
+Explanation :-
+* Scope -
+    Scope ka matlab hota hai ki aapke variables aur functions kaha se accessible hain, yaani kaha se unko access kiya jaa sakta hai. JavaScript mein 3 tarah ke scopes hote hain.
+* Scope Chain -
+    Jab aap kisi variable ko access karte ho, toh JavaScript pehle current scope mein search karta hai.
+    Agar waha nahi milta, toh wo parent scope mein search karta hai, aur yeh process tab tak chalta hai jab tak global scope tak nahi pahunch jata.
+    Is process ko hi scope chain kehte hain.
+* Lexical Environment -
+    Jab aapka code execute hota hai, JavaScript engine har function ke liye ek lexical environment create karta hai.
+    Yeh environment define karta hai ki variables aur functions kis scope mein available hain.
+    Lexical environment mein do cheezein hoti hain :
+        Environment Record - Yeh record karta hai saare variables aur functions jo is environment mein available hain.
+        Reference to the outer environment - Yeh reference hai outer lexical environment ka, jo scope chain create karta hai.
+* Working with Call Stack -
+    Jab JavaScript mein koi function call hota hai, toh wo call stack mein push ho jata hai.
+    Har function ka apna lexical environment hota hai, jo call stack ke saath associated hota hai.
+    Jab function execute hota hai, toh JavaScript us function ke lexical environment mein variables aur functions ko search karta hai.
+    Agar nahi milta, toh outer environment ko refer karta hai, yaani scope chain follow karta hai.
+    Ex :
+        function outerFunction() {
+            var outerVar = "I am outer";
+            function innerFunction() {
+                var innerVar = "I am inner";
+                console.log(outerVar); // Scope chain ke through outerVar accessible hai
+            }
+            innerFunction();
+        }
+        outerFunction();
+    outerFunction call hota hai, toh call stack mein push hota hai.
+    outerFunction ke execution se pehle uska lexical environment create hota hai, jisme outerVar hota hai.
+    Phir innerFunction call hota hai, uska lexical environment create hota hai, jisme innerVar hota hai aur reference hota hai outerFunction ke environment ka.
+    Jab innerFunction mein outerVar ko access karte hain, toh wo pehle apne environment mein search karta hai, waha nahi milta toh outer environment mein search karta hai, aur mil jata hai.
+
+7. What is Temporal Dead Zone ?
+Explanation :-
+* Temporal Dead Zone ek aisi state hoti hai jab aapne let ya const se declare kiye gaye variable ko use karne ki koshish ki ho, lekin uska initialization abhi tak nahi hua hota. Jab tak variable initialize nahi hota, tab tak us variable ko access karna Temporal Dead Zone ke andar hota hai, aur isse error throw hota hai.
+* Ex :
+    console.log(myVar); // ReferenceError: Cannot access 'myVar' before initialization
+    let myVar = "Hello!";
+    Jab code execute hota hai, JavaScript engine pehle hoisting karta hai. Matlab, let aur const se declare kiye gaye variables ko memory mein reserve kar leta hai, lekin unko initialize nahi karta.
+    Jab tak myVar ka initialization nahi hota, tab tak wo Temporal Dead Zone mein rahega. Is time ke andar agar aap usko access karne ki koshish karte ho, toh ReferenceError milega.
+
+8. What is the difference between Syntax Error, Type Error, aur Reference Error ?
+Explanation :-
+* Syntax Error -
+    Jab aapka code JavaScript ke syntax rules ke against hota hai, tab Syntax Error throw hota hai. Yeh error tab hota hai jab aap code ko likhne mein kuch galti karte ho, jaise ki missing brackets, semicolons, etc.
+    Ex :
+    if (true {
+        console.log("This will cause Syntax Error"); // Missing closing bracket
+    }
+* Type Error -
+    Jab aap kisi value ko ek aise tareeke se use karte ho jo uske type ke according valid nahi hai, tab Type Error hota hai. Yeh mostly tab hota hai jab aap kisi method ko us type ki value ke upar call karte ho jo allowed nahi hai.
+    Ex :
+        let num = 42;
+        num.toUpperCase(); // TypeError: num.toUpperCase is not a function
+* Reference Error -
+    Jab aap kisi aise variable ko access karne ki koshish karte ho jo defined ya declared nahi hai, tab Reference Error hota hai.
+    Ex :
+        console.log(nonExistentVar); // ReferenceError: nonExistentVar is not defined
+
+9. How to avoid Temporal Dead Zone ?
+Explanation :-
+* Temporal Dead Zone ko avoid karne ke liye aapko yeh ensure karna hoga ki aap variables ko declare aur initialize pehle kar lo, aur unko use baad mein karo.
+* Ex :
+    // Temporal Dead Zone avoid kiya by initializing first
+    let myVar = "Hello!";
+    console.log(myVar); // "Hello!"
+* Initialization early karo - Variables ko declare karte hi initialize kar do, taaki wo Temporal Dead Zone mein na jaye.
+* Use var for hoisting - Agar aapko kisi variable ko hoisting ke saath use karna hai, toh var use kar sakte ho. Lekin, var se scoping issues aa sakte hain, so use it carefully.
+* Note - TDZ sirf let aur const ke saath hota hai, var ke saath nahi. Lekin, let aur const ka use better practice hai kyunki yeh block-scoping follow karte hain.
+
+10. What is Block | Shadowing | Illegal Shadowing | Lexical Block Scope ?
+Explanation :-
+* Block -
+    Block JavaScript mein code ka ek group hota hai jo curly braces {} ke andar likha hota hai.
+    Yeh mostly if, for, while, aur functions ke saath use hota hai.
+    JavaScript mein let, const aur var ko block ke andar declare kiya ja sakta hai, lekin let aur const block scope follow karte hain, jabki var function scope follow karta hai.
+    Ex :
+        {
+            let x = 10; // Block ke andar hai, sirf is block mein accessible
+            console.log(x); // 10
+        }
+        console.log(x); // Error: x is not defined
+    Is example mein, let se declare kiya gaya variable x sirf us block ke andar hi accessible hai. Block ke bahar aap x ko access nahi kar sakte.
+* Shadowing -
+    Shadowing tab hota hai jab aap ek variable ko usi naam se declare karte ho jo pehle se parent scope mein exist karta hai.
+    Matlab, aapka local variable parent scope ke variable ko shadow kar deta hai, yaani uski visibility ko overwrite kar deta hai.
+    Ex :
+        let x = 20; // Global Scope
+        function shadowingExample() {
+            let x = 10; // Local Scope, shadows the global x
+            console.log(x); // 10
+        }
+        shadowingExample();
+        console.log(x); // 20, Global x is not affected
+    Is example mein, function ke andar x ko dobara declare kiya gaya hai, jo global x ko shadow kar raha hai. Function ke andar local x print hoga, lekin function ke bahar global x as it is rahega.
+* Illegal Shadowing -
+    Illegal Shadowing tab hota hai jab aap kisi block scope variable ko shadow karne ki koshish karte ho using var, jo ki allowed nahi hai.
+    let aur const se declare kiye gaye variables ko var ke saath shadow nahi kar sakte, kyunki var function scope follow karta hai aur let/const block scope follow karte hain.
+    Ex :
+        let x = 10;
+        function illegalShadowing() {
+            var x = 20; // Error: Identifier 'x' has already been declared
+        }
+        illegalShadowing();
+    Is case mein, let se declared x ko aap var se shadow nahi kar sakte function ke andar, kyunki yeh illegal shadowing hai. Yeh error throw karega.
+    Note - Lekin agar aap reverse karte ho, yaani var ko let ya const se shadow karte ho, toh wo allowed hota hai.
+* Lexical Block Scope -
+    Lexical Block Scope ka matlab hai ki JavaScript mein variables aur functions un blocks ke according scope mein locked hote hain jinme unhe declare kiya gaya hai.
+    Jab aap kisi variable ko block ke andar declare karte ho, toh wo sirf us block ke andar hi accessible hota hai, us block ke bahar nahi.
+    Yeh lexical scoping ke through achieve hota hai, jisme variables apne parent scopes ko refer kar sakte hain, lekin parent scope ke variables ko overwrite nahi kar sakte.
+    Ex :
+        let a = "global";
+        {
+            let a = "block scoped";
+            console.log(a); // "block scoped"
+        }
+        console.log(a); // "global"
+    Is example mein, let se declare kiya gaya variable a block ke andar lexical block scope follow kar raha hai, matlab wo sirf us block ke andar hi accessible hai. Block ke bahar, global a ko access kiya ja sakta hai.
+
+
+11. What are Closures in JS ?
+Explanation :-
+* Closure JavaScript ka ek powerful feature hai.
+* Jab ek function apne surrounding (lexical) environment ke variables ko yaad rakhta hai, chahe us function ko us environment ke bahar execute kiya jaye, tab usko Closure kehte hain.
+* Matlab, closure ek aisa function hota hai jo apne creation ke time ke lexical scope ko “close” kar leta hai, aur uske variables ko access kar sakta hai.
+* Ex :
+    function outerFunction() {
+        let outerVar = "I am outer";
+        function innerFunction() {
+            console.log(outerVar); // Closure, outerVar accessible hai
+        }
+        return innerFunction;
+    }
+    const myClosure = outerFunction();
+    myClosure(); // Output: "I am outer"
+    Yaha outerFunction ke andar ek innerFunction hai. Jab outerFunction call hoti hai, toh wo innerFunction ko return karti hai.
+    innerFunction, even after being executed outside its original environment, still remembers the outerVar variable due to closure. Jab aap myClosure() call karte ho, toh outerVar ki value print hoti hai, jo innerFunction ke scope ke bahar nahi hai, but closure ki wajah se accessible hai.
+    Note - Closure ka use tab hota hai jab aapko functions ke andar state maintain karni hoti hai ya private variables banane hote hain.
+
+12. What are First Class Functions ?
+Explanation :-
+* Function Statement -
+    Function Statement ko hi commonly Function Declaration bhi kehte hain.
+    Isme aap ek function ko explicitly define karte ho, jisme function ka naam aur body hota hai.
+    Yeh syntaxically ek independent statement hota hai.
+    Ex :
+        function a(){
+            console.log("This way of creating Function is called Function Statement.");
+        }
+    Note - Function statements hoisting ko follow karte hain, yaani aap function ko declare karne se pehle bhi call kar sakte ho.
+* Function Expression -
+    Function Expression mein aap ek function ko variable ke andar assign karte ho. Yeh ek expression hota hai jisme function ko define kiya jata hai, aur us function ka naam optional hota hai.
+    Ex :
+        var b = function (){
+            console.log("This way of creating Function is called Function Expression.")
+        }
+    Note - Function expressions hoisting ko follow nahi karte, yaani unko define karne se pehle call nahi kar sakte.
+* Named Function Expression -
+    Named Function Expression ek function expression hota hai jisme function ka apna naam hota hai, jo sirf us function ke andar hi accessible hota hai.
+    Yeh tab useful hota hai jab aap recursion karna chahte ho ya debug karna chahte ho.
+    Ex :
+        var c = function xyz(){
+            console.log("This way of creating Function is called Function Expression.")
+        }
+* Function Declaration -
+    Function Declaration aur Function Statement ek hi cheezein hain.
+    Jaise maine pehle bataya, yeh ek function ko declare karne ka tarika hai jisme function ka naam aur body hoti hai.
+    Ex :
+        function a(){
+            console.log("This way of creating Function is also called Function Declaration.");
+        }
+* Anonymous Function -
+    Anonymous Function ek aisa function hota hai jiska koi naam nahi hota.
+    Yeh mostly function expressions mein ya callbacks ke roop mein use hota hai.
+    Ex :
+        const greet = function() {
+            console.log("Hello, Anonymous!");
+        };
+        greet(); // "Hello, Anonymous!"
+    Yaha jo function greet ke andar assign hai, uska koi naam nahi hai, isliye yeh anonymous function hai. Isko directly use nahi kar sakte bina kisi variable ya callback ke.
+* First-Class Functions -
+    JavaScript mein First-Class Functions ka matlab hai ki functions ko bhi waise hi treat kiya jata hai jaise kisi aur value ya object ko.
+    Matlab aap functions ko variables mein store kar sakte ho, unko as arguments pass kar sakte ho, aur as return value wapas kar sakte ho.
+    Ex :
+        function greet() {
+            return "Hello!";
+        }
+        function logGreeting(fn) {
+            console.log(fn());
+        }
+        logGreeting(greet); // "Hello!"
+    Yaha greet function ko logGreeting function mein argument ke roop mein pass kiya gaya hai, aur usko waha se execute kiya gaya. Yeh possible hai kyunki JavaScript mein functions first-class citizens hain.
+* Arrow Function -
+    Arrow Functions JavaScript ES6 mein introduce hui thi.
+    Yeh concise syntax provide karti hain functions ko define karne ke liye, aur yeh lexical this binding follow karti hain, yaani yeh apne surrounding context ka this inherit karti hain.
+    Ex :
+        const greet = () => {
+            console.log("Hello, Arrow Function!");
+        };
+        greet(); // "Hello, Arrow Function!"
+    Yaha greet ek arrow function hai. Iska syntax chhota hai aur isme this binding lexical hoti hai, jo traditional functions se different hai.
+    Note - Agar aapke pass sirf ek statement hai, toh aap braces {} ko omit kar sakte ho, aur agar aapke pass sirf ek parameter hai, toh aap parentheses () ko bhi omit kar sakte ho.
+
 What is map ?
 What is filter ?
 What is reduce ?

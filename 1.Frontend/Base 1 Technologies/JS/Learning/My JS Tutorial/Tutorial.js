@@ -328,10 +328,63 @@ var s = 10;
 console.log(s);
 console.log(z); // This will Give Not Defined
 
-// What is Scope Chain in JS ?
+// What is Scope | Scope Chain | Lexical Environment in JS ? How does it work with Call Stack ?
+function outerFunction() {
+    var outerVar = "I am outer";
+    function innerFunction() {
+        var innerVar = "I am inner";
+        console.log(outerVar); // Scope chain ke through outerVar accessible hai
+    }
+    innerFunction();
+}
+outerFunction();
+
 // What is Temporal Dead Zone ?
-// What is Block Scope and Shadowing ?
+console.log(myVar); // ReferenceError: Cannot access 'myVar' before initialization
+let myVar = "Hello!";
+
+// What is a Block ?
+{
+    let x = 10; // Block ke andar hai, sirf is block mein accessible
+    console.log(x); // 10
+}
+console.log(x); // Error: x is not defined
+
+// What is a Shadowing ?
+let x = 20; // Global Scope
+function shadowingExample() {
+    let x = 10; // Local Scope, shadows the global x
+    console.log(x); // 10
+}
+shadowingExample();
+console.log(x); // 20, Global x is not affected
+
+// What is a Illegal Shadowing ?
+let x = 10;
+function illegalShadowing() {
+    var x = 20; // Error: Identifier 'x' has already been declared
+}
+illegalShadowing();
+
+// What is Lexical Block Scope ?
+let a = "global";
+{
+    let a = "block scoped";
+    console.log(a); // "block scoped"
+}
+console.log(a); // "global"
+
 // What are Closures in JS ?
+function outerFunction() {
+    let outerVar = "I am outer";
+    function innerFunction() {
+        console.log(outerVar); // Closure, outerVar accessible hai
+    }
+    return innerFunction;
+}
+const myClosure = outerFunction();
+myClosure(); // Output: "I am outer"
+
 // What are First Class Functions ?
 // What are Callback Functions ?
 // What is setTimeout ?
