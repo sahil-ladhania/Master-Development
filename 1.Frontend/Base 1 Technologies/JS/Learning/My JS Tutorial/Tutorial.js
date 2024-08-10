@@ -283,9 +283,6 @@ console.log("Primitive Datatype Example");
         console.log("I am an Arrow Function.");
     }
 
-// DOM APIs
-// Asynchronous JS
-
 // How JS Code is Executed ?
 console.log("JS Code Execution !!!");
 var n = 2;
@@ -385,9 +382,37 @@ function outerFunction() {
 const myClosure = outerFunction();
 myClosure(); // Output: "I am outer"
 
-// What are First Class Functions ?
-// What are Callback Functions ?
-// What is setTimeout ?
+// What are Pure Functions ?
+function add(a, b) {
+    return a + b;
+}
+
+// What are Higher-Order Functions ?
+function greet(name) {
+    return function(message) {
+        console.log(`${message}, ${name}!`);
+    };
+}
+const greetJohn = greet("John");
+greetJohn("Hello"); // Output: "Hello, John!"
+
+// What are Function Composition ?
+const add = (a) => (b) => a + b;
+const double = (x) => x * 2;
+const addAndDouble = (a, b) => double(add(a)(b));
+console.log(addAndDouble(2, 3)); // Output: 10
+
 // What is map ?
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
 // What is filter ?
+const numberss = [1, 2, 3, 4, 5];
+const evens = numberss.filter(num => num % 2 === 0);
+console.log(evens); // Output: [2, 4]
+
 // What is reduce ?
+const numbersss = [1, 2, 3, 4, 5];
+const sum = numbersss.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // Output: 15

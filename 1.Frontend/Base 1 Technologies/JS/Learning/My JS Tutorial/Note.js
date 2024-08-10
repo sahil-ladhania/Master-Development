@@ -480,6 +480,160 @@ Explanation :-
         node.after(...nodes or strings) – insert nodes or strings after node.
         node.replaceWith(...nodes or strings) - replaces node with the given nodes or strings.
 
+14. How to Access the DOM ?
+Explanation :-
+	•	document.getElementById(id) - Selects an element by its ID.
+	•	document.getElementsByClassName(class) - Selects all elements with the specified class.
+	•	document.getElementsByTagName(tag) - Selects all elements with the specified tag name.
+	•	document.querySelector(selector) - Selects the first element that matches the CSS selector.
+	•	document.querySelectorAll(selector) - Selects all elements that match the CSS selector.
+
+15. How to Manipulate the DOm ?
+Explanation :-
+* Changing Content :
+	•	element.innerHTML - Gets or sets the HTML content of an element.
+	•	element.textContent - Gets or sets the text content of an element.
+* Changing Attributes :
+	•	element.setAttribute(attribute, value) - Sets the value of an attribute.
+	•	element.getAttribute(attribute) - Gets the value of an attribute.
+* Changing Styles :
+	•	element.style.property - Sets a CSS property of an element, e.g., element.style.color = 'red';.
+
+16. How to Create and Insert Elements ?
+Explanation :-
+	•	document.createElement(tag) - Creates a new element.
+	•	parent.appendChild(element) - Adds a child element to the end of a parent element.
+	•	parent.insertBefore(newElement, existingElement) - Inserts a new element before an existing element.
+	•	parent.removeChild(element) - Removes a child element from the parent.
+
+17. What is Event Handeling ?
+Explanation :-
+* Event Handling ek important concept hai web development mein, jo user interactions ko handle karne ke liye use hota hai.
+* JavaScript mein, events woh actions hote hain jo user ya browser ke through trigger hote hain, jaise button click, mouse hover, keyboard press, etc.
+* Event handling ka matlab hai inn events ko detect karna aur unpe respond karna.
+
+18. What is an Event ?
+Explanation :-
+* Event ek signal hai jo browser ya user ke action ke baad trigger hota hai. Yeh koi bhi action ho sakta hai jaise :
+	•	User ne ek button click kiya
+	•	Mouse ne kisi element pe hover kiya
+	•	User ne ek key press ki
+	•	Page load complete hua
+	•	Form submit kiya gaya
+
+19. How to Handle Events ?
+Explanation :-
+* Event handling ke liye aapko ek function define karna padta hai jo event trigger hone par execute hota hai.
+* Is function ko event handler ya event listener kehte hain.
+
+20. What are Event Listeners / Event Handlers ?
+Explanation :-
+* JavaScript mein events ko handle karne ke liye aapko event listeners set karne hote hain.
+* Event listener ek function hota hai jo event trigger hone par call hota hai.
+* Event listener ko attach karne ke liye aap addEventListener() method ka use kar sakte ho.
+* Syntax :
+    element.addEventListener(event, handler);
+    •	element - Yeh wo DOM element hai jisme aap event listener attach kar rahe ho.
+	•	event - Yeh wo event type hai jisme aap listen kar rahe ho (jaise “click”, “mouseover”, “keydown”, etc.).
+	•	handler - Yeh function hai jo event trigger hone par execute hota hai.
+* Common Events :
+	•	click - Triggered when an element is clicked.
+	•	input - Triggered when the value of an <input> or <textarea> element changes.
+	•	submit - Triggered when a form is submitted.
+
+21. How to Remove Event Listeners ?
+Explanation :-
+* Kabhi-kabhi aapko event listeners ko remove bhi karna padta hai. Iske liye removeEventListener() method ka use hota hai.
+* Syntax :
+    element.removeEventListener(event, handler);
+
+22. What are some Common Event Types ?
+Explanation :-
+* Mouse Events :
+	•	click: Jab element par click hota hai.
+	•	dblclick: Jab element par double-click hota hai.
+	•	mouseover: Jab mouse cursor element ke upar aata hai.
+	•	mouseout: Jab mouse cursor element se bahar jata hai.
+* Keyboard Events :
+	•	keydown: Jab key press hota hai.
+	•	keyup: Jab key release hota hai.
+	•	keypress: Jab key press hota hai (lekin yeh ab deprecated hai).
+* Form Events :
+	•	submit: Jab form submit hota hai.
+	•	change: Jab form field ka value change hota hai.
+	•	focus: Jab element focus hota hai.
+	•	blur: Jab element se focus remove hota hai.
+* Document/Window Events :
+	•	load: Jab page load hota hai.
+	•	resize: Jab window resize hota hai.
+	•	scroll: Jab user page scroll karta hai.
+
+23. What is an Event Object ?
+Explanation :-
+* Jab event trigger hota hai, tab browser ek event object pass karta hai jo event ke baare mein information hold karta hai.
+* Yeh object automatically event handler function ko pass hota hai.
+* Ex :
+    button.addEventListener('click', function(event) {
+        console.log('Button clicked at coordinates:', event.clientX, event.clientY);
+    });
+    event object ke through aap event ke baare mein detailed information le sakte ho, jaise click hone ka coordinates (clientX, clientY), kaunsa key press hua (event.key), etc.
+
+24. What is Event Propogation ?
+Explanation :-
+* Event propagation se yeh decide hota hai ki events DOM tree mein kaise travel karte hain.
+* Isme 3 stages hoti hain :
+	Capturing Phase - Event root se start hota hai aur target element tak travel karta hai.
+	Target Phase - Event target element tak pahuchta hai aur execute hota hai.
+	Bubbling Phase - Event target element se root tak bubble back karta hai.
+* Note - Aap event propagation ko control karne ke liye stopPropagation() ya preventDefault() methods ka use kar sakte ho.
+
+25. What is stopPropagation() Method ?
+Explanation :-
+* stopPropagation() method ko event propagation ko control karne ke liye use kiya jata hai. Event propagation mein do phases hote hain :
+    Capturing Phase - Event root se shuru hota hai aur target element tak pahuchta hai.
+	Bubbling Phase - Event target element se root tak wapas jata hai.
+* Jab aap stopPropagation() method ka use karte ho, to aap event ko next phase mein propagate hone se rok dete ho. Matlab, agar event capturing phase mein hai to yeh target tak nahi jayega, aur agar bubbling phase mein hai to yeh parent elements tak bubble nahi karega.
+* Ex :
+    <div id="parent">
+        <button id="child">Click Me!</button>
+    </div>
+    <script>
+        const parent = document.getElementById('parent');
+        const child = document.getElementById('child');
+        parent.addEventListener('click', () => {
+            alert('Parent Div Clicked');
+        });
+        child.addEventListener('click', (event) => {
+            alert('Button Clicked');
+            event.stopPropagation(); // Stops event from propagating to the parent
+        });
+    </script>
+    Is example mein, agar aap button (child) pe click karte ho aur stopPropagation() use nahi karte ho, to parent div ka event bhi trigger hoga. Lekin stopPropagation() use karne se event parent tak propagate nahi karega, sirf button ka event trigger hoga.
+
+26 What is preventDefault() Method ?
+Explanation :-
+* preventDefault() method ka use kisi event ke default behavior ko rokne ke liye kiya jata hai. Default behavior woh action hai jo browser automatically perform karta hai, jaise :
+	•	Form submit hone par page reload hona
+	•	Anchor (<a>) tag pe click karne par naya page open hona
+	•	Right-click karne par context menu dikhna
+* Note - preventDefault() method in default behaviors ko rok sakta hai, taaki aap custom behavior define kar sako.
+* Ex :
+    <a href="https://example.com" id="myLink">Click Me!</a>
+    <script>
+        const link = document.getElementById('myLink');
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevents the link from navigating to the URL
+            alert('Link clicked, but navigation prevented!');
+        });
+    </script>
+    Is example mein, anchor tag pe click karne se usually browser us URL pe navigate karega. Lekin preventDefault() use karne se navigation nahi hoga, aur aapka custom alert message dikhega.
+
+27. Are stopPropagation() and preventDefault() Both Same ?
+Explanation :-
+* No, stopPropagation() aur preventDefault() dono methods same nahi hain.
+	•	stopPropagation() event ke propagation ko rokta hai, yaani event capturing ya bubbling ko stop karta hai.
+	•	preventDefault() event ke default behavior ko rokta hai, yaani browser jo default action perform karne wala hota hai, usko prevent karta hai.
+
 -----Strict Mode-----
 
 1. What is Strict Mode in JS ? -----------------------------------------------------------------------------------> IMP
@@ -951,8 +1105,114 @@ Explanation :-
     Yaha greet ek arrow function hai. Iska syntax chhota hai aur isme this binding lexical hoti hai, jo traditional functions se different hai.
     Note - Agar aapke pass sirf ek statement hai, toh aap braces {} ko omit kar sakte ho, aur agar aapke pass sirf ek parameter hai, toh aap parentheses () ko bhi omit kar sakte ho.
 
-What is map ?
-What is filter ?
-What is reduce ?
+13. What is Functional Programming ?
+Explanation :-
+* Functional Programming ek programming paradigm hai jisme computation ko functions ke through solve kiya jata hai.
+* Yeh declarative programming ka ek form hai, jisme aap “kya solve karna hai” pe focus karte ho, na ki “kaise solve karna hai”.
+* Isme functions ko first-class citizens ki tarah treat kiya jata hai, aur pure functions, immutability, aur higher-order functions jaisi concepts ka use kiya jata hai.
+
+14. What are Pure Functions ?
+Explanation :-
+* Pure functions woh functions hote hain jo sirf apne inputs par depend karte hain aur koi side effects nahi create karte.
+* Har bar same inputs ke liye same output return karte hain.
+* Ex :
+    function add(a, b) {
+        return a + b;
+    }
+    add function ek pure function hai, kyunki yeh sirf apne arguments a aur b par depend karta hai aur koi external state ko modify nahi karta.
+
+15. What is Immutability ?
+Explanation :-
+* Immutability ka matlab hai ki data ko modify nahi karna chahiye, balki har operation ke baad naya data structure create karna chahiye.
+* Isse state management simple hota hai aur bugs ka probability kam hoti hai.
+* Ex :
+    const arr = [1, 2, 3];
+    const newArr = arr.concat([4]); // arr ko modify nahi kiya gaya, balki naya array banaya
+    Is example mein, arr original array ko modify nahi kiya gaya, balki concat method se ek naya array newArr create kiya gaya.
+
+16. What is HOF ?
+Explanation :-
+* Higher-order functions aise functions hote hain jo ya to dusre functions ko arguments ke roop mein lete hain, ya function ko return karte hain.
+* Ex :
+    function greet(name) {
+        return function(message) {
+            console.log(`${message}, ${name}!`);
+        };
+    }
+    const greetJohn = greet("John");
+    greetJohn("Hello"); // Output: "Hello, John!"
+    Is example mein, greet ek higher-order function hai kyunki yeh ek dusra function return kar raha hai.
+
+17. What is First Class Function ?
+Explanation :-
+* Jaise pehle discuss kiya, first-class functions ka matlab hai functions ko variables mein store karna, as arguments pass karna, aur return karna.
+* Functional programming mein yeh concept bohot important hai.
+
+18. What is Function Composition ?
+Explanation :-
+* Function composition ka matlab hai chhote chhote functions ko combine karke ek complex function banana.
+* Yeh code ko modular aur reusable banata hai.
+* Ex :
+    const add = (a) => (b) => a + b;
+    const double = (x) => x * 2;
+    const addAndDouble = (a, b) => double(add(a)(b));
+    console.log(addAndDouble(2, 3)); // Output: 10
+    Yaha add aur double functions ko combine karke addAndDouble function banaaya gaya hai.
+
+19. What is map ?
+Explanation :-
+* map() ek array method hai jo ek existing array ke har element par ek function apply karta hai aur result ko ek naye array mein return karta hai.
+* Yaani, map() aapko input array ke elements ko transform karne ki ability deta hai.
+* Syntax :
+    let newArray = array.map(callback(element, index, array) {
+        // return transformed element
+    });
+    •	callback - function ko har element ke liye call kiya jata hai.
+	•	element - Current element jo process ho raha hai.
+	•	index - Current element ka index.
+	•	array - Original array jisme map() apply ho raha hai.
+	•	newArray - Yeh return karta hai transformed elements ka naya array.
+* Ex :
+    const numbers = [1, 2, 3, 4, 5];
+    const doubled = numbers.map(num => num * 2);
+    console.log(doubled); // Output: [2, 4, 6, 8, 10]
+    Is example mein, map() function numbers array ke har element par num * 2 apply kar raha hai, aur result ko doubled array mein store kar raha hai.
+
+20. What is filter ?
+Explanation :-
+* filter() ek array method hai jo ek existing array ke elements ko filter karta hai based on ek condition (jo aap callback function mein define karte ho) aur unhi elements ko naya array return karta hai jo condition satisfy karte hain.
+* Syntax :
+    let newArray = array.filter(callback(element, index, array) {
+        // return true or false
+    });
+    •	callback - function ko har element ke liye call kiya jata hai.
+	•	element - Current element jo process ho raha hai.
+	•	index - Current element ka index.
+	•	array - Original array jisme filter() apply ho raha hai.
+	•	newArray - Yeh return karta hai sirf un elements ka array jo callback function mein true return karte hain.
+* Ex :
+    const numbers = [1, 2, 3, 4, 5];
+    const evens = numbers.filter(num => num % 2 === 0);
+    console.log(evens); // Output: [2, 4]
+    Is example mein, filter() function numbers array ke elements mein se sirf unko filter karta hai jo even hain (i.e., num % 2 === 0 condition satisfy karte hain) aur result ko evens array mein store karta hai.
+
+21. What is reduce ?
+Explanation :-
+* reduce() ek array method hai jo array ke har element par ek callback function apply karta hai, aur ek single value reduce karta hai jo cumulative result hota hai.
+* Yeh cumulative operation (jaise sum, product, etc.) ke liye useful hai.
+* Syntax :
+    let result = array.reduce(callback(accumulator, currentValue, index, array), initialValue);
+    •	callback - Function jo har element par call kiya jata hai.
+	•	accumulator - Yeh cumulative result ko hold karta hai.
+	•	currentValue - Current element jo process ho raha hai.
+	•	index - Current element ka index.
+	•	array - Original array jisme reduce() apply ho raha hai.
+	•	initialValue - Yeh accumulator ki initial value set karta hai (optional).
+	•	result - Yeh reduce operation ke baad single value return karta hai.
+* Ex :
+    const numbers = [1, 2, 3, 4, 5];
+    const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+    console.log(sum); // Output: 15
+    Is example mein, reduce() function numbers array ke har element ko ek cumulative sum mein reduce kar raha hai. Initial value 0 hai, aur function har element ko accumulator (acc) mein add karta ja raha hai. Final result 15 return hota hai.
 
 */
