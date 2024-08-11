@@ -301,43 +301,30 @@ Explanation :-
 
 -----DOM APIs-----
 
-1. What are DOM APIs ? --------------------------------------------------------------------------------------------> IMP
+1. What is DOM ? --------------------------------------------------------------------------------------------> IMP
 Explanation :-
-* Interfaces for interacting with HTML and XML documents.
-* Examples include document.getElementById(), element.addEventListener().
-
-2. What is the Bird’s Eye View of How JS runs in the Browser ?
-Explanation :-
-* Refer to the Image.
-* window :
-    DOM
-    BOM
-    JS
-* There’s a “root” object called window. It has two roles :
-    First, it is a global object for JavaScript code, as described in the chapter Global object.
-    Second, it represents the “browser window” and provides methods to control it.
-
-3. What is DOM ?
-Explanation :-
+* Programming Interface for web documents.
+* But NOT a Programming Langauge.
+* DOM is a tree-like Representation of the web page that gets loaded into the browser.
+* DOM represents the document as Nodes and Objects.
+* Not a feature of JS , But a Web Api for building Websites
 * The Document Object Model, or DOM for short, represents all page content as objects that can be modified.
 * The document object is the main “entry point” to the page. We can change or create anything on the page using it.
 * DOM is not only for browsers.
 
-4. What is BOM ?
+2. Why DOM ? --------------------------------------------------------------------------------------------> IMP
 Explanation :-
-* The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
-* Provides :
-    navigator
-    screen
-    location
-    frames
-    history
-    XMLHttpRequest
-* The functions | alert | confirm | prompt | are also a part of the BOM - they are not directly related to the document, but represent pure browser methods for communicating with the user.
-* The BOM is a part of the general HTML specification.
+* JavaScript makes the HTML page Active and Dynamic via the DOM.
 
-5. What is DOM Tree ?
+3. What are DOM APIs ? --------------------------------------------------------------------------------------------> IMP
 Explanation :-
+* Interfaces for interacting with HTML and XML documents.
+* Examples include document.getElementById(), element.addEventListener().
+
+4. What is DOM Tree ? --------------------------------------------------------------------------------------------> IMP
+Explanation :-
+* DOM is structured as a tree, where each Node represents an Object in the document.
+* When a web browser parses an HTML document, it builds a DOM tree and then uses it to display the document.
 * The backbone of an HTML document is tags.
 * According to the Document Object Model (DOM), every HTML tag is an object.
 * Nested tags are “children” of the enclosing one.
@@ -359,7 +346,37 @@ Explanation :-
     If we put something after </body>, then that is automatically moved inside the body, at the end, as the HTML spec requires that all content must be inside <body>. So there can’t be any spaces after </body>.
 * Spaces at string start/end and space-only text nodes are usually hidden in tools.
 
-6. What is Auto-Correction in DOM ?
+5. What is the Bird’s Eye View of How JS runs in the Browser ?
+Explanation :-
+* Refer to the Image.
+* window :
+    DOM
+    BOM
+    JS
+* There’s a “root” object called window. It has two roles :
+    First, it is a global object for JavaScript code, as described in the chapter Global object.
+    Second, it represents the “browser window” and provides methods to control it.
+
+6. What is DOM ?
+Explanation :-
+* The Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+* The document object is the main “entry point” to the page. We can change or create anything on the page using it.
+* DOM is not only for browsers.
+
+7. What is BOM ?
+Explanation :-
+* The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
+* Provides :
+    navigator
+    screen
+    location
+    frames
+    history
+    XMLHttpRequest
+* The functions | alert | confirm | prompt | are also a part of the BOM - they are not directly related to the document, but represent pure browser methods for communicating with the user.
+* The BOM is a part of the general HTML specification.
+
+8. What is Auto-Correction in DOM ?
 Explanation :-
 * If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
 * For instance, the top tag is always <html>. Even if it doesn’t exist in the document, it will exist in the DOM, because the browser will create it. The same goes for <body>.
@@ -367,7 +384,7 @@ Explanation :-
 * A document with unclosed tags will become a normal DOM as the browser reads tags and restores the missing parts.
 * An interesting “special case” is tables. By DOM specification they must have <tbody> tag, but HTML text may omit it. Then the browser creates <tbody> in the DOM automatically.
 
-7. What are some Other Node Types ?
+9. What are some Other Node Types ?
 Explanation :-
 * Why is a comment added to the DOM when It doesn’t affect the visual representation in any way. But there’s a rule –> If something’s in HTML, then it also must be in the DOM tree.
 * Everything in HTML, even comments, becomes a part of the DOM.
@@ -379,7 +396,13 @@ Explanation :-
     text nodes – contain text.
     comments – sometimes we can put information there, it won’t be shown, but JS can read it from the DOM.
 
-8. What is On Top of the DOM ?
+10. What is the Document Object ?
+Explanation :-
+* Top most Object in the DOM.
+* Represents the entire document.
+* It has properties and methods which you can use to get information about the document using a rule known as Dot Notation.
+
+11. What is On Top of the DOM ?
 Explanation :-
 * The topmost tree nodes are available directly as document properties :
     <html> = document.documentElement
@@ -394,7 +417,7 @@ Explanation :-
     In the DOM world null means “doesn’t exist”.
     In the DOM, the null value means “doesn’t exist” or “no such node”.
 
-9. What is Children in DOM , like childNodes, firstChild, lastChild ?
+12. What is Children in DOM , like childNodes, firstChild, lastChild ?
 Explanation :-
 * There are two terms that we’ll use from now on :
     Child nodes (or children)
@@ -402,7 +425,7 @@ Explanation :-
 * Child nodes (or children) - Elements that are direct children. In other words, they are nested exactly in the given one. For instance, <head> and <body> are children of <html> element.
 * Descendants - All elements that are nested in the given one, including children, their children and so on.
 
-10. What are DOM Collections ?
+13. What are DOM Collections ?
 Explanation :-
 * As we can see, childNodes looks like an array. But actually it’s not an array, but rather a collection – a special array-like iterable object.
 * There are two important consequences :
@@ -426,7 +449,20 @@ Explanation :-
     Collections are iterable using for..of. Sometimes people try to use for..in for that.
     Please, don’t. The for..in loop iterates over all enumerable properties. And collections have some “extra” rarely used properties that we usually do not want to get.
 
-11. What are Siblings and Parent in DOM ?
+14. What is the Difference Between HTML Collection & Node List ?
+Explanation :-
+* HTML Collection :
+    getElementsByClassName() and getElementsByTagName() methods return a live HTMLCollection.
+    Collection of document elements.
+    Items can be accessed by their name, id, or index number.
+    It is always a live collection. Example: If you add a <li> element to a list in the DOM, the list in the HTMLCollection will also change.
+* Node List  :
+    querySelector() and querySelectorAll() method returns a static NodeList.
+    Collection of document nodes (element nodes, attribute nodes, and text nodes).
+    Items can only be accessed by their index number.
+    Most often a static collection. Example: If you add a <li> element to a list in the DOM, the list in NodeList will not change.
+
+15. What are Siblings and Parent in DOM ?
 Explanation :-
 * Siblings are nodes that are children of the same parent.
 * For instance, here <head> and <body> are siblings.
@@ -435,7 +471,7 @@ Explanation :-
 * The next sibling is in nextSibling property, and the previous one – in previousSibling.
 * The parent is available as parentNode.
 
-12. How to Search in a DOM ?
+16. How to Search in a DOM ?
 Explanation :-
 * There are 6 main methods to search for nodes in DOM.
     querySelector :
@@ -463,7 +499,7 @@ Explanation :-
         Can call on an element ? Yes
         Live ? Yes
 
-13. How to Modify the Document in DOM ?
+17. How to Modify the Document in DOM ?
 Explanation :-
 * DOM modification is the key to creating “live” pages.
 * Creating an element.
@@ -480,7 +516,7 @@ Explanation :-
         node.after(...nodes or strings) – insert nodes or strings after node.
         node.replaceWith(...nodes or strings) - replaces node with the given nodes or strings.
 
-14. How to Access the DOM ?
+18. How to Access the DOM ?
 Explanation :-
 	•	document.getElementById(id) - Selects an element by its ID.
 	•	document.getElementsByClassName(class) - Selects all elements with the specified class.
@@ -488,7 +524,7 @@ Explanation :-
 	•	document.querySelector(selector) - Selects the first element that matches the CSS selector.
 	•	document.querySelectorAll(selector) - Selects all elements that match the CSS selector.
 
-15. How to Manipulate the DOm ?
+19. How to Manipulate the DOm ?
 Explanation :-
 * Changing Content :
 	•	element.innerHTML - Gets or sets the HTML content of an element.
@@ -499,20 +535,20 @@ Explanation :-
 * Changing Styles :
 	•	element.style.property - Sets a CSS property of an element, e.g., element.style.color = 'red';.
 
-16. How to Create and Insert Elements ?
+20. How to Create and Insert Elements ?
 Explanation :-
 	•	document.createElement(tag) - Creates a new element.
 	•	parent.appendChild(element) - Adds a child element to the end of a parent element.
 	•	parent.insertBefore(newElement, existingElement) - Inserts a new element before an existing element.
 	•	parent.removeChild(element) - Removes a child element from the parent.
 
-17. What is Event Handeling ?
+21. What is Event Handeling ?
 Explanation :-
 * Event Handling ek important concept hai web development mein, jo user interactions ko handle karne ke liye use hota hai.
 * JavaScript mein, events woh actions hote hain jo user ya browser ke through trigger hote hain, jaise button click, mouse hover, keyboard press, etc.
 * Event handling ka matlab hai inn events ko detect karna aur unpe respond karna.
 
-18. What is an Event ?
+22. What is an Event ?
 Explanation :-
 * Event ek signal hai jo browser ya user ke action ke baad trigger hota hai. Yeh koi bhi action ho sakta hai jaise :
 	•	User ne ek button click kiya
@@ -521,12 +557,12 @@ Explanation :-
 	•	Page load complete hua
 	•	Form submit kiya gaya
 
-19. How to Handle Events ?
+23. How to Handle Events ?
 Explanation :-
 * Event handling ke liye aapko ek function define karna padta hai jo event trigger hone par execute hota hai.
 * Is function ko event handler ya event listener kehte hain.
 
-20. What are Event Listeners / Event Handlers ?
+24. What are Event Listeners / Event Handlers ?
 Explanation :-
 * JavaScript mein events ko handle karne ke liye aapko event listeners set karne hote hain.
 * Event listener ek function hota hai jo event trigger hone par call hota hai.
@@ -541,13 +577,13 @@ Explanation :-
 	•	input - Triggered when the value of an <input> or <textarea> element changes.
 	•	submit - Triggered when a form is submitted.
 
-21. How to Remove Event Listeners ?
+25. How to Remove Event Listeners ?
 Explanation :-
 * Kabhi-kabhi aapko event listeners ko remove bhi karna padta hai. Iske liye removeEventListener() method ka use hota hai.
 * Syntax :
     element.removeEventListener(event, handler);
 
-22. What are some Common Event Types ?
+26. What are some Common Event Types ?
 Explanation :-
 * Mouse Events :
 	•	click: Jab element par click hota hai.
@@ -568,7 +604,7 @@ Explanation :-
 	•	resize: Jab window resize hota hai.
 	•	scroll: Jab user page scroll karta hai.
 
-23. What is an Event Object ?
+27. What is an Event Object ?
 Explanation :-
 * Jab event trigger hota hai, tab browser ek event object pass karta hai jo event ke baare mein information hold karta hai.
 * Yeh object automatically event handler function ko pass hota hai.
@@ -578,7 +614,7 @@ Explanation :-
     });
     event object ke through aap event ke baare mein detailed information le sakte ho, jaise click hone ka coordinates (clientX, clientY), kaunsa key press hua (event.key), etc.
 
-24. What is Event Propogation ?
+28. What is Event Propogation ?
 Explanation :-
 * Event propagation se yeh decide hota hai ki events DOM tree mein kaise travel karte hain.
 * Isme 3 stages hoti hain :
@@ -587,7 +623,7 @@ Explanation :-
 	Bubbling Phase - Event target element se root tak bubble back karta hai.
 * Note - Aap event propagation ko control karne ke liye stopPropagation() ya preventDefault() methods ka use kar sakte ho.
 
-25. What is stopPropagation() Method ?
+29. What is stopPropagation() Method ?
 Explanation :-
 * stopPropagation() method ko event propagation ko control karne ke liye use kiya jata hai. Event propagation mein do phases hote hain :
     Capturing Phase - Event root se shuru hota hai aur target element tak pahuchta hai.
@@ -610,7 +646,7 @@ Explanation :-
     </script>
     Is example mein, agar aap button (child) pe click karte ho aur stopPropagation() use nahi karte ho, to parent div ka event bhi trigger hoga. Lekin stopPropagation() use karne se event parent tak propagate nahi karega, sirf button ka event trigger hoga.
 
-26 What is preventDefault() Method ?
+30. What is preventDefault() Method ?
 Explanation :-
 * preventDefault() method ka use kisi event ke default behavior ko rokne ke liye kiya jata hai. Default behavior woh action hai jo browser automatically perform karta hai, jaise :
 	•	Form submit hone par page reload hona
@@ -628,7 +664,7 @@ Explanation :-
     </script>
     Is example mein, anchor tag pe click karne se usually browser us URL pe navigate karega. Lekin preventDefault() use karne se navigation nahi hoga, aur aapka custom alert message dikhega.
 
-27. Are stopPropagation() and preventDefault() Both Same ?
+31. Are stopPropagation() and preventDefault() Both Same ?
 Explanation :-
 * No, stopPropagation() aur preventDefault() dono methods same nahi hain.
 	•	stopPropagation() event ke propagation ko rokta hai, yaani event capturing ya bubbling ko stop karta hai.
