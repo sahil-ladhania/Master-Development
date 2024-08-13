@@ -1,20 +1,18 @@
 /*
 
 1. What is Callback Hell ?
-Answer :-
+Explanation :-
 * Also called Callback Pyramid ya Christmas Tree Problem.
-* Situation hai jisme multiple nested callbacks hote hain, jo ki code ko
-complex aur mushkil banate hain.
+* Situation hai jisme multiple nested callbacks hote hain, jo ki code ko complex aur mushkil banate hain.
 
 2. How it is used ?
-Answer :-
-* Callback Hell ka syntax multiple nested callbacks ke roop mein hota hai,
-jisme code ki readability aur maintainability bahut hi kam ho jati hai.
+Explanation :-
+* Callback Hell ka syntax multiple nested callbacks ke roop mein hota hai, jisme code ki readability aur maintainability bahut hi kam ho jati hai.
 
 3. What is the Solution for Callback Hell ?
-Answer :-
-* Callback Hell ko avoid karne ke liye, hum Promises ya Async/Await ka istemal
-karte hain. Yeh approach code ko readable aur maintainable banata hai.
+Explanation :-
+* Callback Hell ko avoid karne ke liye, hum Promises ya Async/Await ka istemal karte hain.
+* Yeh approach code ko readable aur maintainable banata hai.
 
 */
 
@@ -70,13 +68,10 @@ doSomething(function(result) {
 });
 doSomething(function(result) {
     console.log("Task 1 complete");
-
     doSomethingElse(result, function(newResult) {
         console.log("Task 2 complete");
-
         doAnotherThing(newResult, function(finalResult) {
             console.log("Task 3 complete");
-
             // and so on...
         });
     });

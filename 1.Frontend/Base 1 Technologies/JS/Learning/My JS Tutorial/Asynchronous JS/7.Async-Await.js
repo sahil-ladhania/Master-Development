@@ -1,38 +1,31 @@
 /*
 
 1. What is async ?
-Answer :-
+Explanation :-
 * Async ka use ek function ko asynchronous banane ke liye hota hai.
-* Ye function ko allow karta hai ki woh asynchronously operate kare, bina code ki execution
-ko block kare.
+* Ye function ko allow karta hai ki woh asynchronously operate kare, bina code ki execution ko block kare.
 
 2. What is await ?
-Answer :-
-* Await, ek async function ke ander use hota hai taki woh promise settle ho jane ke baad
-code execution ko continue kare.
+Explanation :-
+* Await, ek async function ke ander use hota hai taki woh promise settle ho jane ke baad code execution ko continue kare.
 
 3. Why it is used ?
-Answer :-
-* Async-Await ka use Promises se related code ko elegant taur par handle karne ke liye hota
-hai.
+Explanation :-
+* Async-Await ka use Promises se related code ko elegant taur par handle karne ke liye hota hai.
 * Ye syntax ko simplify karta hai aur code ko read karne mein madad karta hai.
 
 4. When Promises was there , Why did async await was Introduced ?
-Answer :-
-* Async-Await ko introduce karne ka motive Promises ke callback hell problem ko address
-karna tha.
-* Ye asynchronous code ki readability ko badhaata hai, jisse woh synchronous code ki
-tarah dikhe.
+Explanation :-
+* Async-Await ko introduce karne ka motive Promises ke callback hell problem ko address karna tha.
+* Ye asynchronous code ki readability ko badhaata hai, jisse woh synchronous code ki tarah dikhe.
 
 5. What is try Block ?
-Answer :-
-* try block ka use hota hai code ke us hisse mein jahan par exceptions ya errors expected
-hote hain.
-* Jab bhi aap koi risky code likhte hain, jaise ki file reading ya network operations,
-to aap usko try block mein rakh sakte hain.
+Explanation :-
+* try block ka use hota hai code ke us hisse mein jahan par exceptions ya errors expected hote hain.
+* Jab bhi aap koi risky code likhte hain, jaise ki file reading ya network operations, to aap usko try block mein rakh sakte hain.
 
 6. What is catch Block ?
-Answer :-
+Explanation :-
 * catch block tab kaam aata hai jab koi exception ya error try block ke andar occur hota hai.
 * Yeh block specify karta hai ki kaise handle karna hai exception ko.
 * Isme aap error ko log kar sakte hain ya phir specific actions le sakte hain.
@@ -57,15 +50,13 @@ function fetchData() {
 async function getData() {
     try {
         console.log("Fetching data...");
-
         // Await ka use asynchronous operation ke result ka wait karne ke liye
         const result = await fetchData();
-
         // Ye line execute hoga jab fetchData ka promise resolve ho jata hai
         console.log(result);
-
         console.log("Data fetched successfully!");
-    } catch (error) {
+    }
+    catch (error) {
         // Error handling
         console.error("Error fetching data:", error);
     }
@@ -85,10 +76,12 @@ try {
     // Risky code jo exception throw kar sakta hai
     const result = 10 / 0;  // Divide by zero, a common cause of an exception
     console.log(result);   // This line won't be executed if an exception occurs
-} catch (error) {
+}
+catch (error) {
     // Yahaan aayega agar try block mein koi exception hua
     console.error("An error occurred:", error);
-} finally {
+}
+finally {
     // Ye block optional hota hai, aur hamesha execute hota hai chahe exception ho ya na ho
     console.log("Finally block: This will always be executed.");
 }
