@@ -112,7 +112,7 @@ Explanation :-
 * Event Loop -
     Yeh continuously check karta hai ki Call Stack khali hai ya nahi.
     Agar khali hai, toh woh dekhta hai ki Callback Queue mein kuch hai ya nahi.
-* Execution:
+* Execution -
     Agar Callback Queue mein kuch hai, Event Loop usse Call Stack mein move karta hai, jisse woh execute ho.
 
 19. What is the difference between Callback Queue and Microtask Queue ?

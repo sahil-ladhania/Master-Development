@@ -46,32 +46,69 @@ Explanation :-
 
 4. What are different methods of Promises ?
 Explanation :-
-Promise.all() -
-    Sab promises ka wait karta hai, fir unka array resolve karta hai.
-Promise.allSelected() -
-    Multiple promises ko handle karta hai, saare results deta hai, chahe resolve ho ya reject.
-Promise.any() -
-    Pehla resolve hua promise return karta hai, baaki ko ignore karta hai.
-    Jab kisi bhi success kaafi hai.
-Promise.then() -
-    Promise ka resolved value handle karta hai.
-    Standard tareeka hai resolution ke saath kaam karne ka.
-Promise.catch() -
-    Specifically promise rejection ko handle karta hai, ek hi jagah se errors ko manage karne mein madad karta hai.
-Promise.finally() -
-    Cleanup ke liye, chaahe promise resolve ho ya reject ho, yeh block hamesha chalta hai.
-Promise.race() -
-    Pehla resolve ya reject hua promise return karta hai.
-    Jab sirf pehle ka result chahiye ho.
-Promise.reject() -
-    Manually reject hone wala promise banaata hai.
-    Reject reason specify kar sakte hain.
-Promise.resolve() -
-    Manually resolve hone wala promise banaata hai.
-    Resolve value specify kar sakte hain.
-Promise.withResolvers() -
-    Custom resolvers ke saath promise banata hai.
-    Apne taur par resolve aur reject functions define kar sakte hain.
+* Promise.all() :
+	•	What it is - Aggregates multiple promises into a single promise that resolves when all of the input promises have resolved.
+	•	Input - An array (or any iterable) of promises.
+	•	Returns - A single promise.
+	•	When it returns - When all promises resolve or when one promise rejects.
+	•	Return (All Successful) - An array of resolved values, in the order of the input promises.
+	•	Return (One or More Failed) - The first rejection reason, and the entire Promise.all rejects.
+* Promise.allSettled() :
+	•	What it is - Waits for all promises to settle (either resolved or rejected) and returns an array of their results.
+	•	Input - An array (or any iterable) of promises.
+	•	Returns - A single promise.
+	•	When it returns - When all input promises have settled.
+	•	Return (All Successful) - An array of objects, each with {status: "fulfilled", value: result}.
+	•	Return (One or More Failed) - An array of objects with either {status: "fulfilled", value: result} or {status: "rejected", reason: error}.
+* Promise.race() :
+	•	What it is - Returns a promise that resolves or rejects as soon as one of the input promises resolves or rejects.
+	•	Input - An array (or any iterable) of promises.
+	•	Returns - A single promise.
+	•	When it returns - As soon as the first promise settles (either resolves or rejects).
+	•	Return (All Successful) - The value of the first settled promise.
+	•	Return (One or More Failed) - The reason of the first promise to reject.
+* Promise.any() :
+	•	What it is - Returns a promise that resolves as soon as one of the input promises resolves, ignoring any rejections.
+	•	Input - An array (or any iterable) of promises.
+	•	Returns - A single promise.
+	•	When it returns - When the first promise resolves or when all promises reject.
+	•	Return (All Successful) - The value of the first promise to resolve.
+	•	Return (One or More Failed) - If all promises fail, it returns an AggregateError.
+* Promise.then() :
+	•	What it is - Adds fulfillment and rejection handlers to the promise.
+	•	Input - Two functions: onFulfilled, onRejected.
+	•	Returns - A new promise.
+	•	When it returns - Immediately after adding handlers.
+	•	Return (All Successful) - The return value of onFulfilled.
+	•	Return (One or More Failed) - The return value of onRejected.
+* Promise.catch() :
+	•	What it is - Adds a rejection handler to the promise.
+	•	Input - A function onRejected.
+	•	Returns - A new promise.
+	•	When it returns - Immediately after adding the handler.
+	•	Return (All Successful) - Skips catch if no error.
+	•	Return (One or More Failed) - The return value of onRejected.
+* Promise.finally() :
+	•	What it is - Adds a handler to be called when the promise is settled, regardless of the result.
+	•	Input - A function onFinally.
+	•	Returns - A new promise.
+	•	When it returns - Immediately after adding the handler.
+	•	Return (All Successful) - The original promise’s value.
+	•	Return (One or More Failed) - The original promise’s rejection reason.
+* Promise.reject() :
+	•	What it is - Returns a promise that is rejected with a given reason.
+	•	Input - A reason (any value or error object).
+	•	Returns - A rejected promise.
+	•	When it returns - Immediately.
+	•	Return (All Successful) - Not applicable (it’s always rejected).
+	•	Return (One or More Failed) - The rejection reason.
+* Promise.resolve() :
+	•	What it is - Returns a promise that is resolved with a given value.
+	•	Input - A value (can be a promise or any value).
+	•	Returns - A resolved promise.
+	•	When it returns - Immediately.
+	•	Return (All Successful) - The resolved value.
+	•	Return (One or More Failed) - Not applicable (it’s always resolved).
 
 */
 
@@ -120,156 +157,56 @@ getDataPromise()
     .then(data => displayDataPromise(data))
     .catch(err => console.error(err));
 
-// -----Syntax of Promise.all()-----
-Promise.all([promiseA, promiseB, ...])
-    .then((allValues) => {
-        // Handle resolved promises
-    })
-    .catch((anyError) => {
-        // Handle if any promise rejects
-    });
 // Example of Promise.all()
-const apiPromise1 = fetchDataFromAPI1();
-const apiPromise2 = fetchDataFromAPI2();
+const p1 = Promise.resolve(10);
+const p2 = Promise.resolve(20);
+const p3 = Promise.resolve(30);
+Promise.all([p1, p2, p3])
+    .then(values => console.log(values))  // [10, 20, 30]
+    .catch(error => console.log(error));
 
-Promise.all([apiPromise1, apiPromise2])
-    .then((allValues) => {
-        console.log('All promises resolved:', allValues);
-    })
-    .catch((anyError) => {
-        console.error('One or more promises rejected:', anyError);
-    });
-
-// -----Syntax of Promise.allSettled()-----
-Promise.allSettled([promiseC, promiseD, ...])
-    .then((allResults) => {
-        // Handle all promises, regardless of resolution or rejection
-    });
 // Example of Promise.allSettled()
-const apiPromise3 = fetchDataFromAPI1();
-const apiPromise4 = fetchDataFromAPI2();
+const p4 = Promise.resolve(10);
+const p5 = Promise.reject('Error!');
+const p6 = Promise.resolve(30);
 
-Promise.allSettled([apiPromise3, apiPromise4])
-    .then((allResults) => {
-        console.log('All promises settled:', allResults);
-    });
+Promise.allSettled([p4, p5, p6])
+    .then(results => console.log(results)); // [{status: "fulfilled", value: 10}, {status: "rejected", reason: "Error!"}, {status: "fulfilled", value: 30}]
 
-// -----Syntax of Promise.any()-----
-Promise.any([promiseE, promiseF, ...])
-    .then((firstResolved) => {
-        // Handle the first resolved promise
-    })
-    .catch((allRejected) => {
-        // Handle if all promises are rejected
-    });
-// Example of Promise.any()
-const cachePromise = fetchDataFromCache();
-const networkPromise = fetchDataFromAPI();
-
-Promise.any([cachePromise, networkPromise])
-    .then((firstResolved) => {
-        console.log('First promise resolved:', firstResolved);
-    })
-    .catch((allRejected) => {
-        console.error('All promises rejected:', allRejected);
-    });
-
-// -----Syntax of Promise.then()-----
-simplePromise
-    .then((result) => {
-        // Handle resolved promise
-    })
-// Example of Promise.then()
-fetchAPIData()
-    .then((data) => {
-        console.log('Data fetched successfully:', data);
-    })
-    .catch((error) => {
-        console.error('Error fetching data:', error);
-    });
-
-// -----Syntax of Promise.catch()-----
-catchPromise
-    .catch((error) => {
-        // Handle rejected promise
-    });
-// Example of Promise.catch()
-fetchAPIData()
-    .then((data) => {
-        console.log('Data fetched successfully:', data);
-    })
-    .catch((error) => {
-        console.error('Error fetching data:', error);
-    });
-
-// -----Syntax of Promise.finally()-----
-finallyPromise
-    .finally(() => {
-        // Code to be executed regardless of promise resolution or rejection
-    });
-// Example of Promise.finally()
-fetchAPIData()
-    .then((data) => {
-        console.log('Data fetched successfully:', data);
-    })
-    .catch((error) => {
-        console.error('Error fetching data:', error);
-    })
-    .finally(() => {
-        console.log('This code always runs, whether promise is resolved or rejected.');
-    });
-
-// -----Syntax of Promise.race()-----
-Promise.race([promiseG, promiseH, ...])
-    .then((firstResolved) => {
-        // Handle the first resolved promise
-    })
-    .catch((firstRejected) => {
-        // Handle the first rejected promise
-    });
 // Example of Promise.race()
-const racePromise1 = fetchDataFromAPI1();
-const racePromise2 = fetchDataFromAPI2();
+const p7 = new Promise((resolve) => setTimeout(resolve, 100, 'Fast'));
+const p8 = new Promise((resolve) => setTimeout(resolve, 200, 'Slow'));
 
-Promise.race([racePromise1, racePromise2])
-    .then((firstResolved) => {
-        console.log('First promise to resolve:', firstResolved);
-    })
-    .catch((firstRejected) => {
-        console.error('First promise to reject:', firstRejected);
-    });
+Promise.race([p7, p8])
+    .then(value => console.log(value))  // 'Fast'
+    .catch(error => console.log(error));
 
-// -----Syntax of Promise.reject()-----
-const rejectionReason = 'This promise is rejected';
-const rejectedDataPromise = Promise.reject(rejectionReason);
+// Example of Promise.any()
+const p9 = Promise.reject('Error 1');
+const p10 = Promise.resolve(20);
+const p11 = Promise.reject('Error 2');
+Promise.any([p9, p10, p11])
+    .then(value => console.log(value))  // 20
+    .catch(error => console.log(error)); // AggregateError if all reject
+
+// Example of Promise.then()
+const p12 = Promise.resolve(42);
+p12.then(value => console.log(value))  // 42
+    .catch(error => console.log(error));
+
+// Example of Promise.catch()
+const p13 = Promise.reject('Error!');
+p13.catch(error => console.log(error));  // 'Error!'
+
+// Example of Promise.finally()
+const p14 = Promise.resolve('Done');
+p14.finally(() => console.log('Finally!'))  // 'Finally!'
+    .then(value => console.log(value));  // 'Done'
+
 // Example of Promise.reject()
-const failedFetchPromise = Promise.reject('Failed to fetch data');
-failedFetchPromise.catch((fetchError) => {
-    console.error('Promise rejected with reason:', fetchError);
-});
+const p15 = Promise.reject('Error!');
+p15.catch(error => console.log(error));  // 'Error!'
 
-// -----Syntax of Promise.resolve()-----
-const resolvedSuccessValue = 'Data successfully fetched';
-const resolvedDataPromise = Promise.resolve(resolvedSuccessValue);
 // Example of Promise.resolve()
-const fetchDataSuccessPromise = Promise.resolve('Data successfully fetched');
-fetchDataSuccessPromise.then((fetchedData) => {
-    console.log('Promise resolved with data:', fetchedData);
-});
-
-// -----Syntax of custom promise with resolvers-----
-const customAsyncPromise = new Promise((resolve, reject) => {
-    // Custom logic to resolve or reject the promise
-});
-// Example of custom promise with resolvers
-const randomOutcomePromise = new Promise((resolve, reject) => {
-    const randomNumber = Math.random();
-    if (randomNumber > 0.5) {
-        resolve('Success!');
-    } else {
-        reject('Failure!');
-    }
-});
-randomOutcomePromise
-    .then((result) => console.log('Resolved:', result))
-    .catch((error) => console.error('Rejected:', error));
+const p16 = Promise.resolve(42);
+p16.then(value => console.log(value));  // 42

@@ -3,11 +3,11 @@
 1. What is Callback Function ?
 Explanation :-
 * Callback function woh function hai jo doosre function ko argument ke roop mein diya jata hai.
-* Callback function ka basic concept yahi hai ki tu ek function ko dusre function mein argument ke taur par de raha hai, aur jab pehla function apna kaam khatam karega, toh woh dusre function ko call karega.
+* Callback function ka basic concept yahi hai ki tu ek function ko dusre function mein argument ke taur par de raha hai, aur "Jab pehla function apna kaam khatam karega, toh woh dusre function ko call karega".
 
 2. Why it is used ?
 Explanation :-
-* Iska use aksar events ko handle karne, asynchronous operations ko control karne, ya code ko modular banane ke liye hota hai.
+* Iska use aksar "Events ko handle karne", "Asynchronous operations ko control karne", ya code ko modular banane ke liye hota hai.
 
 3. How it is used ?
 Explanation :-
@@ -15,7 +15,7 @@ Explanation :-
 
 4. Can you call one function inside another function ?
 Explanation :-
-* Yes , that is only called callback function.
+* Yes , that is only called Callback Function.
 
 */
 

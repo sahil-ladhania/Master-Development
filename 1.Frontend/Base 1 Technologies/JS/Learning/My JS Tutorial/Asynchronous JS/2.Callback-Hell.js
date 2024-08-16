@@ -2,8 +2,9 @@
 
 1. What is Callback Hell ?
 Explanation :-
-* Also called Callback Pyramid ya Christmas Tree Problem.
-* Situation hai jisme multiple nested callbacks hote hain, jo ki code ko complex aur mushkil banate hain.
+* Also called Callback Pyramid ya Christmas Tree Problem ya Pyramid of Doom.
+* Situation hai jisme "Multiple nested callbacks hote hain, jo ki code ko complex aur mushkil banate hain".
+* Iske wajah se code horizontally lamba ho jata hai , which is not a Good Practice.
 
 2. How it is used ?
 Explanation :-
