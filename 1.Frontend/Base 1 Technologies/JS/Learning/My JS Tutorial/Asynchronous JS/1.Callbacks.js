@@ -1,3 +1,4 @@
+console.log("From Callbacks.js File :");
 /*
 
 1. What is Callback Function ?
@@ -20,21 +21,37 @@ Explanation :-
 */
 
 // Syntax of Callback Function
-function kuchAsyncKaro(callback) {
-    // Kuch asynchronous kaam karna...
-    // Callback function tab execute hota hai jab kaam pura hota hai.
-    callback();
-}
+// function kuchAsyncKaro(callback) {
+//     // Kuch asynchronous kaam karna...
+//     // Callback function tab execute hota hai jab kaam pura hota hai.
+//     callback();
+// }
 
 // Callback Usage
-kuchAsyncKaro(function() {
-    console.log("Callback execute hua!");
-});
+// kuchAsyncKaro(function() {
+//     console.log("Callback execute hua!");
+// });
 
 // Callback Example
-console.log("Shuruaat");
-setTimeout(() => {
-    console.log("Callback ke andar 2000ms ke baad");
-    console.log("Callback ke andar 2000ms ke baad");
-    },5000);
-console.log("Ant");
+// console.log("Shuruaat");
+// setTimeout(() => {
+//     console.log("Callback ke andar 2000ms ke baad");
+//     console.log("Callback ke andar 2000ms ke baad");
+//     },5000);
+// console.log("Ant");
+
+// Exploring Callbacks
+// 1. Create a simple function that accepts a callback and calls it.
+function greet(name , callback) {
+    callback(name);
+}
+function printGreeting(name) {
+    console.log(`Hello , ${name}!`);
+}
+greet("Sahil Ladhania" , printGreeting);
+
+// 2. Use callbacks to perform simple operations after a delay.
+// 3. Learn how to handle errors using callbacks.
+// 4. Experience “Callback Hell” and understand its drawbacks.
+// 5. Refactor the nested callbacks to improve readability.
+// 6. Understand the limitations of callbacks and get a brief introduction to Promises.
