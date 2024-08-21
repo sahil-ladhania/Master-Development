@@ -1,10 +1,12 @@
 import './App.css'
-import Events from "./Components/Events/Events.jsx";
+import EventsPractice from "./Components/Events/EventsPractice.jsx";
+import EventsQuestions from "./Components/Events/EventsQuestions.jsx";
 
 function App() {
     return (
         <>
-            <Events/>
+            <EventsPractice/>
+            <EventsQuestions/>
         </>
     )
 }

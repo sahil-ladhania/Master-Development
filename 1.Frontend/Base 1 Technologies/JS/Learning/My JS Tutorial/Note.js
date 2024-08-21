@@ -614,7 +614,106 @@ Explanation :-
     });
     event object ke through aap event ke baare mein detailed information le sakte ho, jaise click hone ka coordinates (clientX, clientY), kaunsa key press hua (event.key), etc.
 
-28. What is Event Propogation ?
+28. What is preventDefault() Method ?
+Explanation :-
+* preventDefault() method ka use kisi event ke default behavior ko rokne ke liye kiya jata hai. Default behavior woh action hai jo browser automatically perform karta hai, jaise :
+	•	Form submit hone par page reload hona
+	•	Anchor (<a>) tag pe click karne par naya page open hona
+	•	Right-click karne par context menu dikhna
+* Note - preventDefault() method in default behaviors ko rok sakta hai, taaki aap custom behavior define kar sako.
+* Ex :
+    <a href="https://example.com" id="myLink">Click Me!</a>
+    <script>
+        const link = document.getElementById('myLink');
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevents the link from navigating to the URL
+            alert('Link clicked, but navigation prevented!');
+        });
+    </script>
+    Is example mein, anchor tag pe click karne se usually browser us URL pe navigate karega. Lekin preventDefault() use karne se navigation nahi hoga, aur aapka custom alert message dikhega.
+
+29. What exactly is preventDefault() ?
+Explanation :-
+	•	Jab bhi form submit hota hai ya koi link click hota hai, browser ka default behavior hota hai ki form ko submit kare ya link ko follow kare.
+	•	preventDefault() ek method hai jo browser ke iss default behavior ko rokta hai. For example, agar tum form submit kar rahe ho aur tum preventDefault() use karte ho, toh form submit nahi hoga, instead tum apna custom logic execute kar sakte ho.
+    Example :
+    form.addEventListener('submit', (eventObj) => {
+        eventObj.preventDefault(); // Form submit hone se rokta hai
+        console.log("Custom form handling...");
+    });
+
+30. What exactly this mean eventObj.target.value ?
+Explanation :-
+	•	eventObj jo object tumhe milta hai event trigger hone par, usme event ki sari details hoti hain.
+	•	target us element ko refer karta hai jisme event trigger hua hai.
+	•	value us element ke current value ko refer karta hai. Jaise agar tum input field me kuch type kar rahe ho, toh eventObj.target.value tumhe input field ka current value dega.
+    Example :
+    nameFeild.addEventListener('change', (eventObj) => {
+        console.log(eventObj.target.value); // Input field ka current value print karta hai
+    });
+
+31. Why change is used on form submission ?
+Explanation :-
+	•	change event tab trigger hota hai jab input field ka value change hota hai, aur user input se bahar click karta hai ya submit karta hai.
+	•	Form submission ke case me, agar tum change event use karte ho, toh tum input field me kiye gaye changes ko detect kar sakte ho aur unke according actions le sakte ho.
+    Example :
+    emailFeild.addEventListener('change', (eventObj) => {
+        console.log("Email changed: ", eventObj.target.value); // Detects value change before submission
+    });
+
+32. Why focus is used for input feilds ?
+Explanation :-
+	•	focus event tab trigger hota hai jab input field par user click karta hai ya keyboard se tab karte hue us field par aata hai.
+	•	Yeh event useful hai agar tumhe kuch specific actions perform karne hai jab user kisi field par focus kare. Jaise ki tum placeholder change kar sakte ho, ya field ko highlight kar sakte ho.
+    Example :
+    nameFeild.addEventListener('focus', (eventObj) => {
+        console.log("Name field is focused");
+        eventObj.target.style.backgroundColor = "yellow"; // Field ko highlight karna
+    });
+
+33. Why blur is used for input feilds ?
+Explanation :-
+	•	blur event tab trigger hota hai jab user input field se bahar click karta hai ya tab kar ke next field me chala jata hai.
+	•	Yeh event useful hai jab tumhe validation karni hai ya input field ko reset karna hai jab user us field se bahar jaye.
+    Example :
+    passwordFeild.addEventListener('blur', (eventObj) => {
+        console.log("Password field lost focus");
+        eventObj.target.style.backgroundColor = ""; // Field ko reset karna
+    });
+
+34. What exactly does eventObj contain ?
+Explanation :-
+	•	eventObj ek object hai jo event trigger hone par generate hota hai. Yeh object me event se related sari details hoti hain, jaise :-
+        •	type - Event ka type, jaise click, keyup, submit, etc.
+        •	target - Element jisme event trigger hua hai.
+        •	timeStamp - Event kab trigger hua.
+        •	key - Agar keyboard event hai toh key jo press hui hai.
+    Example :
+    button.addEventListener('click', (eventObj) => {
+        console.log(eventObj); // Prints all event details
+    });
+
+35. How to play with this eventObj ?
+Explanation :-
+	•	Tum eventObj ka use kar ke event se related bahut sari information access kar sakte ho aur custom behavior implement kar sakte ho.
+	•	Tum specific properties access kar sakte ho, jaise target, type, key, etc., aur unke according custom actions perform kar sakte ho.
+    Example :
+    input.addEventListener('keydown', (eventObj) => {
+        if (eventObj.key === 'Enter') {
+            console.log("Enter key pressed");
+        }
+    });
+
+36. How can I take use of eventObj ?
+Explanation :-
+	•	eventObj tumhe event ke context me kaafi flexibility deta hai. Tum real-time data access kar sakte ho jaise input values, event types, etc., aur uske basis par custom functionality bana sakte ho.
+	•	For example, tum form validation kar sakte ho, button clicks track kar sakte ho, ya dynamically UI ko update kar sakte ho based on user interactions.
+    Example :
+    window.addEventListener('resize', (eventObj) => {
+        console.log("Window size: ", window.innerWidth, "x", window.innerHeight);
+    });
+
+37. What is Event Propogation ?
 Explanation :-
 * Event propagation se yeh decide hota hai ki events DOM tree mein kaise travel karte hain.
 * Isme 3 stages hoti hain :
@@ -623,7 +722,7 @@ Explanation :-
 	Bubbling Phase - Event target element se root tak bubble back karta hai.
 * Note - Aap event propagation ko control karne ke liye stopPropagation() ya preventDefault() methods ka use kar sakte ho.
 
-29. What is stopPropagation() Method ?
+38. What is stopPropagation() Method ?
 Explanation :-
 * stopPropagation() method ko event propagation ko control karne ke liye use kiya jata hai. Event propagation mein do phases hote hain :
     Capturing Phase - Event root se shuru hota hai aur target element tak pahuchta hai.
@@ -646,25 +745,7 @@ Explanation :-
     </script>
     Is example mein, agar aap button (child) pe click karte ho aur stopPropagation() use nahi karte ho, to parent div ka event bhi trigger hoga. Lekin stopPropagation() use karne se event parent tak propagate nahi karega, sirf button ka event trigger hoga.
 
-30. What is preventDefault() Method ?
-Explanation :-
-* preventDefault() method ka use kisi event ke default behavior ko rokne ke liye kiya jata hai. Default behavior woh action hai jo browser automatically perform karta hai, jaise :
-	•	Form submit hone par page reload hona
-	•	Anchor (<a>) tag pe click karne par naya page open hona
-	•	Right-click karne par context menu dikhna
-* Note - preventDefault() method in default behaviors ko rok sakta hai, taaki aap custom behavior define kar sako.
-* Ex :
-    <a href="https://example.com" id="myLink">Click Me!</a>
-    <script>
-        const link = document.getElementById('myLink');
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevents the link from navigating to the URL
-            alert('Link clicked, but navigation prevented!');
-        });
-    </script>
-    Is example mein, anchor tag pe click karne se usually browser us URL pe navigate karega. Lekin preventDefault() use karne se navigation nahi hoga, aur aapka custom alert message dikhega.
-
-31. Are stopPropagation() and preventDefault() Both Same ?
+39. Are stopPropagation() and preventDefault() Both Same ?
 Explanation :-
 * No, stopPropagation() aur preventDefault() dono methods same nahi hain.
 	•	stopPropagation() event ke propagation ko rokta hai, yaani event capturing ya bubbling ko stop karta hai.
