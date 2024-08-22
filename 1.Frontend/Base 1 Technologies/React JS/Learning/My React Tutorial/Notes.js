@@ -380,18 +380,7 @@ Explanation :-
     etc...
 * Each hook serves a specific purpose, contributing to a more modular and maintainable codebase.
 
-3. What are Side Effects ?
-Explanation :-
-* React mein "side effects" typically component rendering process ke bahar hote hain.
-* Ye operations ya behaviors hote hain jo user interface ko render karne ke alawa aur kisi prakar ka asar dalte hain.
-* Ismein data fetching, subscriptions, manual DOM manipulations, timers, aur other aise actions included hote hain jo UI rendering se beyond hote hain.
-
-4. What is Component Mount and Component Un-Mount ?
-Explanation :-
-* Mount - Mounting ka matlab hai ki ek component pehli baar DOM mein render hota hai.
-* Un-Mount - Unmounting ka matlab hai ki ek component DOM se hata diya jata hai yaani ki uska rendering khatam ho jata hai.
-
-5. What is useState ?
+3. What is useState ?
 Explanation :-
 * useState is a Hook that allows you to add state to functional components.
 * It returns an array with two elements :
@@ -410,12 +399,23 @@ Explanation :-
     Implementing counters, toggles, and checkboxes.
     Storing and updating dynamic data in the component.
 
-6. What is the need of it ?
+4. What is the need of it ?
 Explanation :-
 * State Management -
     useState enables functional components to hold and manage state, making them more powerful and capable of handling dynamic data.
     State variables ko add karne ke liye hota hai.
     Functional Components ko stateful logic provide karta hai.
+
+5. What are Side Effects ?
+Explanation :-
+* React mein "side effects" typically component rendering process ke bahar hote hain.
+* Ye operations ya behaviors hote hain jo user interface ko render karne ke alawa aur kisi prakar ka asar dalte hain.
+* Ismein data fetching, subscriptions, manual DOM manipulations, timers, aur other aise actions included hote hain jo UI rendering se beyond hote hain.
+
+6. What is Component Mount and Component Un-Mount ?
+Explanation :-
+* Mount - Mounting ka matlab hai ki ek component pehli baar DOM mein render hota hai.
+* Un-Mount - Unmounting ka matlab hai ki ek component DOM se hata diya jata hai yaani ki uska rendering khatam ho jata hai.
 
 7. What is useEffect ?
 Explanation :-
@@ -424,7 +424,7 @@ Explanation :-
 * Syntax :
     useEffect(() => {
         // Side effect code
-        return () => {
+        return () => { ----> Returing Cleanup Function
             // Cleanup code
         };
     }, [dependencies]);
@@ -432,6 +432,14 @@ Explanation :-
             () => {} - Effect function jo side effects ko define karta hai.
             return () => {} - Cleanup function jo effect ke baad chalega.
             dependencies - Optional array jo specify karta hai ki effect ko kis changes ke liye run karna hai.
+            Cleanup Function -
+                Special function in React’s useEffect hook that is used to clean up side effects when a component unmounts or before the effect runs again.
+                Return a function from the useEffect callback.
+                This function will be executed when the component unmounts or before the effect re-runs.
+                Its nothing but a normal function , here we have just used Arrow Functions , we can also return a named function like this :
+                    return function cleanup() {
+                        // Cleanup logic
+                    };
 * Use-Cases :
     Fetching data from APIs.
     Subscribing to external data sources or events.
