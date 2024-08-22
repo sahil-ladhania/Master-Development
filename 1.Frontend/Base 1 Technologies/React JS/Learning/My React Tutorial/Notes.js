@@ -238,6 +238,22 @@ Explanation :-
 Explanation :-
 * Conditional Rendering in React allows you to render different UI elements based on a condition.
 * It’s like using if-else in JavaScript but applied to the rendering of components or elements.
+* We can do this using Ternary Operator or Short Circuit Evaluation.
+* Using Ternary Operator :
+    The Ternary Operator is a concise way to perform conditional rendering. It works like an if-else statement but in a single line.
+    Syntax -
+        condition ? trueValue : falseValue
+        	•	condition: This is the condition that you want to evaluate.
+	        •	trueValue: This is the value or component that will be rendered if the condition is true.
+	        •	falseValue: This is the value or component that will be rendered if the condition is false.
+* Using Short Circuit Evaluation :
+    Short Circuit Evaluation is another way to conditionally render elements. It leverages the logical && and || operators to either render or skip rendering.
+    Syntax of && -
+        condition && trueValue
+        If condition is true, trueValue will be rendered. If condition is false, nothing will be rendered.
+    Syntax of || -
+        condition || falseValue
+        If condition is false, falseValue will be rendered. If condition is true, the condition itself is returned (which usually means rendering nothing, but it depends on the exact use case).
 
 6. What is Composition ?
 Explanation :-
