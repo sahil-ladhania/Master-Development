@@ -5,6 +5,7 @@ import UseStatePractice from "./Components/UseState Hook/UseStatePractice.jsx";
 import UseStateQuestions from "./Components/UseState Hook/UseStateQuestions.jsx";
 import ConditionalRenderingQuestions from "./Components/Conditional Rendering/ConditionalRenderingQuestions.jsx";
 import UseEffectPractice from "./Components/UseEffect Hook/UseEffectPractice.jsx";
+import UseEffectQuestions from "./Components/UseEffect Hook/UseEffectQuestions.jsx";
 
 function App() {
     return (
@@ -14,7 +15,8 @@ function App() {
             {/*<UseStatePractice/>*/}
             {/*<UseStateQuestions/>*/}
             {/*<ConditionalRenderingQuestions/>*/}
-            <UseEffectPractice/>
+            {/*<UseEffectPractice/>*/}
+            <UseEffectQuestions/>
         </>
     )
 }
