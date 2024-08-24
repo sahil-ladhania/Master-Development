@@ -321,7 +321,7 @@ Explanation :-
 * Component Lifecycle refers to the sequence of events (methods) in a React component’s life, from its creation (mounting) to updates (updating) and finally removal (unmounting).
 * In class components, these are managed with lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount.
 
-6. What are Lists ? and Keys ?
+6. What are Lists ?
 Explanation :-
 * Lists in React are used to display a collection of items.
 

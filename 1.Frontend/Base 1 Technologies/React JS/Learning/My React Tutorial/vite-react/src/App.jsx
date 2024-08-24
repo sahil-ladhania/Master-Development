@@ -11,6 +11,8 @@ import ParentComponent2 from "./Components/Props/Passing Different Datatypes/Par
 import ParentComponent3 from "./Components/Props/Passing Functions/ParentComponent3.jsx";
 import ParentComponent4 from "./Components/Props/Prop Drilling/ParentComponent4.jsx";
 import PropsQuestions from "./Components/Props/Props Questions/PropsQuestions.jsx";
+import ListAndKeysPractice from "./Components/List and Keys(map & filter)/ListAndKeysPractice.jsx";
+import ListAndKeysQuestions from "./Components/List and Keys(map & filter)/ListAndKeysQuestions.jsx";
 
 function App() {
     return (
@@ -26,7 +28,9 @@ function App() {
             {/*<ParentComponent2/>*/}
             {/*<ParentComponent3/>*/}
             {/*<ParentComponent4/>*/}
-            <PropsQuestions/>
+            {/*<PropsQuestions/>*/}
+            {/*<ListAndKeysPractice/>*/}
+            <ListAndKeysQuestions/>
         </>
     )
 }

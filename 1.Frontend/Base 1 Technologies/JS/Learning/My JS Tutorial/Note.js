@@ -1332,4 +1332,30 @@ Explanation :-
     console.log(sum); // Output: 15
     Is example mein, reduce() function numbers array ke har element ko ek cumulative sum mein reduce kar raha hai. Initial value 0 hai, aur function har element ko accumulator (acc) mein add karta ja raha hai. Final result 15 return hota hai.
 
+22. What is the differnce when we use () and {} in map | filter | reduce ?
+Explanation :-
+* Using () with Arrow Functions :
+    When you use () right after the arrow =>, it implies an implicit return.
+    This is a shorthand for returning a value directly without needing to use the return keyword.
+    Ex -
+        list.map((item, index) => (
+            <li key={index}>{item}</li>
+        ))
+        	•	Here, the arrow function implicitly returns the <li> element.
+	        •	The parentheses () around the JSX are required if you want to use implicit return and have multiple lines of JSX.
+* Using {} with Arrow Functions :
+    When you use {} after the arrow =>, you’re defining a function body.
+    Inside this body, you can write multiple statements. However, you need to explicitly return a value using the return keyword.
+    Ex -
+        list.map((item, index) => {
+            return <li key={index}>{item}</li>
+        })
+            	•	In this case, the function has a block body, so you must use return to return the <li> element.
+* Why Do Both Work :
+    	•	In both cases, the map function receives a function that returns a value (<li key={index}>{item}</li>).
+	    •	Whether you use () for an implicit return or {} with an explicit return, the outcome is the same - the JSX is returned, and React uses it to render the list.
+* When to Use Which :
+    	•	Use () when your function’s only task is to return a value. It’s concise and makes the code look cleaner.
+	    •	Use {} when you need to perform additional operations before returning a value, or if you prefer the explicitness of the return keyword.
+
 */
