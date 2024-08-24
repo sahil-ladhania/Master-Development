@@ -219,6 +219,23 @@ Explanation :-
 Explanation :-
 * Props (short for Properties) are arguments passed into React components, allowing you to pass data from a parent component to a child component.
 * Props are read-only, meaning they cannot be modified by the component receiving them.
+* They are similar to function arguments, and you can pass any type of data, including :
+    strings
+    numbers
+    arrays
+    objects
+    functions
+* defaultProps allows you to specify default values for props in case they are not passed by the parent component. This ensures your component has the necessary data to render properly, even if the parent forgets to provide certain props.
+    ChildComponent.defaultProps = {
+        message: "Default Message",
+        number: 0,
+    };
+* propTypes is used to define the expected data types for each prop. This helps catch errors during development by warning you if the wrong type of data is passed to the component.
+    ChildComponent.propTypes = {
+        message: PropTypes.string,
+        number: PropTypes.number,
+    };
+* Typically, defaultProps and propTypes are defined at the bottom of the same file where the component is defined.
 
 3. What is State ?
 Explanation :-
