@@ -13,6 +13,8 @@ import ParentComponent4 from "./Components/Props/Prop Drilling/ParentComponent4.
 import PropsQuestions from "./Components/Props/Props Questions/PropsQuestions.jsx";
 import ListAndKeysPractice from "./Components/List and Keys(map & filter)/ListAndKeysPractice.jsx";
 import ListAndKeysQuestions from "./Components/List and Keys(map & filter)/ListAndKeysQuestions.jsx";
+import UseRefPractice from "./Components/UseRef Hook/UseRefPractice.jsx";
+import UseRefQuestions from "./Components/UseRef Hook/UseRefQuestions.jsx";
 
 function App() {
     return (
@@ -30,7 +32,9 @@ function App() {
             {/*<ParentComponent4/>*/}
             {/*<PropsQuestions/>*/}
             {/*<ListAndKeysPractice/>*/}
-            <ListAndKeysQuestions/>
+            {/*<ListAndKeysQuestions/>*/}
+            {/*<UseRefPractice/>*/}
+            <UseRefQuestions/>
         </>
     )
 }

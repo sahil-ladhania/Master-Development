@@ -371,6 +371,11 @@ Explanation :-
 Explanation :-
 * Refs (short for References) are a way to access DOM elements or React elements directly.
 * They allow you to interact with the DOM in a more imperative way, like focusing an input field, triggering animations, or integrating with third-party libraries.
+* Refs provide a way to access DOM nodes or React elements directly.
+* They are created using React.createRef() and attached to React elements via the ref attribute.
+* Refs and useRef serve similar purposes but are used in different contexts :
+    Refs (React.createRef()) are commonly used in class components.
+    useRef is a hook used in functional components.
 
 13. What are Events ?
 Explanation :-
@@ -471,28 +476,34 @@ Explanation :-
     Side effects ko manage karne ke liye hota hai, jaise ki data fetching, subscriptions, aur DOM updates.
     Ye component lifecycle methods (componentDidMount, componentDidUpdate, aur componentWillUnmount) ke functionality ko functional components mein provide karta hai.
 
-9. What is useMemo ?
+9. What is useRef ?
 Explanation :-
-* useMemo is a Hook that memoizes the result of a function.
-* It returns a memoized value that only recalculates when its dependencies change.
+* useRef is a Hook that returns a mutable ref object, which persists across renders.
+* It can be used to access DOM elements or store any mutable value.
+* useRef does not cause re-renders -
+    Updating the .current property of a useRef object does not cause the component to re-render.
+    This is useful for persisting data like DOM references or other values that don’t need to trigger a re-render.
+* Persistent Values Across Renders -
+    You can also use useRef to persist values across renders.
+    For example, you might want to keep track of a previous value or store a mutable value that doesn’t affect rendering.
 * Syntax :
-    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+    const refContainer = useRef(initialValue);
         Meaning of Syntax :
-            () => {} - Function jo memoized value ko compute karta hai.
-            [a, b] - Array jo specify karta hai ki memoized value ko kis changes par recompute karna hai.
+            refContainer - This is the variable that will store the reference object.
+            initialValue - This initializes the ref with an initialValue. If you want to reference a DOM element, this is usually set to null. The returned object will have a property called current that you can use to store or access the value. Optional parameter jo useRef ke initial value ke roop mein set kiya jata hai.
 * Use-Cases :
-    Computing derived data from props or state.
-    Optimizing performance by caching expensive calculations.
-    Preventing unnecessary re-renders in child components.
-    Memoizing callback functions to prevent re-creation on every render.
-    Enhancing the performance of complex computations in the component.
+    Accessing and interacting with DOM elements imperatively.
+    Persisting values across re-renders without causing re-renders.
+    Storing mutable values that persist across component re-renders.
+    Referencing child components or elements within a component.
+    Managing focus, animations, or other imperative operations in functional components.
 
 10. What is the need of it ?
 Explanation :-
-* Performance Optimization -
-    It helps avoid expensive calculations on every render by caching results until dependencies change.
-    Expensive computations ko memoize (cache) karne ke liye hota hai.
-    Ye computations ko cache karke performance ko optimize karta hai, kyunki yeh computations har render cycle mein dobara se nhi chalaye jate hain.
+* Direct DOM Access -
+    It allows you to interact with DOM elements or keep a value that doesn’t trigger re-renders when changed.
+    Reference ko maintain karne ke liye use hota hai, jo component ke render lifecycle ke bahar rehta hai.
+    Ye reference ko persist karta hai, jisse hum component ke alag-alag render cycles ke beech mein bhi usse access kar sakein.
 
 11. What is useCallback ?
 Explanation :-
@@ -519,60 +530,30 @@ Explanation :-
     Memoized callback functions ko create karne ke liye hota hai.
     Ye callback functions ko cache karke performance ko optimize karta hai, kyunki yeh functions har render cycle mein dobara se na banaye jaaye.
 
-13. What is useRef ?
+13. What is useMemo ?
 Explanation :-
-* useRef is a Hook that returns a mutable ref object, which persists across renders.
-* It can be used to access DOM elements or store any mutable value.
+* useMemo is a Hook that memoizes the result of a function.
+* It returns a memoized value that only recalculates when its dependencies change.
 * Syntax :
-    const refContainer = useRef(initialValue);
+    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
         Meaning of Syntax :
-            initialValue - Optional parameter jo useRef ke initial value ke roop mein set kiya jata hai.
+            () => {} - Function jo memoized value ko compute karta hai.
+            [a, b] - Array jo specify karta hai ki memoized value ko kis changes par recompute karna hai.
 * Use-Cases :
-    Accessing and interacting with DOM elements imperatively.
-    Persisting values across re-renders without causing re-renders.
-    Storing mutable values that persist across component re-renders.
-    Referencing child components or elements within a component.
-    Managing focus, animations, or other imperative operations in functional components.
+    Computing derived data from props or state.
+    Optimizing performance by caching expensive calculations.
+    Preventing unnecessary re-renders in child components.
+    Memoizing callback functions to prevent re-creation on every render.
+    Enhancing the performance of complex computations in the component.
 
 14. What is the need of it ?
 Explanation :-
-* Direct DOM Access -
-    It allows you to interact with DOM elements or keep a value that doesn’t trigger re-renders when changed.
-    Reference ko maintain karne ke liye use hota hai, jo component ke render lifecycle ke bahar rehta hai.
-    Ye reference ko persist karta hai, jisse hum component ke alag-alag render cycles ke beech mein bhi usse access kar sakein.
+* Performance Optimization -
+    It helps avoid expensive calculations on every render by caching results until dependencies change.
+    Expensive computations ko memoize (cache) karne ke liye hota hai.
+    Ye computations ko cache karke performance ko optimize karta hai, kyunki yeh computations har render cycle mein dobara se nhi chalaye jate hain.
 
-15. What is the difference between useEffect , useMemo , useCallback ?
-Explanation :-
-* useEffect :
-    Purpose - Manages side effects in functional components.
-    Triggers - Runs after rendering and on subsequent re-renders.
-    Use Cases - Fetching data, subscriptions, manually changing the DOM, etc.
-    Syntax -
-    useEffect(() => {
-        // Side effect logic here
-        return () => {
-            // Cleanup logic (optional)
-        };
-    }, [dependencies]);
-* useMemo :
-    Purpose - Memoizes the result of a computation to avoid unnecessary recalculations.
-    Triggers - Runs during rendering.
-    Use Cases - Memoizing expensive calculations, preventing unnecessary re-renders.
-    Syntax -
-    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
-* useCallback :
-    Purpose - Memoizes a callback function to prevent unnecessary re-renders of child components.
-    Triggers - Runs during rendering.
-    Use Cases - Preventing unnecessary re-renders when passing callbacks to child components.
-    Syntax -
-    const memoizedCallback = useCallback(() => {
-        // Callback logic here
-    }, [dependencies]);
-* Summary -
-    useEffect is for handling side effects, useMemo is for memoizing values, and useCallback is for memoizing callback functions.
-    Each serves a different purpose in optimizing and managing the behavior of React components.
-
-16. What is the difference between memo & useMemo ?
+15. What is the difference between memo & useMemo ?
 Explanation :-
 * What are they :
     memo
@@ -611,6 +592,37 @@ Explanation :-
         Memoize the result of expensive calculations within functional components to optimize performance.
         Useful when you have a computation that depends on some values and you want to avoid re-computing it unnecessarily on every render.
         Commonly used for memoizing derived data, complex transformations, or expensive computations.
+
+16. What is the difference between useEffect , useMemo , useCallback ?
+Explanation :-
+* useEffect :
+    Purpose - Manages side effects in functional components.
+    Triggers - Runs after rendering and on subsequent re-renders.
+    Use Cases - Fetching data, subscriptions, manually changing the DOM, etc.
+    Syntax -
+    useEffect(() => {
+        // Side effect logic here
+        return () => {
+            // Cleanup logic (optional)
+        };
+    }, [dependencies]);
+* useMemo :
+    Purpose - Memoizes the result of a computation to avoid unnecessary recalculations.
+    Triggers - Runs during rendering.
+    Use Cases - Memoizing expensive calculations, preventing unnecessary re-renders.
+    Syntax -
+    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+* useCallback :
+    Purpose - Memoizes a callback function to prevent unnecessary re-renders of child components.
+    Triggers - Runs during rendering.
+    Use Cases - Preventing unnecessary re-renders when passing callbacks to child components.
+    Syntax -
+    const memoizedCallback = useCallback(() => {
+        // Callback logic here
+    }, [dependencies]);
+* Summary -
+    useEffect is for handling side effects, useMemo is for memoizing values, and useCallback is for memoizing callback functions.
+    Each serves a different purpose in optimizing and managing the behavior of React components.
 
 17. What is Prop Drilling in React ?
 Explanation :-
