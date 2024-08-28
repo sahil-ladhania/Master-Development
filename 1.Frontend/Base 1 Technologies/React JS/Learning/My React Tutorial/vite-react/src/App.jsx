@@ -15,6 +15,8 @@ import ListAndKeysPractice from "./Components/List and Keys(map & filter)/ListAn
 import ListAndKeysQuestions from "./Components/List and Keys(map & filter)/ListAndKeysQuestions.jsx";
 import UseRefPractice from "./Components/UseRef Hook/UseRefPractice.jsx";
 import UseRefQuestions from "./Components/UseRef Hook/UseRefQuestions.jsx";
+import UseReducerPractice from "./Components/UseReducer Hook/UseReducer Practice/UseReducerPractice.jsx";
+import UseReducerQuestions from "./Components/UseReducer Hook/UseReducer Questions/UseReducerQuestions.jsx";
 
 function App() {
     return (
@@ -34,7 +36,9 @@ function App() {
             {/*<ListAndKeysPractice/>*/}
             {/*<ListAndKeysQuestions/>*/}
             {/*<UseRefPractice/>*/}
-            <UseRefQuestions/>
+            {/*<UseRefQuestions/>*/}
+            {/*<UseReducerPractice/>*/}
+            <UseReducerQuestions/>
         </>
     )
 }

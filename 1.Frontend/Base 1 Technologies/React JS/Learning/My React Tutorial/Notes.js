@@ -514,6 +514,7 @@ Explanation :-
         // Callback function code
     }, [dependencies]);
         Meaning of Syntax :
+            memoizedCallback - Memoized version of the callback function.
             () => {} - Function jo memoized callback function ko define karta hai.
             [dependencies] - Array jo specify karta hai ki callback function ko kis changes par recompute karna hai.
 * Use-Cases :
@@ -525,6 +526,17 @@ Explanation :-
 
 12. What is the need of it ?
 Explanation :-
+* When Passing Functions to Child Components -
+    Jab tum ek function ko prop ke roop me kisi child component me pass karte ho, tab useCallback ka use hota hai taaki function ka reference har render me na badle.
+    Isse unnecessary re-renders avoid hote hai, especially jab child component React.memo se wrapped ho.
+* Optimization in Large Components -
+    Agar tumhare paas ek bada component hai jo frequently re-renders hota hai, aur tumhe kuch functions hai jo baar baar create ho rahe hai (jo ki costly ho sakta hai), to useCallback ka use karke tum performance optimize kar sakte ho.
+* Memoization with Expensive Computations -
+    Jab tumhare functions me expensive computations ho rahi ho, aur tum unhe baar-baar run nahi karna chahte, to useCallback ka use kar sakte ho taaki wo function tabhi recreate ho jab zaroori ho.
+* Stability of Function References in Dependencies -
+    Agar tum kisi custom hook ya effect me function ko dependency ke roop me use kar rahe ho, to useCallback use karna helpful ho sakta hai taaki function ka reference stable rahe, aur wo effect ya custom hook unnecessary trigger na ho.
+*  Avoiding Inline Functions -
+    Jab tum inline functions use karte ho as event handlers (like onClick={() => {}}), ye baar-baar recreate hote hai on every render. useCallback ka use karke tum ye ensure kar sakte ho ki event handler ka reference stable rahe.
 * Performance Optimization -
     It helps prevent unnecessary re-renders by ensuring that functions passed as props only change when necessary, reducing the computational load.
     Memoized callback functions ko create karne ke liye hota hai.
@@ -768,9 +780,32 @@ Explanation :-
 * Syntax :
     const [state, dispatch] = useReducer(reducer, initialState);
         Meaning of Syntax :
-            reducer: A function that determines how the state changes based on the action.
-            initialState: The initial state value.
-            dispatch: A function used to send actions to the reducer to update the state.
+            state :
+                Variable that holds the current state of your component.
+                It represents the state managed by the useReducer Hook at any given time.
+                Initially, state is set to initialState.
+                As you dispatch actions, the state is updated based on the logic in the reducer function.
+            dispatch :
+                A function used to send actions to the reducer to update the state.
+                Function that you use to trigger state changes.
+                It sends an action to the reducer function, which then decides how to update the state based on the action type.
+                You call dispatch with an action object, e.g., dispatch({ type: 'increment' }).
+                The reducer then processes this action and returns a new state.
+            reducer :
+                Function where the state logic resides.
+                It takes two arguments - the current state and an action.
+                	•	state - The current state.
+	                •	action - An object describing what happened. Typically, it has a type property that specifies the action to be taken.
+                Based on the action, the reducer returns a new state.
+                A function that determines how the state changes based on the action.
+                Function that contains the logic to determine how the state should change in response to an action.
+                The reducer function uses a switch or similar control structure to handle different action types.
+                Based on the action type, it calculates and returns the new state.
+            initialState :
+                The initial state value.
+                Starting value for the state.
+                It’s the initial structure or value of your state when the component is first rendered.
+                The initialState is passed to useReducer and is used to set the state during the component’s first render.
 Use-Cases :
 	Managing complex state logic with multiple sub-values.
 	Handling state transitions that depend on the previous state.
@@ -780,6 +815,12 @@ Use-Cases :
 
 31. What is the need of it ?
 Explanation :-
+* Complex State Logic -
+    When state transitions involve complex conditions or multiple state variables.
+* Predictable State Management -
+    When you want a more predictable and controlled way of managing state, similar to how you would in Redux.
+* Avoiding Prop Drilling -
+    In larger components or when passing down state and dispatch functions across multiple levels of components.
 * Complex State Management -
     It’s useful for managing state transitions in a more predictable and scalable way, especially when dealing with complex state logic or multiple actions.
 
