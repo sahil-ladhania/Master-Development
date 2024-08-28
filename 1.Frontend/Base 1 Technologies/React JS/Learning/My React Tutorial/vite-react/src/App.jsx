@@ -17,6 +17,8 @@ import UseRefPractice from "./Components/UseRef Hook/UseRefPractice.jsx";
 import UseRefQuestions from "./Components/UseRef Hook/UseRefQuestions.jsx";
 import UseReducerPractice from "./Components/UseReducer Hook/UseReducer Practice/UseReducerPractice.jsx";
 import UseReducerQuestions from "./Components/UseReducer Hook/UseReducer Questions/UseReducerQuestions.jsx";
+import MainComponent from "./Components/UseContext Hook/UseContext Practice/MainComponent.jsx";
+import {ThemeProvider} from "./Components/UseContext Hook/UseContext Practice/Provider.jsx";
 
 function App() {
     return (
@@ -38,7 +40,10 @@ function App() {
             {/*<UseRefPractice/>*/}
             {/*<UseRefQuestions/>*/}
             {/*<UseReducerPractice/>*/}
-            <UseReducerQuestions/>
+            {/*<UseReducerQuestions/>*/}
+            <ThemeProvider>
+                <MainComponent/>
+            </ThemeProvider>
         </>
     )
 }

@@ -710,19 +710,33 @@ Explanation :-
 
 24. What are Key Components of Context API ?
 Explanation :-
-* createContext - Function used to create a context. It returns an object with two components :
-    Provider and Consumer
-    const MyContext = React.createContext();
-* Provider - Component responsible for providing the context value to its descendants. It is placed at the top of the component tree.
-    <MyContext.Provider value={some value}>
-        Components that can access the context value...
-    </MyContext.Provider>
-* Consumer or useContext Hook - Component that allows components to consume the context value. Alternatively, the useContext hook can be used for a more concise syntax.
-    <MyContext.Consumer>
-        {value => render something based on the context value }
-    </MyContext.Consumer>
-    or
-    const value = useContext(MyContext);
+* createContext() :
+    export const MyContext = createContext();
+    	•	createContext() - Yeh React ka ek function hai jo ek context object create karta hai.
+	    •	Return - Yeh ek context object return karta hai jo do main cheezon ke saath aata hai :
+            Provider
+            Consumer
+	    •	Purpose - Context object ko create karne ka purpose yeh hai ki aap ek global state ya data ko define kar sakein jo aapke component tree ke different levels mein accessible hoga bina props drill kiye.
+* Provider Component :
+    export const MyProvider = ({ children }) => { some code...}
+    	•	MyProvider - Yeh ek functional component hai jo context ki value ko provide karta hai. Isme aap apni global state ko manage karte hain aur child components ko context value provide karte hain.
+	    •	Return - Yeh component ek Provider element ko return karta hai jo ki context ke value ko provide karta hai.
+	    •	{children} - Yeh Provider component ko wrap kiye gaye sabhi child components ko represent karta hai. Yeh prop automatically provide hota hai jab Provider ko wrap kiya jata hai.
+	    •	Inside {some code...} - Yahan aap apne state ko define karte hain aur functions ko define karte hain jo context value ko manage karte hain.
+* Context Provider :
+    return (
+        <MyContext.Provider value={{ value, updateValue }}>
+            {children}
+        </MyContext.Provider>
+    );
+    	•	return - Yeh return statement ek Provider component ko return karta hai jo MyContext context ke liye provider hai.
+	    •	{children} - Yeh prop MyProvider component ke andar jitne bhi child components hain, unhe render karne ke liye use hota hai. Yeh context ke value ko in child components tak pass karta hai.
+	    •	value - Yeh ek prop hai jo Provider component ko pass kiya jata hai. Isme woh state aur functions hoti hain jo aap context ke through share karna chahte hain.
+	    •	Inside value={{ value, updateValue }} - Yahan aap context ke value ko define karte hain. value aur updateValue wo properties hain jo aap context ke through share karte hain.
+* Using useContext :
+    const { value, updateValue } = useContext(MyContext);
+	    •	useContext(MyContext) - Yeh ek React Hook hai jo context object ko use karte hue current context value ko return karta hai. Yeh hook MyContext context se data fetch karta hai jo Provider component ne provide kiya hai.
+	    •	{ value, updateValue } - Yeh object destructuring hai. useContext(MyContext) se jo value milti hai, usme se value aur updateValue properties ko extract kiya jata hai. Inhe aap component ke andar directly use kar sakte hain.
 
 25. What are advantages of Context API ?
 Explanation :-
