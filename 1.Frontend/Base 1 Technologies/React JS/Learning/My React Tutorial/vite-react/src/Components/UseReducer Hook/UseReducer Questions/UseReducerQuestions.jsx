@@ -46,18 +46,6 @@ function UseReducerQuestions() {
             type: "Submit_Form",
         })
     }
-    const handleTaskChange = () => {
-        
-    }
-    const handleTaskToggle = () => {
-
-    }
-    const handleAddTask = () => {
-        
-    }
-    const handleDeleteTask = () => {
-
-    }
     return (
         <>
             <div className="p-20">
@@ -86,34 +74,6 @@ function UseReducerQuestions() {
                         <input onChange={handlePasswordChange} value={formState.password} className="p-4 outline-none border border-black mr-2" type="password" placeholder={"Enter password..."}/>
                         <button className="bg-amber-300 p-4 rounded">Submit</button>
                     </form>
-                </div>
-                {/* Question : 3*/}
-                <div className="my-5">
-                    <h2 className="mb-4">
-                        3. Create a component that manages a list of tasks with actions to add, remove, and toggle the completion status of tasks using useReducer.
-                    </h2>
-                    <div>
-                        <input onChange={handleTaskChange} className="p-4 border border-black outline-none mr-4" type="text" placeholder="Enter Your Task..."/>
-                        <button onClick={handleAddTask} className="bg-amber-300 p-4 rounded">Add Task</button>
-                        {/*  OnClick of the Add task Button ---> Render List of Tasks with a CheckBox and Task Text and a Delete Button  */}
-                        <div className="border border-black rounded p-2 w-fit flex items-center justify-between mt-2">
-                            <input onChange={handleTaskToggle} className="mr-4" type="checkbox"/>
-                            <label className="mr-4" htmlFor="task">Task 1</label>
-                            <button onClick={handleDeleteTask} className="bg-amber-300 p-2 rounded">Delete Task</button>
-                        </div>
-                    </div>
-                </div>
-                {/* Question : 4*/}
-                <div className="my-5">
-                    <h2 className="mb-4">
-                        4. Create a component that fetches data from an API and manages the loading, success, and error states using useReducer.
-                    </h2>
-                </div>
-                {/* Question : 5*/}
-                <div className="my-5">
-                    <h2 className="mb-4">
-                        5. Create a global state management system using useReducer and useContext to manage a user’s authentication state across the app.
-                    </h2>
                 </div>
             </div>
         </>
