@@ -353,6 +353,131 @@ Explanation :-
 * It’s used by tools like Babel, Autoprefixer, and Parcel to ensure your code is compatible with the specified browsers.
 * It helps define what browser versions your code should support.
 
+-----Laying The Foundation-----
+
+1. What is another way of starting the build of the project ?
+Explanation :-
+* We will be creating scripts instead of using “npx parcel index.html”.
+* We can create different scripts for starting our project in Development and Production.
+* In package.json , in the script section write the following command.
+*  To run these scripts, enter the following commands in the terminal :
+    To Start - npm run start or npm start
+    For Production Build - npm run build
+* If you’re not sure how to start the project in a new company then find these scripts in and use them.
+
+2. What is JSX ?
+Explanation :-
+* Before we begin, we have to remove the existing React Code from App.js where we used React.createElement() for displaying content on the webpage but its syntax is very bad.
+* It’s not developer- friendly, and very hard to read.
+* To solve this problem Facebook developers built JSX.
+* JSX makes developer life easy as we no longer have to write our code using React.createElement().
+* We write code for both Machines and Humans but first for Human understanding as it is read by a lot of developers.
+* JSX is HTML-like or XML-like syntax.
+* JSX stands for JavaScript XML.
+* It's a syntax extension for JavaScript.
+* It is not a part of React.
+* React apps can be built even without JSX but the code will become very hard to read.
+* It is not HTML inside JavaScript.
+* JavaScript engine cannot understand JSX as it only understands ECMAScript.
+* When we log heading and jsxHeading, it gives the same object.
+
+3. What is Babel ?
+Explanation :-
+* Babel is a popular JavaScript compiler that allows developers to write modern JavaScript code that can be transformed into a version compatible with older browsers or environments.
+* Transpile modern JavaScript (ES6+) into backward-compatible versions for older environments.
+* Babel is a package that is a compiler/transpiler of JavaScript that is already present inside ‘node-modules’.
+* It takes JSX and converts it into the code that browsers understand, as soon as we write it and save the file.
+* It is not created by Facebook.
+* Learn more about Babel on babeljs.io.
+
+4. Is JSX a valid JavaScript ?
+Explanation :-
+* The answer is Yes and No.
+* JSX is not a valid Javascript syntax as it’s not pure HTML or pure JavaScript for a browser to understand.
+* JS does not have built-in JSX.
+* The JS engine does not understand JSX because the JS engine understands ECMAScript or ES6+ code.
+
+5. If the browser can’t understand JSX how is it still working ?
+Explanation :-
+* This is because of Parcel because “Parcel is a Beast”.
+* Before the code gets to JS Engine it is sent to Parcel and Transpiled there.
+* Then after transpilation, the browser gets the code that it can understand.
+* Transpilation is converting the code in such a format that the browsers can understand.
+* Parcel is like a manager who gives the responsibility of transpilation to a package called Babel.
+* JSX (transpiled by Babel) React.createElement => ReactElement => JS Object => HTML Element(render)
+
+6. What is the difference between HTML and JSX ?
+Explanation :-
+* JSX is not HTML.
+* It’s HTML-like syntax.
+* HTML uses ‘class’ property whereas JSX uses ‘className’ property.
+* HTML can use hypens in property names whereas JSX uses camelCase syntax.
+
+7. What is Single Line and Multi Line JSX Code ?
+Explanation :-
+* Single line code -
+    const jsxHeading = <h1>Namaste React</h1>
+* Multi line code -
+    If writing JSX in multiple lines then using ‘()’ parenthesis is mandatory.
+    To tell Babel from where JSX is starting and ending.
+    const jsxHeading = (
+        <div>
+            <h1>Namaste React</h1>
+        </div>
+    )
+
+8. What are Components ?
+Explanation :-
+* Components in React are the building blocks of a React application.
+* They are reusable, self-contained pieces of code that represent parts of the user interface.
+
+9. How many types of Components are there ?
+Explanation :-
+* Two Types :
+    Class Based Components (OLD Way) - Old way of writing code, used rarely in industry.
+    Functional Components (NEW Way) - New way of writing code, most commonly used.
+
+10. What is a React Functional Components ?
+Explanation :-
+* It is just a JavaScript Function that returns some JSX or a react element.
+* Always name React Functional Component with Capital Letters otherwise you will confuse it with normal function.
+* To render a functional component we call them ‘<Heading1 />’.
+* This is the syntax that Babel understands.
+* You can also call them using these ways :
+    ‘<Title></Title>’
+    or
+    ‘{Title()}’
+
+11. What is Components Composition ?
+Explanation :-
+* A component inside a component.
+* Calling a component inside another component is Component Composition.
+
+12. How to use JavaScript code inside JSX ?
+Explanation :-
+* Inside a React Component when ‘{}’ parenthesis is present we can write any JavaScript expression inside it.
+
+13. How to call React Element in JSX ?
+Explanation :-
+* We can use ‘{}’ parenthesis.
+
+14. What will happen if we call 2 elements inside each other ?
+Explanation :-
+* If we put 2 components inside each other, then it will go into an infinite loop and the stack will overflow.
+* It will freeze your browser, so it’s not recommended to do so.
+
+15. What are the advantages of using JSX ?
+Explanation :-
+* Sanitizes the data :
+    If someone gets access to your JS code and sends some malicious data which will then get displayed on the screen that attack is called cross-site scripting.
+    It can read cookies, local storage, session storage, get cookies, get info about your device, and read data. JSX takes care of your data.
+    If some API passes some malicious data JSX will escape it. It prevents cross-site scripting and sanitizes the data before rendering.
+* Makes code readable :
+    JSX makes it easier to write code as we are no longer creating elements using React.createElement().
+* Makes code simple and elegant
+* Show more useful errors and warnings
+* JSX prevents code injections (attacks)
+
 -----React Foundation-----
 
 1. What is React Project Directory ?
