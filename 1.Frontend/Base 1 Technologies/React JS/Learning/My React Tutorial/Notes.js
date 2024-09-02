@@ -32,6 +32,131 @@ Explanation :-
 * Modern Bundling - Vite uses ES modules, avoiding the need for bundling during development.
 * Optimized Builds - Vite creates more efficient and smaller production builds compared to traditional bundlers like Webpack with npm.
 
+-----React Inception-----
+
+1. What is React ? Why React is known as ‘React’ ?
+Explanation :-
+* React is a "JavaScript Library".
+* The name ‘React’ was chosen because the library was designed to allow developers to react to changes in state and data within an application, and to update the user interface in a declarative and efficient manner.
+
+2. What is Library?
+Explanation :-
+* Library is a collections of prewritten code snippets that can be used and reused to perform certain tasks.
+* A particular JavaScript library code can be plugged into application code which leads to faster development and fewer vulnerabilities to have errors.
+* Examples - React, jQuery.
+
+3. What is Framework?
+Explanation :-
+* Framework provides a basic foundation or structure for a website or an application.
+* Examples - Angular
+
+4. Similarities between Library and Framework?
+Explanation :-
+* Frameworks and libraries are code written by third parties to solve regular/common problems or to optimise performance.
+
+5. Difference between Library and Framework?
+Explanation :-
+* A key difference between the two is "Inversion of control".
+* When using a library, the control remains with the developer who tells the application when to call library functions.
+* When using a framework, the control is reversed, which means that the framework tells the developer where code needs to be provided and calls it as it requires.
+
+6. What is Emmet ?
+Explanation :-
+* Emmet is the essential toolkit for web-developers. It allows you to type shortcuts that are then expanded into full-fledged boiler plate code for writing HTML and CSS.
+
+7. Create Hello World Program using only HTML?
+Explanation :-
+* Refer to Prerequisite Folder in Namaste React Code.
+
+8. Create Hello World Program using only JavaScript?
+Explanation :-
+* Refer to Prerequisite Folder in Namaste React Code.
+
+9. Create Hello World Program using only React?
+Explanation :-
+* Refer to Prerequisite Folder in Namaste React Code.
+
+10. What is Cross Origin ?
+Explanation :-
+* The crossorigin attribute in the script tag enables Cross-Origin Resource Sharing (CORS) for loading external JavaScript files from different origin than the hosting web page.
+* This allows the script to access resources from the server hosting the script, such as making HTTP requests or accessing data.
+
+11. What if you have already written HTML inside the "root" div ?
+Explanation :-
+* React will overwrite everything inside "root" and replaces with whatever given inside render.
+
+-----Doubt 1 : External Script Links-----
+
+1.	What are these Links ?
+Explanation :-
+* These are script tags that load external JavaScript files, specifically the React and ReactDOM libraries.
+
+2.	Why are we using these Links ?
+Explanation :-
+* These links are used to include React and ReactDOM in your HTML page so you can use them to build and render React components.
+
+3.	Why is the First Link used For ?
+Explanation :-
+* The first link (react.development.js) is for loading the core React library, which provides the functionality to create components, manage state, and handle events.
+
+4.	Why is the Second Link used For ?
+Explanation :-
+* The second link (react-dom.development.js) is for loading ReactDOM, which provides methods to interact with the DOM, like rendering React components to the web page.
+
+5.	What does this crossorigin used For ?
+Explanation :-
+* The crossorigin attribute is used to handle cross-origin requests.
+* It allows the script to be fetched with CORS (Cross-Origin Resource Sharing) to support scenarios like accessing scripts from a different domain.
+
+-----Doubt 2 : React.createElement() Method-----
+
+1.	What is React.createElement() Method ?
+Explanation :-
+* It’s a method provided by React to create a React element, which is an "object" representing a DOM node or a component.
+
+2.	Where are we getting createElement() Method From ?
+Explanation :-
+* The createElement() method is provided by the React library.
+
+3.	What does createElement() take ?
+Explanation :-
+* It takes three arguments :
+	The type of the element (e.g., 'div', 'h1').
+	An object for attributes/props (e.g., { id: 'child' }).
+	Children elements or content (e.g., another React.createElement() or a string). For Adding Siblings use Array of React.createElement().
+
+4.	What does createElement() create ?
+Explanation :-
+* It creates a React element "object", which describes what should be rendered to the DOM.
+
+-----Doubt 3 : ReactDOM.createRoot() Method-----
+
+1.	What is ReactDOM.createRoot() Method ?
+Explanation :-
+* It’s a method provided by ReactDOM to create a root container where your React application will be rendered.
+
+2.	Where are we getting createRoot() Method From ?
+Explanation :-
+* The createRoot() method is provided by the ReactDOM library.
+
+3.	What does createRoot() take ?
+Explanation :-
+* It takes a DOM element as an argument, typically the element where you want to render your React components (e.g., document.getElementById('root')).
+
+-----Doubt 4 : .render() Method-----
+
+1.	What is this .render() Method ?
+Explanation :-
+* The .render() method is used to render the React element (or components) to the DOM.
+
+2.	Where are we getting .render() Method From ?
+Explanation :-
+* The .render() method is provided by the "root object" returned by ReactDOM.createRoot().
+
+3.	What does .render() take ?
+Explanation :-
+* It takes a React element (e.g., parent in your code) as an argument and renders it into the specified root DOM node.
+
 -----React Foundation-----
 
 1. What is React Project Directory ?

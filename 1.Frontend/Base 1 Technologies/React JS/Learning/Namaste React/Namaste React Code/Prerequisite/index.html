@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Namaste React</title>
+</head>
+<body>
+    <h1>Before Root!</h1>
+    <div id="root">
+        <!-- Writting Hello World Using HTML -->
+        <h1>Hello World From HTML!</h1>
+    </div>
+    <h1>After Root!</h1>
+
+    <!-- Writting Hello World Using JS -->
+    <!-- <script>
+        const root = document.getElementById('root');
+        console.log(root);
+        const heading = document.createElement('h1');
+        heading.innerHTML = "Hello World From JS!";
+        root.appendChild(heading);
+    </script> -->
+
+    <!-- Writting Hello World Using React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="./App.js"></script>
+</body>
+</html>
