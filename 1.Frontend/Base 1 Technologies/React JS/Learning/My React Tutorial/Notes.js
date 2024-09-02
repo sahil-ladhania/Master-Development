@@ -157,6 +157,202 @@ Explanation :-
 Explanation :-
 * It takes a React element (e.g., parent in your code) as an argument and renders it into the specified root DOM node.
 
+-----Igniting Our App-----
+
+1. What should we do to make our app production ready ?
+Explanation :-
+* Minify —> Optimization —>Clean console —> Bundle
+* Minify our file (Remove console logs, bundle things up).
+* Need a server to run things.
+
+2. What are Bundlers ?
+Explanation :-
+* A bundler is a tool that bundles our app, packages our app so that it can be shipped to production.
+* Examples of Bundlers :
+    Webpack
+    Vite
+    Parcel
+* In create-react-app, the bundler used is "webpack".
+
+3. What is Package Manager ?
+Explanation :-
+* Bundlers are packages. If we want to use a package in our code, we have to use a package manager.
+* We use a package manager known as npm or yarn.
+
+4. How to Configure the Project ?
+Explanation :-
+* npm init
+It creates a package.json file.
+Now to install parcel we will do :
+* npm install -D parcel
+Now we will get a package-lock.json file.
+
+5. What is package.json File ?
+Explanation :-
+* Package.json file is a configuration for NPM.
+* Whatever packages our project needs, we install those packages using npm install <packageName>.
+* Once package installation is complete, their versions and configuration related information is stored as dependencies inside package.json file.
+
+6. What is package-lock.json File ?
+Explanation :-
+* Package-lock.json locks the exact version of packages being used in the project.
+
+7. What is difference between package.json and package.lock.json ?
+Explanation :-
+* In package. json we have information about generic version of installed packages whereas in package.lock.json we have information about the specific or exact version of installed packages.
+
+8. What are node_modules ?
+Explanation :-
+* Which gets installed is like a database for the npm.
+* Every dependency in node_module will have its package.json.
+* Node modules are very heavy so we should always put this in gitignore.
+* Never touch node_modules and package-lock.json.
+
+9. How to to ignite our app ?
+Explanation :-
+* npx parcel index.html
+    npx means ‘execute using npm’
+    index.html is the entry point
+
+10. What is Hot Module Replacement (HMR) ?
+Explanation :-
+* It means that parcel will keep a track of all the files which you are updating.
+* There is File Watcher Algorithm (written in C++).
+* It keeps track of all the files which are changing realtime and it tells the server to reload.
+* These are all done by PARCEL.
+
+11. What is parcel-cache ?
+Explanation :-
+* Parcel caches code all the time.
+* When we run the application, a build is created which takes some time in ms.
+* If we make any code changes and save the application, another build will be triggered which might take even less time than the previous build.
+* This reduction of time is due to parcel cache.
+* Parcel immediately loads the code from the cache every time there is a subsequent build.
+* On the very first build parcel creates a folder .parcel- cache where it stores the caches in binary codeformat.
+* Parcel gives faster build, faster developer experience because of caching.
+
+12. What is dist Folder ?
+Explanation :-
+* It keeps the files minified for us.
+* When bundler builds the app, the build goes into a folder called dist.
+* The `/dist` folder contains the minimized and optimised version the source code.
+* Along with the minified code, the /dist folder also comprises of all the compiled modules that may or may not be used with other systems.
+* When we run command :
+    npx parcel index.html
+    This will create a faster development version of our project and serves it on the server.
+* When I tell parcel to make a production build :
+    npx parcel build index.html
+    It creates a lot of things, minify your file.
+    And the parcel will build all the production files to the dist folder.
+
+13. What are the features that Parcel Provides ?
+Explanation :-
+* Hot Module Replacement (HMR)
+* File Watcher Algorithm - C++
+* Bundling
+* Minify Code
+* Cleaning our code
+* Dev and production build
+* Super fast build algorithm
+* Image Optimization
+* Caching while development
+* Compression
+* Compatible with older browser versions
+* Https on dev
+* Image Optimization
+* Port No
+* Consistency Hashing Algorithm
+* Zero Config
+* Tree Shaking
+
+14. What are Transitive Dependencies ?
+Explanation :-
+* We have our package manager which takes care of our transitive dependencies of our code.
+* If we’ve to build a production ready app which uses all optimisations (like minify, bundling, compression, etc), we need to do all these.
+* But we can’t do this alone, we need some dependencies on it.
+* Those dependencies are also dependent on other dependencies.
+
+15. What is Browserslist ?
+Explanation :-
+* Browserslist is a tool that specifies which browsers should be supported/compatible in your frontend app.
+* It makes our code compatible for a lot of browsers.
+
+16. What is Tree Shaking ?
+Explanation :-
+* Tree shaking is a process of removing the unwanted code that we do not use while developing the application.
+* In computing, tree shaking is a dead code elimination technique that is applied when optimizing code.
+
+-----Doubts-----
+
+1. What is Transitive Dependencies ?
+Explanation :-
+* Transitive dependencies are dependencies that your direct dependencies rely on.
+* For example, if package A depends on package B, and package B depends on package C, then package C is a transitive dependency for package A.
+
+2. What is ^ and ~ in "parcel": "^2.12.0"?
+Explanation :-
+* ^ (Caret) - Allows updates that do not change the leftmost non-zero digit. For example, ^2.12.0 allows updates to any version 2.x.x but not 3.x.x.
+* ~ (Tilde) - Allows updates to the most recent patch version within the minor version. For example, ~2.12.0 allows updates to any 2.12.x but not 2.13.0.
+
+3. When we only need Parcel, why are so many things in node_modules?
+Explanation :-
+* Parcel itself has dependencies, and those dependencies have their own dependencies.
+* This results in a large number of packages being installed in node_modules, even if you only directly need Parcel.
+
+4. How many package-lock.json files are there in a React app?
+Explanation :-
+* Typically, there is only one package-lock.json file at the root of your project.
+* It ensures the exact same versions of dependencies are installed across different environments.
+
+5. How many package.json files are there in a React app?
+Explanation :-
+* Usually, there is one package.json file in the root of your project.
+* However, additional package.json files might exist inside certain directories if they are treated as separate npm packages (like in monorepos or some advanced setups).
+
+6. Why did we get Uncaught ReferenceError: React is not defined when using npx parcel index.html?
+Explanation :-
+* This error occurs because Parcel by default assumes you are using ES modules, and React needs to be explicitly imported.
+* Without importing, React isn’t available globally.
+
+7. Why did we get “Browser scripts cannot have imports or exports” after importing React and ReactDOM?
+Explanation :-
+* Browser scripts, unless specified as modules, cannot have ES module imports/exports.
+* If you’re importing React and ReactDOM, you need to specify type="module" in the <script> tag.
+
+8. Why am I getting an error on this line <script src="./App.js"></script>?
+Explanation :-
+* If your App.js contains ES module imports/exports, using a normal script tag will cause an error.
+* You need to use <script type="module" src="./App.js"></script> instead.
+
+9. Why did my app start running after I used <script type="module" src="./App.js"></script>?
+Explanation :-
+* Specifying type="module" tells the browser that the script is an ES module, allowing you to use import and export statements in App.js.
+* This resolves the error and lets your app run.
+
+10. Why and how does the page update without manual refresh after saving files? Is Parcel responsible?
+Explanation :-
+* Yes, Parcel is responsible for this.
+* It’s called Hot Module Replacement (HMR).
+* Parcel watches your files for changes and automatically updates the browser with the latest changes without needing a full page reload.
+
+11. Why are we putting these in .gitignore?
+/node_modules
+/dist
+.parcel-cache
+Explanation :-
+* /node_modules -
+    This directory contains all the installed dependencies, which are often too large and can be reinstalled using package.json.
+* /dist -
+    This is the output directory for the built files, which can be regenerated.
+* .parcel-cache -
+    This is a cache directory used by Parcel to speed up builds, which doesn’t need to be stored in version control.
+
+12. What is BrowsersList?
+Explanation :-
+* BrowsersList is a tool that allows you to specify the target browsers for your project.
+* It’s used by tools like Babel, Autoprefixer, and Parcel to ensure your code is compatible with the specified browsers.
+* It helps define what browser versions your code should support.
+
 -----React Foundation-----
 
 1. What is React Project Directory ?
