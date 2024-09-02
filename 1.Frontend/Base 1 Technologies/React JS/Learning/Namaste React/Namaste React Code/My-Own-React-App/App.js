@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
 /*
 <div id="parent">
     <div id="child">
@@ -10,8 +12,9 @@
     </div>
 </div>
 */
-const heading2 = React.createElement("h2" , {});
-const heading1 = React.createElement("h1" , {});
+
+const heading2 = React.createElement("h2" , {} , "This is a H2 Tag.");
+const heading1 = React.createElement("h1" , {} , "This is a H1 Tag.");
 const child = React.createElement("div" , {id : "child"} , [heading1 , heading2]);
 const child2 = React.createElement("div" , {id : "child2"} , [heading1 , heading2]);
 const parent = React.createElement("div" , {id : "parent"} , [child , child2]);
