@@ -478,6 +478,97 @@ Explanation :-
 * Show more useful errors and warnings
 * JSX prevents code injections (attacks)
 
+-----Talk is Cheap, Show me Some Code-----
+
+1. How Can I Do Inline Styling in React ?
+Explanation :-
+* In React, inline styles are specified as an object, where the keys are camelCase versions of the CSS property names, and the values are the style values.
+* Example :
+    const divStyle = {
+        color: 'blue',
+        backgroundColor: 'lightgray',
+        padding: '10px'
+    };
+    function MyComponent() {
+        return <div style={divStyle}>This is styled with inline styles!</div>;
+    }
+* Alternatively, you can directly apply styles within the style attribute :
+    function MyComponent() {
+        return <div style={{ color: 'blue', backgroundColor: 'lightgray' }}>This is styled inline!</div>;
+    }
+
+2. What Does Destructuring of Props Mean ?
+Explanation :-
+* Destructuring props is a way to extract values from the props object directly within the function signature or inside the function body.
+* This makes it easier to access the specific props you need.
+* Without Destructuring :
+    function MyComponent(props) {
+        return <h1>Hello, {props.name}!</h1>;
+    }
+* With Destructuring :
+    function MyComponent({ name }) {
+        return <h1>Hello, {name}!</h1>;
+    }
+* This simplifies the code and makes it more readable, especially when dealing with multiple props.
+
+3. What is Config Driven UI ?
+Explanation :-
+* It is a user Interface that is built and configured using a declaration configuration file or data structure, rather than being hardcoded.
+* Config is the data coming from the api which keeps on changing according to different factors like user, location, etc.
+* The configuration defines what components should be rendered, their properties, layout, and sometimes even the business logic.
+* The UI adapts dynamically based on the configuration provided.
+* Example -
+    A form generator where the fields, types, labels, and validation rules are all defined in a JSON configuration, and the form is rendered based on this config.
+
+4. Why is Config Driven UI Used ?
+Explanation :-
+* Config Driven UI is used for :
+    Flexibility - Easily change the UI by updating the configuration without altering the code.
+	Reusability - The same UI code can be reused across different parts of an application with different configurations.
+	Scalability - Makes it easier to manage complex UIs that need to adapt based on different contexts, user roles, or data.
+
+5. What is Optional Chaining ?
+Explanation :-
+* Optional chaining (?.) is a JavaScript feature that allows you to safely access deeply nested properties without having to check each level.
+* If a property does not exist, it returns undefined instead of throwing an error.
+* Example :
+    const user = {
+        name: 'Alice',
+        address: {
+            street: '123 Main St'
+        }
+    };
+    const street = user.address?.street; // '123 Main St'
+    const city = user.address?.city; // undefined, but no error
+
+6. Why Do We Need Keys When Using map ?
+Explanation :-
+* Each item in the list must be uniquely identified.
+* When we have components at same level and if a new component comes on the first without ID, DOM is going to re-render all the components again.
+* As DOM can’t identify where to place it.
+* But if we give each of them a unique ID then react knows where to put that component according to the ID.
+* It is a good optimization and performance thing.
+* Keys help React identify which items have changed, been added, or removed.
+* They are essential for maintaining the identity of elements in a list and ensuring efficient updates.
+* Without keys, React would re-render all elements unnecessarily.
+* Example :
+    const items = ['apple', 'banana', 'cherry'];
+    const listItems = items.map((item, index) => (
+        <li key={item}>{item}</li>
+    ));
+* The key prop ensures that React can track each list item separately.
+* Note -
+    Never use index as keys in map.
+    It is not recommended.
+
+7. Why Can’t We Use Index as a Key ?
+Explanation :-
+* Using the index as a key can lead to issues with rendering and performance when items in the list change order, are added, or removed.
+* React might not correctly identify which item has changed, leading to incorrect re-renders or state bugs.
+* Example of issues -
+    When items are reordered, React might confuse items with the same index, causing bugs or unexpected UI behavior.
+* It’s better to use a stable and unique identifier, such as an ID from your data.
+
 -----React Foundation-----
 
 1. What is React Project Directory ?
