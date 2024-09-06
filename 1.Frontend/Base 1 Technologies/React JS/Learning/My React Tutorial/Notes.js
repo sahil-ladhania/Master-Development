@@ -1,36 +1,59 @@
 /*
------CLI Tools-----
 
-1. What are CLI Tools ?
-Explanation :-
-* CLI (Command Line Interface) Tools are programs or utilities that allow users to interact with software by typing commands into a terminal or command prompt.
-* They are often used to automate tasks, manage software, and interact with applications in a more controlled and scriptable way.
+-----References Links-----
+1. For Creating a React App From Scratch From your own.
+https://medium.com/@JedaiSaboteur/creating-a-react-app-from-scratch-f3c693b84658
 
-2. Why are CLI Tools used ?
-Explanation :-
-* Efficiency - CLI tools can perform tasks faster than GUIs because they require fewer resources and can be automated with scripts.
-* Automation - They can be easily scripted to perform repetitive tasks automatically.
-* Control - CLI tools provide more granular control over software and systems, allowing users to execute complex commands with precision.
-* Remote Access - They can be used to manage systems remotely, especially on servers without a graphical interface.
+2. For Parcel Documentation.
+https://parceljs.org/getting-started/webapp/
 
-3. Give me some examples of CLI Tools ?
-Explanation :-
-* Node Package Manager (npm) - Used for managing JavaScript packages.
-* Git - A version control tool to track code changes.
-* Webpack - A module bundler for JavaScript applications.
-* Vite - A build tool designed to enhance development speed and efficiency (we’ll discuss this in more detail next).
+3. For Parcel on Production Documentation.
+https://parceljs.org/features/production/
 
-4. What is Vite ?
-Explanation :-
-* Vite is a modern build tool that significantly improves the development experience for front-end projects.
-* Unlike traditional bundlers like Webpack, Vite provides fast server start, instant updates (HMR - Hot Module Replacement), and optimized production builds.
-* It’s particularly designed for modern JavaScript frameworks like React.
+4. For BrowserList Documentation.
+https://browserslist.dev/
 
-5. Why is Vite + React better than npm + React ?
-Explanation :-
-* Faster Development - Vite offers instant server start and quicker Hot Module Replacement (HMR).
-* Modern Bundling - Vite uses ES modules, avoiding the need for bundling during development.
-* Optimized Builds - Vite creates more efficient and smaller production builds compared to traditional bundlers like Webpack with npm.
+5. For Babel Documentation.
+https://babeljs.io/
+
+6. For Attribute Type.
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-type
+
+7. For JS Modules.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+
+8. For Babel Plpayground.
+https://babeljs.io/repl#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&corejs=3.21&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&modules=false&shippedProposals=false&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.25.6&externalPlugins=&assumptions=%7B%7D
+
+9. For React without JSX.
+https://react.dev/reference/react/createElement#creating-an-element-without-jsx
+
+10. For Virtual DOM and Internals.
+https://legacy.reactjs.org/docs/faq-internals.html
+
+11. For Reconciliation.
+https://legacy.reactjs.org/docs/reconciliation.html
+
+12. For React Fiber Architecture.
+https://github.com/acdlite/react-fiber-architecture
+
+13. For React Without ES6.
+https://legacy.reactjs.org/docs/react-without-es6.html
+
+14. For Index Keys as Anti-Pattern.
+https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/
+
+15. For Client Side Routing.
+https://reactrouter.com/en/main/start/overview
+
+16. For React Life Cycle Method.
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+17. For Lifting State Up.
+https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example
+
+18. For Context.
+https://react.dev/learn/scaling-up-with-reducer-and-context
 
 -----React Inception-----
 
@@ -730,6 +753,379 @@ Explanation :-
 * Component Lifecycle -
     React components go through a lifecycle with phases like mounting, updating, and unmounting, allowing developers to hook into these phases using lifecycle methods or hooks like useEffect.
 * For In-Depth Understanding Go to this Link : https://github.com/acdlite/react-fiber-architecture
+
+-----Exploring The World-----
+
+1. What are the two approaches to fetch and render the data ?
+Explanation :-
+* The two common approaches to fetching and rendering data in React are :
+    Load and Render -
+        We can make the API call as soon as the app loads, fetch the data, and render it.
+        The data is fetched first, then once the data is available, the component is rendered.
+        This may lead to a delay before anything appears on the screen but avoids a flickering/loading state.
+    Render First Fetch Later -
+        Alternatively, we can quickly render the UI when the page loads we could show the structure of the web page, and then make the API call.
+        Once we get the data, we re-render the application to display the updated information.
+        The component renders first, displaying some default UI (e.g., loading spinner).
+        After rendering, the data is fetched asynchronously, and the UI is updated with the data when it arrives.
+* In React, we're opting for the second approach.
+* This approach enhances user experience by rendering the UI swiftly and then seamlessly updating it once we receive the data from the API call.
+
+2. What is Load and Render ?
+Explanation :-
+* This approach means that data is fetched before rendering the component.
+* The component waits until all necessary data is loaded and then renders the UI.
+	•	Advantage - Avoids showing a loading spinner or placeholder.
+	•	Disadvantage - Increases the initial page load time because the component won’t render until all data is ready.
+
+3. What is Render First Fetch Later ?
+Explanation :-
+* In this approach, the component renders first without data (or with placeholder data) and fetches the data asynchronously after rendering.
+* Once the data is fetched, the component is re-rendered with the actual data.
+	•	Advantage - The page loads faster, giving immediate visual feedback (like a loading spinner).
+	•	Disadvantage - Requires handling a loading state, and there’s a possibility of flickering as the UI changes after the data arrives.
+
+4. When will the callback function get called inside the useEffect() ?
+Explanation :-
+* The callback function inside useEffect() is executed after the component renders.
+* The timing depends on the dependencies array :
+	•	If the dependencies array is empty ----> The callback runs once, after the initial render.
+	•	If there are dependencies ----> The callback runs after every render where any of the dependencies change.
+	•	If there’s no dependencies array ----> The callback runs after every render.
+
+5. Where we fetch the data ?
+Explanation :-
+* In React functional components, the most common place to fetch data is inside the useEffect hook.
+* This ensures the data fetching happens after the initial render.
+* Ex -
+    useEffect(() => {
+        fetchData();
+    }, []); // The empty array ensures this runs only once, after the first render.
+* In Class Components, You would typically fetch data inside the componentDidMount lifecycle method.
+
+6. What exactly the CORS policy is ?
+Explanation :-
+* CORS (Cross-Origin Resource Sharing) Policy -
+    CORS is a security feature in browsers that restricts web pages from making requests to a different domain than the one that served the web page.
+    It prevents malicious websites from making unauthorized requests to APIs.
+* How it works -
+    When a frontend JavaScript application (from one domain) tries to fetch data from a different domain (API), the server must include specific headers (e.g., Access-Control-Allow-Origin) to allow the request.
+* If CORS fails -
+    You’ll get a CORS error, and the browser will block the request.
+
+7. Which one is better :
+    Page Loads -> Make API Call -> Render Components
+    Page Loads -> Render Whatever we have -> Make API Call -> Render Components
+Explanation :-
+* Page Loads -> Make API Call -> Render Components : This is the Fetch-Then-Render approach.
+	Pro - Avoids the need for loading spinners or placeholders, the final UI is rendered only once the data is ready.
+	Con - Slower initial load time because the component waits for the data before rendering.
+* Page Loads -> Render Whatever We Have -> Make API Call -> Render Components : This is the Render-First, Fetch-Later approach.
+	Pro: The page loads quickly, providing immediate feedback (e.g., a spinner or skeleton screen).
+	Con: Requires handling loading states and may lead to UI flickering as data arrives.
+* Which is Better :
+    The Render-First, Fetch-Later approach is generally better for user experience because it provides faster initial feedback, even if the data takes time to load.
+
+8. When we click on the any Button which is inside a Parent Component , so only that Button Component Re-Render or the whole Parent Component Re-Render ?
+Explanation :-
+* Re-Render Behavior -
+    In React, the entire parent component re-renders when a state or prop change occurs in the parent.
+    If a button is inside the parent component, and the parent’s state is updated (e.g., via useState), the parent and all of its children, including the button, will re-render.
+* Optimizing re-renders -
+    To prevent unnecessary re-renders of child components, you can use React.memo to memoize child components and ensure they only re-render if their props change.
+
+9. How in useState the state Variable get updated with new values when we are using const ? Isn’t it wrong in JS ?
+Explanation :-
+* When you use useState in React, you’re not directly modifying the state variable but instead using the function provided by useState (e.g., setState) to update the state.
+* The const variable holds a reference to the value that useState manages, but setState is the function that changes the value internally.
+* Ex -
+    const [count, setCount] = useState(0);
+    setCount(count + 1); // Updates the value of count
+* Why it’s okay -
+    The const in this case refers to the reference of the state variable, and React ensures that calling setCount triggers an update of the state, but the reference itself is constant.
+
+10. What Does This Mean and Why is it So ?
+“Whenever a State Variable Updates, React Will Re-Render My Component”
+Explanation :-
+* This statement means that when you use useState to manage a piece of state in React, any update to that state will trigger a re-render of the component where the state is used.
+* This is how React keeps the UI in sync with the data.
+* Why This Happens -
+    React’s rendering engine works by re-rendering components when their state or props change.
+    This ensures that the UI reflects the most up-to-date state.
+* Virtual DOMc -
+    React compares the updated Virtual DOM to the previous one and updates only the parts of the actual DOM that have changed, making the process efficient.
+
+11. Can you call the useState Hook outside the Component ? If not Why ?
+Explanation :-
+* No, you cannot call the useState hook outside of a component.
+* React hooks like useState can only be called inside functional components or custom hooks.
+* This is because hooks rely on React’s internal mechanisms to track state and lifecycle behavior, which is only available within the component rendering process.
+* React hooks like useState work by associating state with the lifecycle of a specific component.
+* If you try to call it outside of a component, React won’t know how to handle it since it’s not within the context of a component’s render cycle.
+
+-----Finding The Path-----
+
+1. What are various ways to add images to our App ?
+Importing images using ES6 Modules
+Using public folder
+Loading images from a remote source
+Using image assets within CSS
+Explanation :-
+* Importing Images Using ES6 Modules -
+    In React, you can import images just like any other module using import. This is useful when you’re working with a build tool like Webpack.
+    Ex -
+        import React from 'react';
+        import logo from './logo.png';  // Import image
+        function App() {
+            return <img src={logo} alt="Logo" />;
+        }
+        export default App;
+* Using Public Folder -
+    You can place images in the public folder and reference them with a relative URL. Files in the public folder can be directly accessed at runtime.
+    You don’t need to import the image when using the public folder.
+    Ex -
+        function App() {
+            return <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" />;
+        }
+        export default App;
+* Loading Images from a Remote Source -
+    You can use the src attribute with an external URL to load an image hosted on a remote server.
+    Ex -
+        function App() {
+            return <img src="https://example.com/logo.png" alt="Remote Logo" />;
+        }
+        export default App;
+* Using Image Assets Within CSS -
+    You can include images in CSS files for background images or other styling purposes.
+    Ex -
+        .logo {
+            background-image: url('./logo.png');
+        }
+        function App() {
+            return <div className="logo"></div>;
+        }
+        export default App;
+
+2. What would happen if we do console.log(useState()) ?
+Explanation :-
+* If you call useState() without any parameters and log it, you’ll get an array with two values :
+    The first value is the current state (which will be undefined if no initial value is passed).
+    The second value is a setter function that you can use to update the state.
+* Ex -
+    const [state, setState] = useState();  // Logs [undefined, ƒ]
+    console.log(useState());  // [undefined, setStateFunction]
+* Why this happens -
+    useState() always returns an array with two elements, the state and the function to update that state.
+    Logging useState() without using destructuring shows you both of these elements.
+
+3. What is SPA ?
+Explanation :-
+* A Single-Page Application (SPA) is a web application that loads a single HTML page and dynamically updates the content as the user interacts with the app, without requiring a full page reload.
+* Ex - Gmail, Facebook, and Twitter.
+
+4. What are Key characteristics of SPA ?
+Dynamic Updates
+Smooth User Experience
+Faster Initial Load
+Client Side Routing
+API Centric
+State Management
+Explanation :-
+* Dynamic Updates -
+	•	SPAs dynamically update content by fetching data and rendering views in response to user interactions without a full page reload.
+* Smooth User Experience -
+	•	SPAs offer a more fluid user experience since only part of the content is updated, resulting in less waiting time and no page refreshes.
+* Faster Initial Load -
+	•	SPAs often load a single bundle of assets (HTML, CSS, JS) at the beginning, and after that, only the necessary data is fetched, reducing the time for subsequent interactions.
+* Client-Side Routing -
+	•	SPAs use JavaScript to manage routing within the application, making it possible to change the URL and update the view without contacting the server.
+* API-Centric -
+	•	SPAs heavily rely on APIs (like REST or GraphQL) to fetch and send data to the backend, separating the frontend from the backend.
+* State Management -
+	•	Managing state is crucial in SPAs, as the app needs to track user interactions and dynamically render views. Libraries like Redux or useState/useReducer in React are often used.
+
+5. What is the difference between Client Side Routing and Server Side Routing ?
+Explanation :-
+* Client-Side Routing :
+	Handling on the Client -
+	    •	The routing is managed by JavaScript on the client-side. This allows for transitions between different views without refreshing the page.
+	Faster Transitions -
+	    •	Navigation between pages is faster since no full-page reload is needed; only the specific content gets updated.
+	Single-Page Application (SPA) -
+	    •	Client-side routing is commonly used in SPAs where the page remains the same, and only the data changes.
+	SEO Challenges -
+	    •	Since the content is dynamically loaded, SEO can be more challenging compared to server-side routing. Server-side rendering (SSR) or static generation can be used to mitigate this issue.
+	Route Management -
+	    •	JavaScript libraries like React Router handle route management on the client-side.
+
+* Server-Side Routing :
+	Handling on the Server -
+	    •	The server processes each route and sends a new HTML file for every request. The browser completely reloads the page when a new route is visited.
+	Slower Transitions -
+	    •	Each page transition requires a server request, leading to slower transitions as the entire page is reloaded.
+	Traditional Websites -
+	    •	Server-side routing is common in traditional multi-page applications (MPAs), where each page is a new HTML file served from the server.
+	SEO-Friendly -
+	    •	Since the server sends fully rendered HTML pages, server-side routing is naturally SEO-friendly.
+	Route Configuration -
+	    •	Route configuration happens on the server, typically in backend frameworks (e.g., Express.js for Node.js or Flask for Python).
+
+-----Jo Dikhta hai Vo Bikta hai-----
+
+1. What Are All the Ways of Writing CSS in a React App ?
+Explanation :-
+* Inline CSS -
+    You can apply styles directly to elements using the style attribute, where styles are passed as a JavaScript object with camelCase properties.
+    Ex -
+        const style = { color: 'blue', backgroundColor: 'yellow' };
+        return <div style={style}>Inline Styled Component</div>;
+* Internal (CSS in JS) -
+    You can define styles within your JavaScript files, either using a library like Styled Components or Emotion, which allows you to create components with scoped styles.
+    Ex -
+        import styled from 'styled-components';
+        const StyledButton = styled.button`
+            background-color: blue;
+            color: white;
+        `;
+        return <StyledButton>Click Me</StyledButton>;
+* External (CSS Files) -
+    The most common way is to create a separate CSS file (e.g., App.css) and import it into your component.
+    Ex -
+        import './App.css';
+        return <div className="container">External Styled Component</div>;
+        .container {
+            color: red;
+        }
+
+2. In tailwind.config.js, What Do All the Keys Mean (content, theme, extend, plugins) ?
+Explanation :-
+* content -
+    Specifies the files that Tailwind should scan for class names.
+    Tailwind will purge unused styles based on the files listed here.
+    Ex -
+        content: ['./src/.{js,jsx,ts,tsx}']
+* theme -
+    This is where you customize Tailwind’s default theme, including colors, fonts, spacing, etc.
+    It defines the default design tokens available in your project.
+    Ex -
+        theme: {
+            colors: {
+                primary: '#ff5733',
+            },
+        }
+* extend -
+    Use this key to extend the default theme without overriding it completely.
+    It allows you to add additional custom styles while keeping the base theme intact.
+    Ex -
+        extend: {
+            colors: {
+                customColor: '#123456',
+            },
+        }
+* plugins -
+    This key is used to add additional functionality to Tailwind via plugins.
+    Plugins allow you to extend or modify Tailwind’s functionality.
+    Ex -
+        plugins: [
+            require('@tailwindcss/forms'),
+        ]
+
+3. Why Do We Have .postcssrc File ?
+Explanation :-
+* The .postcssrc file is used to configure PostCSS, a tool for transforming CSS using JavaScript plugins.
+* PostCSS can handle tasks like autoprefixing CSS for different browsers, minifying CSS, and enabling custom features like TailwindCSS.
+* This file typically contains configuration options for the PostCSS tool and any plugins you might use.
+
+4. What Are the Primary Reasons Why You Might Have a .postcssrc File ?
+Explanation :-
+* Plugin Configuration -
+    .postcssrc allows you to configure PostCSS plugins such as autoprefixer, cssnano, and TailwindCSS.
+    These plugins can automate CSS transformations like adding vendor prefixes or minifying CSS.
+    Ex -
+        {
+            "plugins": {
+                "tailwindcss": {},
+                "autoprefixer": {}
+            }
+        }
+* Custom Configuration -
+    You can customize PostCSS behavior with specific plugin settings, like enabling certain features or modifying default behaviors.
+* Presets and Options -
+    It lets you set up PostCSS presets or custom options, making it easy to adjust PostCSS behavior according to your project needs.
+* Maintainability -
+    Keeping PostCSS configurations in a .postcssrc file makes it easier to manage and maintain the setup, as all plugin configurations are centralized in one place.
+* Sharing Configurations -
+    You can share your PostCSS configuration with other developers in your team, ensuring that everyone’s build process remains consistent.
+
+-----Data is The New Oil-----
+
+1. What is Prop Drilling ?
+Explanation :-
+* Prop Drilling refers to the process of passing data from a parent component to deeply nested child components through props.
+* If a component deep down the tree needs access to a piece of data, each intermediary component between the parent and the child must pass that data through props, even if those intermediate components don’t need it.
+* Issue - It can make the code harder to maintain, as every intermediary component needs to pass the props, even if they don’t use them.
+* Solution - React’s Context API or state management libraries (like Redux / Recoil) help avoid prop drilling by allowing components to share data without passing props manually at every level.
+
+2. What is Lifting the State Up ?
+Explanation :-
+* Lifting the state up in React refers to the practice of moving the state from a lower-level (child) component to a higher-level (parent or common ancestor)  component in the component tree.
+* This is done to share and manage state across multiple components.
+* Lifting the State Up means moving state from a child component to its closest common ancestor, so that the state can be shared across multiple child components.
+* When a child component needs access to certain data or needs to modify the data, instead of keeping that data and the corresponding state management solely within the child component, we move the state to a shared ancestor component.
+* By doing so, the parent component becomes the source of truth for the state, and it can pass down the necessary data and functions as props to its child components.
+* By lifting the state up to a common ancestor, you centralize the state management, making it easier to control and share state among components.
+* This pattern is especially useful in larger React applications where multiple components need access to the same data or where the state needs to be synchronized across different parts of the application.
+* Instead of each component managing its own state, the parent component manages the state and passes it down as props to the relevant children.
+* Why ? ---->  It’s useful when multiple components need to share the same state or interact with the same data.
+
+3. If We Don’t Pass a Value to the Provider, Does It Take the Default Value ?
+Explanation :-
+* Yes, if you don’t pass a value to the Provider, the context will use the default value defined when the context is created.
+* Note - If you pass a value to the Provider, it will override the default value.
+
+4. What Are Context Provider and Context Consumer ?
+Explanation :-
+* Context Provider -
+    The Provider component in React is used to supply data (like state or functions) to all components within its tree that consume the context.
+    It allows us to avoid prop drilling by making data available to any component in the tree.
+    You wrap the part of your component tree that needs access to the context with a Provider and pass the value that you want to make available.
+* Context Consumer -
+    The Consumer component or useContext hook is used to access the value provided by the Provider.
+    Consumers can be used anywhere in the tree that is within the provider’s scope.
+    The Consumer will consume the nearest value provided by the Provider.
+
+-----CLI Tools-----
+
+1. What are CLI Tools ?
+Explanation :-
+* CLI (Command Line Interface) Tools are programs or utilities that allow users to interact with software by typing commands into a terminal or command prompt.
+* They are often used to automate tasks, manage software, and interact with applications in a more controlled and scriptable way.
+
+2. Why are CLI Tools used ?
+Explanation :-
+* Efficiency - CLI tools can perform tasks faster than GUIs because they require fewer resources and can be automated with scripts.
+* Automation - They can be easily scripted to perform repetitive tasks automatically.
+* Control - CLI tools provide more granular control over software and systems, allowing users to execute complex commands with precision.
+* Remote Access - They can be used to manage systems remotely, especially on servers without a graphical interface.
+
+3. Give me some examples of CLI Tools ?
+Explanation :-
+* Node Package Manager (npm) - Used for managing JavaScript packages.
+* Git - A version control tool to track code changes.
+* Webpack - A module bundler for JavaScript applications.
+* Vite - A build tool designed to enhance development speed and efficiency (we’ll discuss this in more detail next).
+
+4. What is Vite ?
+Explanation :-
+* Vite is a modern build tool that significantly improves the development experience for front-end projects.
+* Unlike traditional bundlers like Webpack, Vite provides fast server start, instant updates (HMR - Hot Module Replacement), and optimized production builds.
+* It’s particularly designed for modern JavaScript frameworks like React.
+
+5. Why is Vite + React better than npm + React ?
+Explanation :-
+* Faster Development - Vite offers instant server start and quicker Hot Module Replacement (HMR).
+* Modern Bundling - Vite uses ES modules, avoiding the need for bundling during development.
+* Optimized Builds - Vite creates more efficient and smaller production builds compared to traditional bundlers like Webpack with npm.
 
 -----React Foundation-----
 
@@ -1571,67 +1967,5 @@ Explanation :-
 	•	Only call Hooks from React functions or Custom Hooks.
 	•	Keep dependencies up to date in useEffect, useMemo, and useCallback.
 	•	Avoid unnecessary re-renders by using useCallback and useMemo wisely.
-
------Routers-----
-
-1. What is Routing ?
-Explanation :-
-* Routing in React is a mechanism that allows you to manage navigation and control the content displayed in your application based on the URL. It's essential for several reasons :
-    Multi-Page Applications (MPAs).
-    User Experience.
-    Bookmarking and Sharing.
-    Code Organization.
-    State Preservation.
-    Conditional Rendering.
-* Routing in web development refers to the process of determining which content to display based on the URL.
-* In a Single Page Application (SPA) like those built with React, routing allows the app to dynamically change the displayed content without reloading the entire page.
-* Note -
-    To implement routing in a React application, developers often use libraries like React Router.
-    React Router provides a set of components and functions to define routes, handle navigation, and manage the application's history, making it an essential tool for building robust and navigable React applications.
-
-2. What is the need of it ?
-Explanation :-
-* Dynamic Content Display - Routing allows you to create a multi-page experience within an SPA, where different URLs lead to different content, improving user navigation and experience.
-* State Management - It enables the application to manage and maintain state across different views without full page reloads, keeping the user experience smooth and responsive.
-
-3. What is React Router ?
-Explanation :-
-* React Router is a popular library for handling routing in React applications.
-* It allows you to define routes in your application and navigate between different components or views based on the URL.
-* It supports nested routing, dynamic routing, and offers hooks for more advanced control over navigation and history.
-
-4. What is React Router DOM ?
-Explanation :-
-* In React, routing is commonly achieved using the React Router DOM library, which provides a set of components for handling navigation within a React application.
-* The main components involved in React Router DOM are BrowserRouter, Routes, and Route.
-* Here's an overview of how routing is typically implemented using these components :-
-    BrowserRouter -
-        Top-level component that should be used to wrap your entire application. It enables the use of routing features throughout your React application. It utilizes the HTML5 History API to manipulate the URL without triggering full page reloads.
-    Routes -
-        Routes component is used to define the routes for your application. Inside the Routes component, you specify individual Route components for each route in your application. Routes component can contain multiple Route components, each representing a different view or page.
-    Route -
-        Route component is responsible for rendering specific components based on the current URL path. It takes two main props: path and element. Path prop defines the URL path that should match for the route to be rendered, and the element prop specifies the component to render when the path matches.
-* Note -
-    This is a basic setup for using React Router DOM.
-    You can extend this by adding nested routes, handling dynamic route parameters, and incorporating additional features provided by React Router DOM for more advanced routing scenarios.
-
-5. How to use React Router DOM ?
-Explanation :-
-* Install React Router DOM - npm install react-router-dom
-* Setting up Routes.
-* Create the Main App Component -
-    Set up your main App component with React Router to handle routing.
-* Navigate Programmatically -
-    If you want to navigate programmatically, you can use 'window.location.href'.
-    const navigateToDashboard = () => {
-        window.location.href = '/dashboard';
-    };
-    However, using 'Link' from React Router is a preferred way for declarative navigation within a React app.
-* Shared UI -
-    If you want to share UI components between the landing page and the dashboard, you can create a common component and use it in both Landing and Dashboard components.
-* Issue with window.location.href :
-    When using window.location.href for navigation in a React application, it triggers a full page reload, which is not desirable in client-side routing. A full page reload involves fetching the HTML, CSS, and other assets again, leading to a slower and less efficient user experience.
-    To address this issue, React Router DOM provides a solution in the form of the useNavigate hook. This hook is designed for programmatic navigation within a React component without triggering a full page reload. By using useNavigate, you can ensure smoother transitions between different views in a single-page application (SPA) without unnecessary overhead.
-    The `useNavigate` hook in React Router DOM is designed to work within the context of a `BrowserRouter`. It should be used inside a component that is a descendant of `BrowserRouter` to ensure access to the correct router context. This limitation is intentional, as `useNavigate` relies on the router context for scoped navigation, enabling seamless client-side routing without triggering a full page reload. Placing the hook within the correct context ensures its proper functionality for dynamic view and URL updates.
 
 */
