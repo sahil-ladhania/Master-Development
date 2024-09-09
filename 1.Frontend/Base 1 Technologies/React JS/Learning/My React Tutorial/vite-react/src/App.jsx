@@ -41,9 +41,9 @@ function App() {
             {/*<UseRefQuestions/>*/}
             {/*<UseReducerPractice/>*/}
             {/*<UseReducerQuestions/>*/}
-            <ThemeProvider>
-                <MainComponent/>
-            </ThemeProvider>
+            {/*<ThemeProvider>*/}
+            {/*    <MainComponent/>*/}
+            {/*</ThemeProvider>*/}
         </>
     )
 }
