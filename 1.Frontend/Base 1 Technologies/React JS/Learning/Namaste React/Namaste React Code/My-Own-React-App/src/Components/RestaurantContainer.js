@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Restaurant from "./Restaurant";
+import getRestaurants from "../Utils/getRestaurants";
 
 const RestaurantContainer = () => {
     // State Variables For Storing Restaurants
@@ -7,18 +8,13 @@ const RestaurantContainer = () => {
 
     // Fetching Restaurants
     useEffect(() => {
-        const getRestaurants = async () => {
-            try {
-                const API_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.637276854395076&lng=85.10403949767353&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-                const getData = await fetch(API_URL);
-                const restaurants = await getData.json();
-                const myRestaurants = restaurants?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-                setRestaurants(myRestaurants);
-            }
-            catch (error) {
-                console.log("Error Getting the Restaurants : " + error);
-            }
-        }
+        getRestaurants()
+            .then((restaurants) => {
+                setRestaurants(restaurants);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         getRestaurants();
     }, []);
 
