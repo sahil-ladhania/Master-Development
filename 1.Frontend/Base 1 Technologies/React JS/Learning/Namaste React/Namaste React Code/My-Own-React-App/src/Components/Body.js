@@ -9,11 +9,12 @@ const Body = () => {
     const [searchInput, setSearchInput] = useState("");
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-    // Getting all Restaurants
+    // Fetching all Restaurants
     useEffect(() => {
         getRestaurants()
             .then((restaurants) => {
                 setRestaurants(restaurants);
+                setFilteredRestaurants(restaurants);
             })
             .catch((error) => {
                 console.log(error);
@@ -25,8 +26,16 @@ const Body = () => {
         let input = e.target.value;
         setSearchInput(input);
     }
-    const searchRestaurants = (e) => {
 
+    const searchRestaurants = () => {
+        if(!searchInput) {
+            setFilteredRestaurants(restaurants);
+            return;
+        }
+        const filteredData = restaurants.filter((restaurant) => {
+            return restaurant.info.name.toLowerCase().includes(searchInput.toLowerCase());
+        })
+        setFilteredRestaurants(filteredData);
     }
 
     return (
@@ -37,7 +46,7 @@ const Body = () => {
                     <button onClick={searchRestaurants} className="search-button bg-orange-500 text-white px-4 py-2 rounded-r-lg hover:bg-orange-600">Search</button>
                 </div>
                 <Filters/>
-                <RestaurantContainer />
+                <RestaurantContainer searchedRestaurants={filteredRestaurants} />
             </div>
         </>
     )
