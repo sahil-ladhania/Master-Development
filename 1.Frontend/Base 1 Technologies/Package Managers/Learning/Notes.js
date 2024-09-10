@@ -1,5 +1,26 @@
 /*
 
+-----Most Frequently Used Commands-----
+
+1. Initialize a New Project - npm init
+2. Install a Local Package - npm install <package-name>
+3. Install a Global Package - npm install -g <package-name>
+4. Install All Dependencies from package.json - npm install
+5. Uninstall a Local Package - npm uninstall <package-name>
+6. Uninstall a Global Package - npm uninstall -g <package-name>
+7. Update a Local Package - npm update <package-name>
+8. Update a Global Package - npm update -g <package-name>
+9. List Installed Packages (Local) - npm list
+10. List Installed Packages (Global) - npm list -g
+11. Check for Outdated Packages - npm outdated
+12. Run Scripts from package.json - npm run <script-name>
+13. Install Dev Dependencies - npm install <package-name> --save-dev
+14. Install Specific Version - npm install <package-name>@<version>
+15. Clean Cache - npm cache clean --force
+16. View Package Information - npm view <package-name>
+17. Audit for Security Issues - npm audit
+18. Install Latest Version of npm - npm install -g npm
+
 -----Introduction to Package Managers-----
 
 1. What are Package Managers ?
@@ -47,7 +68,9 @@ Explanation :-
 * npm is not exactly Node Package Manager.
 * npm primarily JavaScript aur Node.js ke liye bana hai, but technically npm sirf JavaScript tak limited nahi hai.
 * npm ek general package manager ban gaya hai jo JavaScript ke alawa bhi kuch other tools aur projects ke liye use ho sakta hai.
-* npm website pe naam change hone ka reason ye hai ki npm ka full form Node Package Manager se badal ke “now managing packages” type of phrase ki taraf shift ho gaya hai, kyunki npm ab sirf Node.js tak limited nahi hai, balki aur bhi tools aur configurations ke liye useful ban gaya hai.
+* npm website pe naam change hone ka reason ye hai ki npm ka full form Node Package Manager se badal ke “now managing packages”
+type of phrase ki taraf shift ho gaya hai, kyunki npm ab sirf Node.js tak limited nahi hai, balki aur bhi tools aur configurations
+ke liye useful ban gaya hai.
 
 2. What is npm Workflow ?
 Explanation :-
@@ -64,7 +87,8 @@ Explanation :-
 4. What is npm Versioning ?
 Explanation :-
 * npm packages use semantic versioning (Semver) to specify versions.
-* npm mein, versioning se aap track kar sakte ho ki kaunsi version stable hai aur kaun si version aapke project ke saath compatible hai.
+* npm mein, versioning se aap track kar sakte ho ki kaunsi version stable hai aur kaun si version aapke project ke saath
+compatible hai.
 * npm Versioning ko SemVer (Semantic Versioning) kehte hain, jisme version numbers ko 3 parts mein divide kiya jaata hai :
     MAJOR.MINOR.PATCH
     •	MAJOR (1) -
@@ -72,12 +96,12 @@ Explanation :-
         Agar MAJOR version change hota hai (e.g. 1.0.0 se 2.0.0), iska matlab hai breaking changes kiye gaye hain, jo purane code ko break kar sakte hain.
         Agar aap old version se new version pe migrate karte ho, to aapko apna code bhi update karna padega.
         Ex - Function signature ya return type change ho gaya, toh purana code ab kaam nahi karega.
-	•	MINOR (4) -
+	•	MINOR (1) -
         Version - 1.1.0
         Agar MINOR version change hota hai (e.g. 1.0.0 se 1.1.0), iska matlab new features add kiye gaye hain, lekin purana code break nahi hoga.
         Aapko new feature milenge without any changes in your code.
         Ex - Koi new function ya method add ho gaya, but purane functions as-it-is kaam karte rahenge.
-	•	PATCH (2) -
+	•	PATCH (1) -
         Version - 1.0.1
         Agar PATCH version change hota hai (e.g. 1.0.0 se 1.0.1), iska matlab small bug fixes ya improvements kiye gaye hain.
         Yeh updates backward-compatible hote hain, matlab aapko apna code bilkul change karne ki zaroorat nahi hai.
@@ -109,6 +133,24 @@ Explanation :-
 3. How to update and manage NodeJS versions with npm ?
 Explanation :-
 * Use nvm (Node Version Manager) for managing multiple Node.js versions, not npm directly.
+* Install a Specific Node.js Version :
+    nvm install <version>
+* Use a Specific Node.js Version :
+    nvm use <version>
+* Check Available Node.js Versions :
+    nvm ls
+* Set a Default Node.js Version :
+    nvm alias default <version>
+* Show Current Node.js Version :
+    nvm current
+* Uninstall a Node.js Version :
+    nvm uninstall <version>
+* Check nvm Version :
+    nvm --version
+* List Aliases(Shows all version aliases (like default, stable, etc.)) :
+    nvm alias
+* Use the Latest Stable Version :
+    nvm install node -> Installs and uses the latest stable version of Node.js (node is an alias for the latest version).
 
 -----Understanding package.json-----
 
@@ -123,7 +165,7 @@ Explanation :-
     Description - Project ya package ka naam.
 	Usage - Unique name jo npm registry pe package ko identify karta hai.
 * version
-    Description - Project ya package ki version number.
+    Description - Project ya package ka version number.
 	Usage - Semantic Versioning ke rules follow karta hai (MAJOR.MINOR.PATCH).
 * scripts
     Description - Custom commands jo npm ke through run kiye ja sakte hain.
@@ -234,6 +276,7 @@ Explanation :-
 * Basic Usage - npm ls
 * With Specific Package - npm ls <package-name>
 * Show All Versions - npm ls --all
+* Show all Globally Installed Packages - npm ls -g
 
 -----Managing Global Dependencies-----
 
