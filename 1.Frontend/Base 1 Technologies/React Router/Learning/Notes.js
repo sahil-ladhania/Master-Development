@@ -1,11 +1,103 @@
 /*
 
+-----Main Concepts-----
+
+1. What is the 3 Main Job of React Router ?
+Explanation :-
+* Subscribing and manipulating the history stack
+* Matching the URL to your routes
+* Rendering a nested UI from the route matches
+
+2. What is a URL in React Router ?
+Explanation :-
+* The URL in the address bar is simply the URL.
+* It's not a route in React Router, it's just a URL.
+
+2. What is a Location in React Router ?
+Explanation :-
+* A Location is a React Router-specific object based on the browser's `window.location` object.
+* It represents "where the user is at" and is mostly an object representation of the URL with additional details.
+
+3. What is Location State ?
+Explanation :-
+* Location State is a value that persists with a location but isn't encoded in the URL.
+* It’s stored invisibly in the browser’s memory, unlike hash or search params.
+
+4. What is a History Stack ?
+Explanation :-
+* The History Stack is a record of each location the user navigates to, maintained by the browser.
+* It allows users to see the history stack by clicking and holding the back button.
+
+5. What is Client Side Routing (CSR) ?
+Explanation :-
+* CSR allows developers to manipulate the browser history stack without making a document request to the server.
+* It enables routing in a single HTML document.
+
+6. What is History in React Router ?
+Explanation :-
+* History is an object that allows React Router to subscribe to URL changes and provides APIs to manipulate the browser history stack programmatically.
+
+7. What are History Actions ?
+Explanation :-
+* History Actions include POP, PUSH, and REPLACE.
+* They describe how users arrive at a URL, with PUSH adding a new entry, REPLACE replacing the current entry, and POP happening when the back or forward buttons are used.
+
+**8. What is a Segment?**
+   **Explanation:** A Segment is a part of a URL or path pattern between `/` characters. For example, in "/users/123", "users" and "123" are two segments.
+
+**9. What is a Path Pattern?**
+   **Explanation:** A Path Pattern looks like a URL but includes special characters for matching routes, such as dynamic segments ("/users/:userId") or star segments ("/docs/*").
+
+**10. What is a Dynamic Segment?**
+   **Explanation:** A Dynamic Segment is a part of a path pattern that can match any value, such as "/users/:userId" matching URLs like "/users/123".
+
+**11. What are URL Params?**
+   **Explanation:** URL Params are the parsed values from the URL that match a dynamic segment.
+
+**12. What is a Router?**
+   **Explanation:** A Router is a stateful, top-level component in React Router that makes all other components and hooks work.
+
+**13. What is Route Config?**
+   **Explanation:** Route Config is a tree of route objects that are ranked and matched against the current location to create a branch of route matches.
+
+**14. What is a Route?**
+   **Explanation:** A Route is an object or Route Element typically with a shape of `{ path, element }` or `<Route path element>`. It renders the element when the path pattern matches the current URL.
+
+**15. What is a Route Element?**
+   **Explanation:** A Route Element, or `<Route>`, is used to define a route by `<Routes>`, and its props are read to create the route.
+
+**16. What are Nested Routes?**
+   **Explanation:** Nested Routes allow routes to have child routes, matching multiple routes in a nested branch. This enables automatic layout nesting through outlets, relative links, etc.
+
+**17. What are Relative Links?**
+   **Explanation:** Relative Links are links that don’t start with `/` and inherit the closest route in which they are rendered. This simplifies linking to deeper URLs.
+
+**18. What is a Match?**
+   **Explanation:** A Match is an object holding information when a route matches the URL, such as URL params and pathname.
+
+**19. What are Matches?**
+   **Explanation:** Matches is an array of routes or branches of the route config that match the current location, enabling nested routes.
+
+**20. What is a Parent Route?**
+   **Explanation:** A Parent Route is a route that contains child routes.
+
+**21. What is an Outlet?**
+   **Explanation:** An Outlet is a component that renders the next match in a set of matches.
+
+**22. What is an Index Route?**
+   **Explanation:** An Index Route is a child route with no path that renders in the parent's outlet at the parent’s URL.
+
+**23. What is a Layout Route?**
+   **Explanation:** A Layout Route is a parent route without a path, used exclusively for grouping child routes inside a specific layout.
+
 -----React Router Basics-----
 
 1. What is React Router ?
 Explanation :-
 * React Router is a standard library for routing in React.
 * It enables navigation among different components, allowing users to change the browser URL and keep the UI in sync with the URL.
+* React Router ek library hai jo React apps mein multiple pages ko handle karne ke liye use hoti hai.
+* Ye client-side routing ko implement karta hai, jisme bina page reload ke different components ko render kar sakte ho, jaise ek single-page application (SPA) mein hota hai.
 * Key Concept :
     Single Page Application (SPA) –
         React Router allows you to create a seamless experience by loading only the necessary components when the URL changes, without refreshing the entire page.
@@ -30,6 +122,49 @@ Explanation :-
             </Router>
         );
     }
+
+4. Why do we even need a react router ?
+Explanation :-
+* React Router ki zaroorat isliye hai kyunki React ke built-in features sirf single-page rendering ke liye hain.
+* Agar aapko multiple views ya pages chahiye without reloading the whole page, toh React Router use karna padta hai.
+
+5. How were we suppose to do the same thing in core JS (Vanilla JS) ?
+Explanation :-
+* Vanilla JS mein, aap URL changes handle karne ke liye hash ya history API use karte hain.
+* Aapko manually page load aur view switch karna padta hai, jo thoda complex aur error-prone hota hai.
+
+6. How does this React Router works internally ?
+Explanation :-
+* React Router internal mechanism mein history API ka use karta hai jo URL changes ko track karta hai.
+* Jab URL change hoti hai, Router components decide karte hain ki kaunsa component render karna hai based on route configuration.
+
+7. What is the core funda of React Router ?
+Explanation :-
+* React Router ka core funda hai declarative routing.
+* Iska matlab hai ki aap routes ko React components ke through define karte hain, aur React Router automatically URL changes ko track karke sahi component ko render karta hai.
+* Isse aapki routing setup maintainable aur easy-to-manage hoti hai.
+* React Router history API ke upar ek abstraction layer provide karta hai jo development ko simpler aur more organized banata hai.
+
+8. What is the difference between the way we use to handle in VanillaJS and React Router ?
+Explanation :-
+* Vanilla JS :
+    •	Manual Management - Aapko manually URL changes handle karni padti hain aur views ko update karna padta hai.
+    •	Complexity - Code likhna aur manage karna thoda complex hota hai, kyunki aapko DOM manipulation aur URL changes handle karna hota hai.
+* React Router :
+    •	Declarative Routing - Aap routes ko declarative way mein define karte hain using React components. URL changes automatically handle ho jati hain based on the configuration.
+    •	Ease of Use - React Router abstract karta hai URL management ko, jo aapko React components ke saath integrated aur seamless experience deta hai. Routing logic aur component rendering ko manage karna easy hota hai.
+
+9. What is Client Side Routing ?
+Explanation :-
+* React Router enables "client side routing".
+* In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders
+the HTML sent from the server.
+* When the user clicks a link, it starts the process all over again for a new page.
+* Client side routing allows your app to update the URL from a link click without making another request for another document from the server.
+* Instead, your app can immediately render some new UI and make data requests with fetch to update the page with new information.
+* This enables faster user experiences because the browser doesn't need to request an entirely new document or re-evaluate CSS and JavaScript
+assets for the next page.
+* It also enables more dynamic user experiences with things like animation.
 
 -----Understanding React Router Components-----
 
@@ -72,10 +207,12 @@ Explanation :-
 * Nested Routes allow you to render routes inside other routes.
 * They help in creating hierarchical structures.
 * Nested routes are useful for organizing complex layouts where some pages are sub-sections of others.
+* Nested Routing is the general idea of coupling segments of the URL to component hierarchy and data.
 * Example :
     <Route path="/dashboard" component={Dashboard}>
         <Route path="/dashboard/stats" component={Stats} />
     </Route>
+* Visualise Nested Routes - https://remix.run/_docs/routing
 
 2. What are Relative Paths ?
 Explanation :-
@@ -322,13 +459,13 @@ Explanation :-
 1. What are some Common Issues and Solutions ?
 Explanation :-
 * Common Issues :
-	•	Route Not Matching - Ensure path props are correct and Switch is used if needed.
-	•	Component Not Rendering - Check for exact paths or component import errors.
-	•	Infinite Redirects - This happens due to incorrect conditions in redirects or protected routes.
+    •	Route Not Matching - Ensure path props are correct and Switch is used if needed.
+    •	Component Not Rendering - Check for exact paths or component import errors.
+    •	Infinite Redirects - This happens due to incorrect conditions in redirects or protected routes.
 * Solutions :
-	•	Use console.log to debug route parameters and props.
-	•	Check the order of routes inside the Switch component.
-	•	Ensure state management is correctly synced with route changes.
+    •	Use console.log to debug route parameters and props.
+    •	Check the order of routes inside the Switch component.
+    •	Ensure state management is correctly synced with route changes.
 
 2. How to utilize React Router Prompt ?
 Explanation :-
@@ -352,6 +489,6 @@ Explanation :-
 Explanation :-
 * React DevTools can be used to inspect the component tree, props, and state related to React Router.
 * Example :
-	Use React DevTools to check if the correct components are rendered and if their props, including route parameters, are correct.
+    Use React DevTools to check if the correct components are rendered and if their props, including route parameters, are correct.
 
 */
