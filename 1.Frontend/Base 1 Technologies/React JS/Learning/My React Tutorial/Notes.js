@@ -1175,7 +1175,7 @@ Explanation :-
 	A lightweight copy of the real DOM used by React to optimize updates.
     React compares the virtual DOM with the real DOM and updates only the changed parts
 
-7. What is index.html, App.js, index.js, & package.json in a Simple React Project ?
+7. What is index.html, App.js, index.js, reportWebVitals.js & package.json in a Simple React Project ?
 Explanation :-
 * index.html (in public/) :
 	The HTML template that includes a <div id="root"></div> element where React components will be rendered.
@@ -1185,6 +1185,41 @@ Explanation :-
 	The entry point for the React app where ReactDOM renders the App component into the root element.
 * package.json :
 	Defines project dependencies, scripts, and other configurations. React scripts are typically used to run the project.
+* reportWebVitals.js :
+    Purpose - This file is used to measure and report performance metrics of your React app.
+    Code Explanation -
+        const reportWebVitals = onPerfEntry => {
+            if (onPerfEntry && onPerfEntry instanceof Function) {
+                import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                    getCLS(onPerfEntry); -------> Cumulative Layout Shift
+                    getFID(onPerfEntry); -------> First Input Delay
+                    getFCP(onPerfEntry); -------> First Contentful Paint
+                    getLCP(onPerfEntry); -------> Largest Contentful Paint
+                    getTTFB(onPerfEntry); -------> Time to First Byte
+                });
+            }
+        };
+        export default reportWebVitals;
+            •	reportWebVitals Function -
+                                        This function takes a callback function (onPerfEntry) that gets called with the performance metrics.
+            •	Parameters -
+                            •	onPerfEntry -
+                                            A function to handle the performance metrics.
+            •	import('web-vitals') -
+                                    Dynamically imports the web-vitals library to measure performance metrics.
+            •	Methods from web-vitals -
+                •	getCLS -
+                            Measures Cumulative Layout Shift (visual stability).
+                •	getFID -
+                            Measures First Input Delay (interactivity).
+                •	getFCP -
+                            Measures First Contentful Paint (first render).
+                •	getLCP -
+                            Measures Largest Contentful Paint (largest render).
+                •	getTTFB -
+                            Measures Time to First Byte (server response time).
+            Usage -
+                You call reportWebVitals with a function to log or handle these metrics, often for performance monitoring and improvement.
 
 8. How JavaScript Runs Without Script Tags ?
 Explanation :-
