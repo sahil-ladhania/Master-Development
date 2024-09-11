@@ -39,7 +39,7 @@ function App() {
             {/*<ListAndKeysQuestions/>*/}
             {/*<UseRefPractice/>*/}
             {/*<UseRefQuestions/>*/}
-            {/*<UseReducerPractice/>*/}
+            <UseReducerPractice/>
             {/*<UseReducerQuestions/>*/}
             {/*<ThemeProvider>*/}
             {/*    <MainComponent/>*/}

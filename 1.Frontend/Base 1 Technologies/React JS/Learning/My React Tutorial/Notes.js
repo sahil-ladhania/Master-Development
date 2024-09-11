@@ -1842,31 +1842,67 @@ Explanation :-
 Explanation :-
 * createContext() :
     export const MyContext = createContext();
-    	•	createContext() - Yeh React ka ek function hai jo ek context object create karta hai.
-	    •	Return - Yeh ek context object return karta hai jo do main cheezon ke saath aata hai :
-            Provider
-            Consumer
-	    •	Purpose - Context object ko create karne ka purpose yeh hai ki aap ek global state ya data ko define kar sakein jo aapke component tree ke different levels mein accessible hoga bina props drill kiye.
+    	•	createContext(defaultValue) -
+                                        Yeh React ka ek function hai jo ek context object create karta hai.
+                                        createContext() ek default value bhi le sakta hai.
+                                        Agar koi provider na ho, toh ye default value consumers ko milti hai.
+	    •	Return -
+                    Yeh ek context object return karta hai jo do main cheezon ke saath aata hai :
+                        Provider
+                        Consumer
+	    •	Purpose -
+                    Context object ko create karne ka purpose yeh hai ki aap ek global state ya data ko define kar sakein jo aapke component tree ke different levels mein accessible hoga bina props drill kiye.
 * Provider Component :
     export const MyProvider = ({ children }) => { some code...}
-    	•	MyProvider - Yeh ek functional component hai jo context ki value ko provide karta hai. Isme aap apni global state ko manage karte hain aur child components ko context value provide karte hain.
-	    •	Return - Yeh component ek Provider element ko return karta hai jo ki context ke value ko provide karta hai.
-	    •	{children} - Yeh Provider component ko wrap kiye gaye sabhi child components ko represent karta hai. Yeh prop automatically provide hota hai jab Provider ko wrap kiya jata hai.
-	    •	Inside {some code...} - Yahan aap apne state ko define karte hain aur functions ko define karte hain jo context value ko manage karte hain.
+    	•	MyProvider -
+                        Yeh ek functional component hai jo context ki value ko provide karta hai.
+                        Isme aap apni global state ko manage karte hain aur child components ko context value provide karte hain.
+	    •	Return -
+                    Yeh component ek Provider element ko return karta hai jo ki context ke value ko provide karta hai.
+	    •	{children} -
+                        { children } ek destructuring assignment hai jo props object se children ko extract karta hai.
+                        React mein, children refer karta hai un elements ya components ko jo tum MyProvider ke andar wrap karoge.
+                        Yeh ek special prop hota hai jo automatically pass hota hai jab tum components ko ek doosre ke andar nest karte ho.
+                        Yeh Provider component ko wrap kiye gaye sabhi child components ko represent karta hai.
+                        Yeh prop automatically provide hota hai jab Provider ko wrap kiya jata hai.
+                        Ex :
+                            <MyProvider>
+                                <div>Some content</div>
+                            </MyProvider>
+                            Yahaan <div> jo tumne MyProvider ke andar diya hai, wo children ke roop mein pass hota hai.
+                            { children } ka matlab hai us content ko receive karna aur use karna.
+	    •	Inside {some code...} -
+                                    MyProvider ke andar tum kuch important kaam karte ho jo context ke values ya states ko set up karta hai aur unhe child components tak pass karta hai.
+                                    Generally, ye steps hote hain :
+                                        1. Define state or value
+                                        2. Use Provider to pass the value
+                                    Yahan aap apne state ko define karte hain aur functions ko define karte hain jo context value ko manage karte hain.
 * Context Provider :
     return (
         <MyContext.Provider value={{ value, updateValue }}>
             {children}
         </MyContext.Provider>
     );
-    	•	return - Yeh return statement ek Provider component ko return karta hai jo MyContext context ke liye provider hai.
-	    •	{children} - Yeh prop MyProvider component ke andar jitne bhi child components hain, unhe render karne ke liye use hota hai. Yeh context ke value ko in child components tak pass karta hai.
-	    •	value - Yeh ek prop hai jo Provider component ko pass kiya jata hai. Isme woh state aur functions hoti hain jo aap context ke through share karna chahte hain.
-	    •	Inside value={{ value, updateValue }} - Yahan aap context ke value ko define karte hain. value aur updateValue wo properties hain jo aap context ke through share karte hain.
+    	•	return -
+                    Yeh return statement ek Provider component ko return karta hai jo MyContext context ke liye provider hai.
+	    •	{children} -
+                        Yeh prop MyProvider component ke andar jitne bhi child components hain, unhe render karne ke liye use hota hai.
+                        Yeh context ke value ko in child components tak pass karta hai.
+	    •	value -
+                    Yeh ek prop hai jo Provider component ko pass kiya jata hai.
+                    Isme woh state aur functions hoti hain jo aap context ke through share karna chahte hain.
+	    •	Inside value={{ value, updateValue }} -
+                                                    Yahan aap context ke value ko define karte hain.
+                                                    value aur updateValue wo properties hain jo aap context ke through share karte hain.
 * Using useContext :
     const { value, updateValue } = useContext(MyContext);
-	    •	useContext(MyContext) - Yeh ek React Hook hai jo context object ko use karte hue current context value ko return karta hai. Yeh hook MyContext context se data fetch karta hai jo Provider component ne provide kiya hai.
-	    •	{ value, updateValue } - Yeh object destructuring hai. useContext(MyContext) se jo value milti hai, usme se value aur updateValue properties ko extract kiya jata hai. Inhe aap component ke andar directly use kar sakte hain.
+	    •	useContext(MyContext) -
+                                    Yeh ek React Hook hai jo context object ko use karte hue current context value ko return karta hai.
+                                    Yeh hook MyContext context se data fetch karta hai jo Provider component ne provide kiya hai.
+	    •	{ value, updateValue } -
+                                    Yeh object destructuring hai.
+                                    useContext(MyContext) se jo value milti hai, usme se value aur updateValue properties ko extract kiya jata hai.
+                                    Inhe aap component ke andar directly use kar sakte hain.
 
 25. What are advantages of Context API ?
 Explanation :-
@@ -1925,31 +1961,48 @@ Explanation :-
     const [state, dispatch] = useReducer(reducer, initialState);
         Meaning of Syntax :
             state :
-                Variable that holds the current state of your component.
-                It represents the state managed by the useReducer Hook at any given time.
-                Initially, state is set to initialState.
-                As you dispatch actions, the state is updated based on the logic in the reducer function.
+                What -
+                    Yeh current state hai jo tumhare component mein store hoti hai.
+                    Yeh value useReducer hook ke through manage hoti hai.
+                What It Returns -
+                                state mein wo value hoti hai jo reducer function se latest update ke baad milti hai.
+                What Parameter It Takes -
+                                        state khud koi argument nahi leta.
+                                        Yeh directly reducer ke result ko store karta hai.
+                Main Job -
+                        Yeh tumhare component ke current state ko hold karta hai, jaise kisi counter ka value ya koi complex state object.
             dispatch :
-                A function used to send actions to the reducer to update the state.
-                Function that you use to trigger state changes.
-                It sends an action to the reducer function, which then decides how to update the state based on the action type.
-                You call dispatch with an action object, e.g., dispatch({ type: 'increment' }).
-                The reducer then processes this action and returns a new state.
+                What -
+                    Yeh ek function hai jo tumhare reducer function ko trigger karta hai.
+                    Is function ke through tum action bhejte ho reducer ko, jisse state update hoti hai.
+                What It Returns -
+                                dispatch kuch return nahi karta, sirf reducer ko ek action pass karta hai.
+                What Parameter It Takes -
+                                        dispatch ek action leta hai as an argument.
+                                        Yeh action ek object hota hai jo batata hai ki kya update karna hai state mein.
+                Main Job -
+                        Yeh responsible hota hai actions bhejne ka reducer function ko taaki state update ho.
             reducer :
-                Function where the state logic resides.
-                It takes two arguments - the current state and an action.
-                	•	state - The current state.
-	                •	action - An object describing what happened. Typically, it has a type property that specifies the action to be taken.
-                Based on the action, the reducer returns a new state.
-                A function that determines how the state changes based on the action.
-                Function that contains the logic to determine how the state should change in response to an action.
-                The reducer function uses a switch or similar control structure to handle different action types.
-                Based on the action type, it calculates and returns the new state.
+                What -
+                    Yeh ek pure function hai jo decide karta hai ki tumhare state ko kaise update kiya jayega.
+                    Yeh action ke basis pe state modify karta hai.
+                What It Returns -
+                                reducer function new updated state return karta hai.
+                What Parameters It Takes -
+                                        Yeh do arguments leta hai :
+                                                                    1.	Current state - Pehle wali state jo abhi use ho rahi hai.
+                                                                    2.	Action - Ek object jo batata hai ki state mein kya change hona chahiye.
+                Main Job -
+                        Yeh function state ko update karta hai based on the action.
             initialState :
-                The initial state value.
-                Starting value for the state.
-                It’s the initial structure or value of your state when the component is first rendered.
-                The initialState is passed to useReducer and is used to set the state during the component’s first render.
+                What -
+                    Yeh wo starting value hai jo tumhare state ki initial value set karta hai.
+                What It Returns -
+                                Yeh initial state ko useReducer ka pehla value set karta hai.
+                What Parameters it Takes -
+                                        initialState khud ek argument hai jo tum useReducer ko provide karte ho to initialize state.
+                Main Job -
+                        Yeh state ki shuruaat mein default value set karta hai.
 Use-Cases :
 	Managing complex state logic with multiple sub-values.
 	Handling state transitions that depend on the previous state.
