@@ -1,11 +1,10 @@
 import {createContext, useContext, useReducer} from "react";
 import { faker } from '@faker-js/faker';
-import {cartReducer} from "./Reducer.jsx";
+import {cartReducer, productReducer} from "./Reducer.jsx";
 
 export const CartContext = createContext();
 
 function Context({ children }) {
-
     // Generating Random Products
     const products = [...Array(20)].map(() => ({
         id: faker.string.uuid(),
@@ -16,15 +15,19 @@ function Context({ children }) {
         fastDelivery: faker.datatype.boolean(),
         ratings: faker.helpers.arrayElement([1, 2, 3, 4, 5])
     }));
-
     // Creating Cart Reducer
     const [state, dispatch] = useReducer(cartReducer , {
         products: products,
         cart : []
     });
-
+    // Creating Filters Reducer
+    const [productState, productDispatch] = useReducer(productReducer , {
+        byStock : false,
+        byFastDelivery: false,
+        searchQuery : "",
+    })
     return (
-        <CartContext.Provider value={{ state , dispatch }}>
+        <CartContext.Provider value={{ state , dispatch , productState , productDispatch }}>
             {children}
         </CartContext.Provider>
     );
