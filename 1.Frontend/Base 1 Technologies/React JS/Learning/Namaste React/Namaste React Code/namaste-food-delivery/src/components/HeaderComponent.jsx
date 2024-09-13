@@ -28,9 +28,6 @@ function HeaderComponent() {
             <div className="nav-items flex items-center space-x-8">
                 <ul className="flex space-x-8 text-lg font-semibold text-gray-700">
                     <li className="hover:text-orange-400 cursor-pointer">
-                        <Link to="/restaurants">Restaurants</Link>
-                    </li>
-                    <li className="hover:text-orange-400 cursor-pointer">
                         <Link to="/about">About Us</Link>
                     </li>
                     <li className="hover:text-orange-400 cursor-pointer">

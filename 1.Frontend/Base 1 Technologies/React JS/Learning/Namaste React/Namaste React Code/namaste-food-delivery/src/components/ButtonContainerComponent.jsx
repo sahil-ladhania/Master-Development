@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 function ButtonContainerComponent() {
     return (
         <>
-            <div className="space-x-2 flex flex-wrap mb-10">
+            <div className="space-x-2 flex flex-wrap mb-8">
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button className="bg-orange-500 hover:bg-orange-600 text-white">
