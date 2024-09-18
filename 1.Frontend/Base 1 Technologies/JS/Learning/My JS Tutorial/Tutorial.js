@@ -19,7 +19,7 @@ console.log("Scopes Example");
         console.log(functionVariable); // ----> Accessible Here
     }
     functionScopeExample();
-    // console.log(functionVariable); -----> Error : functionVar is not defined
+    // console.log(functionVariable); -----> Error : functionVariable is not defined
 
     // 3. Block Scope
     function blockScopeExample() {
@@ -65,7 +65,7 @@ console.log("Scopes Example");
     y2 = "World"; // Can be Updated
     console.log(y2);
 
-    // 3. const Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Cannot be Reassigned | Mutable if it's an Object or Array |
+    // 3. const Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Cannot be Updated | Mutable if it's an Object or Array |
     console.log("const Declaration Example");
     function constExample() {
         const x3 = 10;

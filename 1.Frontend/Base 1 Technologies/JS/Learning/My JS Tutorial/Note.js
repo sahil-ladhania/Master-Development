@@ -33,48 +33,65 @@ Explanation :-
 Explanation :-
 * The act of defining a variable using var, let, or const.
 
-3. What is Hoisting ? ----------------------------------------------------------------------------> IMP
-Explanation :-
-* JavaScript’s behavior of moving variable and function declarations to the top of their containing scope during compilation.
-* JavaScript mein hoisting ka matlab hai ki variables aur function declarations ko unki scope ke top pe move kar diya jaata hai execution ke time pe, chahe wo physically code ke bottom mein declare kiye gaye ho. Lekin, hoisting ke time pe variables ko unka value assign nahi hota hai (initialization nahi hota hai).
-* Hoisting in var : | Declarations are Hoisted and Initialized with Undefined | No Temporal Dead Zone |
-* Hoisting in let : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
-* Hoisting in const : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
-* Jab let aur const keywords use hote hain, to unki declarations hoist hoti hain, matlab unhe unki scope ke top pe move kar diya jaata hai, lekin unhe initialize nahi kiya jaata hai jab tak unki actual declaration line nahi aati. Isliye, unhe use karne se pehle ek “Temporal Dead Zone” (TDZ) mein hoti hain. TDZ wo period hai jahan variable hoisted hai lekin initialized nahi hai.
-* Refer to Namaste JS Ep-3 for Detail Explanation.
-
-4. What is Variable Naming Rules ?
+3. What is Variable Naming Rules ?
 Explanation :-
 * Must start with a letter, underscore (_), or dollar sign ($).
 * Subsequent characters can be letters, numbers, underscores, or dollar signs.
 
-5. What is Block | Function | Global Variable Scopes ? ------------------------------------------------------------> IMP
+4. What is Global | Function | Block Variable Scopes ? ------------------------------------------------------------> IMP
 Explanation :-
-* Scope - Refers to the visibility of a variable or how it can be used after it is declared. Scope of a variable depends on the keyword that was used to declare it.
-* Note - Before ES6 (2015), JavaScript had only "Global Scope" and "Function Scope" with the "var" keyword. ES6 introduced "let" and "const" which allow "Block Scope" in JavaScript.
+* Scope -
+    Refers to the visibility of a variable or how it can be used after it is declared.
+    Scope of a variable depends on the keyword that was used to declare it.
+* Note -
+    Before ES6 (2015), JavaScript had only "Global Scope" and "Function Scope" with the "var" keyword.
+    ES6 introduced "let" and "const" which allow "Block Scope" in JavaScript.
 	•	Block Scope - Variables declared with let or const inside a {} block.
 	•	Function Scope - Variables declared with var inside a function.
-	•	Global Scope - Variables declared outside any function or block
+	•	Global Scope - Variables declared outside any function or block.
+
+5. What is Hoisting ? ----------------------------------------------------------------------------> IMP
+Explanation :-
+* JavaScript’s behavior of moving variable and function declarations to the top of their containing scope during compilation.
+* JavaScript mein hoisting ka matlab hai ki variables aur function declarations ko unki scope ke top pe move kar diya jaata hai execution ke time pe, chahe wo physically code ke bottom mein declare kiye gaye ho.
+* Lekin, hoisting ke time pe variables ko unka value assign nahi hota hai (initialization nahi hota hai).
+* Hoisting in var : | Declarations are Hoisted and Initialized with Undefined | No Temporal Dead Zone |
+* Hoisting in let : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
+* Hoisting in const : | Declarations are Hoisted but not Initialized | Variables are in the Temporal Dead Zone until their Declaration is Encountered |
+* Jab let aur const keywords use hote hain, to unki declarations hoist hoti hain, matlab unhe unki scope ke top pe move kar diya jaata hai, lekin unhe initialize nahi kiya jaata hai jab tak unki actual declaration line nahi aati.
+* Isliye, unhe use karne se pehle ek “Temporal Dead Zone” (TDZ) mein hoti hain.
+* TDZ wo period hai jahan variable hoisted hai lekin initialized nahi hai.
+* Refer to Namaste JS Ep-3 for Detail Explanation.
 
 -----Data Types-----
 
-1. What is Primitive DTs ? -----------------------------------------------------------------------------------> IMP
+1. What is Primitive DTs ?
 Explanation :-
-* Primitive Data Types - Basic types that are immutable(Unchangeable) (e.g., string, number, boolean).
-* Why Immutable - Because when you perform operations on primitives (like strings or numbers), a new value is created rather than modifying the existing value.
-    let str = "hello";
-    str = str.toUpperCase(); // "HELLO"
-    // The original "hello" string is not changed; a new string "HELLO" is created.
-* Memory Efficiency - Stored directly in memory; the immutability helps optimize performance and memory usage, as creating new primitives is usually lightweight.
+* Basic types that are Immutable(Unchangeable).
+* Ex - string, number, boolean etc.
+* Why Immutable(Unchangeable) -   ----------------------------------------------------------------------------> IMP
+    Because when you perform operations on primitives (like strings or numbers), a new value is created rather than modifying the existing value.
+        let str = "hello";
+        str = str.toUpperCase(); // "HELLO"
+        // The original "hello" string is not changed; a new string "HELLO" is created.
+* Memory Efficiency -
+    Stored directly in memory, the immutability helps optimize performance and memory usage, as creating new primitives is usually lightweight.
 
-2. What is Non-Primitive DTs ? -----------------------------------------------------------------------------------> IMP
+2. What is Non-Primitive DTs ?
 Explanation :-
-* Non-Primitive(Reference) Data Types - Complex types that are mutable(Changeable) (e.g., object, array).
-* Why Mutable - Because when you change a property or an element in an object or an array, the original reference is modified.
-    let arr = [1, 2, 3];
-    arr[0] = 10;
-    // The original array [1, 2, 3] is changed to [10, 2, 3]
-* Memory Efficiency - Stored as references; mutable structures are more flexible for complex data management.
+* Also known as Reference DTs.
+* Complex types that are Mutable(Changeable).
+* Ex - object, array etc.
+* Why Reference DTs -        ----------------------------------------------------------------------------> IMP
+    Because they store a reference (memory address) to the actual data rather than storing the data itself.
+    When you create an object or an array, the variable doesn’t store the actual value.
+    Instead, it stores a reference (memory address) pointing to the location in memory where the data is stored.
+* Why Mutable(Changeable) -    ----------------------------------------------------------------------------> IMP
+    Because changes to their elements or properties directly modify the original data stored in memory, without creating new copies.
+        let arr = [1, 2, 3];
+        arr[0] = 10;
+        // The original array [1, 2, 3] is changed to [10, 2, 3]
+* Memory Efficiency - Stored as references, mutable structures are more flexible for complex data management.
 
 3. What are these in Primitive DT ?
     String
@@ -85,41 +102,110 @@ Explanation :-
     Null
     Symbol
 Explanation :-
-	•	String - Represents text. Example: "Hello".
-	•	Number - Represents numeric values. Example: 42.
-	•	Boolean - Represents true or false.
-	•	Undefined - A variable that has been declared but not yet assigned a value. -------------------------------> IMP
-	•	BigInt - Represents integers with arbitrary precision. Example: 9007199254740991n. ------------------------> IMP
-	•	Null - Represents the intentional absence of any object value. --------------------------------------------> IMP
-	•	Symbol - A unique and immutable value used as an identifier. Example: Symbol('id'). -----------------------> IMP
+	•	String -
+                Represents text.
+                Example: "Hello".
+	•	Number -
+                Represents numeric values.
+                Example: 42.
+	•	Boolean -
+                Represents true or false.
+	•	Undefined -  --------------------------------------------------------------------------> IMP
+                    A variable that has been declared but not yet assigned a value.
+                    You can assign undefined in a Variable , but Never Do That.
+	•	BigInt -  --------------------------------------------------------------------------> IMP
+                Represents integers with arbitrary precision.
+                Example: 9007199254740991n.
+	•	Null -  --------------------------------------------------------------------------> IMP
+                Represents the intentional absence of any object value.
+	•	Symbol -  --------------------------------------------------------------------------> IMP
+                A unique and immutable value used as an identifier.
+                Example: Symbol('id').
 
-4. What are these in Non-Primitive DT ? --------------------------------------------------------------------------> IMP
+4. What are these in Non-Primitive DT ?
     Object
         Object Prototype
         Prototypal Inheritance
         Built-In Objects
         typeof Operator
+    Array
+    Function
 Explanation :-
-•	Object - Collection of key-value pairs.
-	•	Object Prototype - Base object from which other objects inherit properties.
-	•	Prototypal Inheritance - Mechanism by which objects inherit properties from other objects.
-	•	Built-In Objects - JavaScript objects provided by the language, like Math or Date.
-	•	typeof Operator - Used to determine the type of a variable.
+* There are generally 3 main types of Non-Primitive DT :
+    Object
+    Array
+    Function
+* Object -
+    The fundamental non-primitive data type in JavaScript, used to store collections of key-value pairs.
+    Key Features :
+        Keys (Properties) - Can be a string or a symbol.
+                            Example: name, age.
+        Values - Can be any data type (string, number, array, function, another object, etc.).
+    Accessing Object Properties :
+        Dot Notation -
+            Ex: person.name
+        Bracket Notation -
+            Ex: person["age"]
+    Nested Objects -
+        You can have objects within objects, creating a hierarchical structure.
+    Object Prototype - -----------------------------------------------------------------------------------------> IMP
+        Every JavaScript object has an internal property called [[Prototype]], which refers to another object.
+        This is where prototypal inheritance comes in.
+        Base object from which other objects inherit properties.
+    Prototype Chain - -----------------------------------------------------------------------------------------> IMP
+        When accessing a property, JavaScript first looks for it in the object itself.
+        If it doesn’t find it, it moves up the prototype chain to look for the property in the prototype.
+    Prototypal Inheritance - -------------------------------------------------------------------------------------> IMP
+        Objects inherit from other objects through prototypes.
+        This allows reusing methods and properties across multiple objects.
+        Mechanism by which objects inherit properties from other objects.
+    Built-In Objects -
+        JavaScript provides several built-in objects, such as :
+                •	Object
+                •	Array
+                •	Date
+                •	Math
+                •	JSON
+                •	Number
+                •	String
+        These objects come with pre-defined methods and properties.
+        JavaScript objects provided by the language, like Math or Date.
+    typeof Operator -
+        The typeof operator helps determine the type of a variable.
+* Array -
+    An array is a special type of object designed to store ordered lists of values.
+    Arrays are dynamic and can grow or shrink as needed.
+    They also come with many built-in methods for manipulating data.
+    Key Concepts :
+        Array Structure - let arr = [1, 2, 3, 4, 5];
+        Accessing Elements - Arrays are zero-indexed, meaning the first element has an index of 0.
+        Modifying Arrays - You can modify, add, or remove elements in arrays.
+    Multidimensional Arrays -
+        Arrays can also hold other arrays as elements, creating a multidimensional array.
+    Array’s Prototype - --------------------------------------------------------------------------------------> IMP
+        Arrays in JavaScript inherit from Array.prototype, which provides the array methods (map(), forEach(), etc.).
+    Array-Like Objects - -------------------------------------------------------------------------------------> IMP
+        Some objects (like arguments or NodeList) are array-like, meaning they have a length property and can be indexed like arrays, but they don’t have array methods like map() or forEach().
+* Function - -------------------------------------------------------------------------------------> IMP
+    Functions in JavaScript are first-class objects, meaning they can be treated like any other object.
 
------Type Casting-----
+-----Type Conversion-----
 
-1. What is Type Conversion vs Coercion ?
+1. What is Type Conversion ? --------------------------------------------------------------------------------> IMP
 Explanation :-
-	•	Type Conversion(Jabardasti Convert) - Explicitly converting a value from one type to another (e.g., Number('123')).
-	•	Coercion(ApneAap Convert) - Implicit conversion of values by JavaScript (e.g., "5" + 1 results in "51").
-
-2. What is Implicit(ApneAap) Type Casting ?
-Explanation :-
-* Automatic conversion by JavaScript when performing operations with mixed types.
-
-3. What is Explicit(Jabardasti) Type Casting ?
-Explanation :-
-* Manually converting a value using functions like Number(), String(), Boolean().
+* To convert from one datatype to another, whether explicitly or implicitly.
+* Two types :
+    Type Coersion(Implicit Type Conversion) -
+        "Apne Aap Conversion".
+        Implicit conversion of values by JavaScript.
+        Ex -  "5" + 1 = "51"
+    Type Casting(Explicit Type Conversion) -
+        "Jabardasti Conversion"
+        Explicit conversion of values.
+        Ex -
+            let str = "123";
+            let num = Number(str);
+            console.log(num);
 
 -----Data Structures-----
 
