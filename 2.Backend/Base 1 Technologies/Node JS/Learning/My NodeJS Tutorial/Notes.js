@@ -747,6 +747,66 @@ Explanation :-
 Explanation :-
 * Create a package by initializing a project with npm init, defining dependencies, and creating a package.json file.
 
+-----sync, async, setTimeoutZero-----
+
+1. What does this mean?
+Explanation :-
+2. Why is this important?
+Explanation :-
+3. What is crypto ?
+Explanation :-
+4. Why Does This Matter?
+Explanation :-
+5. What will be the output of the following code?
+Explanation :-
+6. Why is setTimeout(0) Executed After the Multiplication Result?
+Explanation :-
+
+-----Deep dive into v8 JS Engine-----
+
+1. What happens Behind the Scenes in V8 Engine ?
+Explanation :-
+2. What is 1st Stage : Parsing Stage - Lexical Analysis and Tokenization ?
+Explanation :-
+3. What is 2nd Stage : Syntax Analysis and Abstract Syntax Tree (AST) ?
+Explanation :-
+4. What is Interpreter and Compilation ?
+Explanation :-
+5. Is JavaScript interpreted or compiled language?
+Explanation :-
+
+-----libuv & Event Loop-----
+
+1. What is libuv ?
+Explanation :-
+2. What is Event Loop ?
+Explanation :-
+3. How things work behind the scene ?
+Explanation :-
+4. What are the four major phases in which event loop in LIBUV operates ?
+Explanation :-
+
+-----Thread pool in libuv-----
+
+1. What is Thread Pool ?
+Explanation :-
+2. When does libuv use the thread pool ?
+Explanation :-
+3. Can you change the size of the thread pool?
+Explanation :-
+4. Suppose you have a server with many incoming requests, and users are hitting APIs. Do these APIs use the thread pool?
+Explanation :-
+5. What are File Descriptors (fds) and Socket Descriptors ?
+Explanation :-
+6. What are Event Emitters ?
+Explanation :-
+7. What are Streams ?
+Explanation :-
+8. What are Buffers ?
+Explanation :-
+9. What are Pipes in Node.js ?
+Explanation :-
+
 -----Error Handeling-----
 
 1. What is Error Handeling ?
