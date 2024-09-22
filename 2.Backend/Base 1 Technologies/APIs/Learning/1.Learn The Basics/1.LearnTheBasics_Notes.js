@@ -717,29 +717,332 @@ Explanation :-
 
 9. What are HTTP Caching ?
 Explanation :-
-* A technique to store copies of resources for faster access.
-* Benefits - Reduces server load and improves load times.
-* Headers - Cache-Control, Expires.
+* HTTP Caching ek mechanism hai jo web performance ko improve karne ke liye use hota hai.
+* Yeh allow karta hai browsers aur intermediate proxies ko web resources (jaise ki HTML pages, images, scripts) ko store karne ke liye, taaki future requests ke liye yeh resources quickly available ho sakein bina server se dobara fetch kiye.
+* Why Caching is Important -
+	Performance Improvement -
+        Caching se resources ko local storage se fetch kiya ja sakta hai, jo latency ko kam karta hai aur page load time ko accelerate karta hai.
+	Reduced Server Load -
+        Agar resources cache mein hain, toh server par load kam ho jaata hai kyunki woh requests handle nahi karni padti.
+	Bandwidth Savings -
+        Caching se network bandwidth save hoti hai, kyunki resources ko repeat requests ke liye download nahi karna padta.
+* How HTTP Caching Works -
+    Caching ka mechanism kuch HTTP headers ke zariye kaam karta hai.
+    Jab client (browser) ek resource request karta hai, server response mein caching headers include karta hai.
+        Cache-Control -
+            Yeh header cache behavior ko define karta hai.
+            Ismein directives hoti hain jo specify karti hain ki resource ko cache karna hai ya nahi, aur kitne time ke liye cache karna hai.
+            Ex -
+                Cache-Control: max-age=3600
+                Iska matlab hai ki resource ko 1 hour (3600 seconds) tak cache kiya ja sakta hai.
+        Expires -
+            Yeh header specify karta hai ki resource kab expire hoga.
+            Iski date ke baad resource ko fresh request karna padega.
+            Ex -
+                Expires: Wed, 22 Sep 2024 10:00:00 GMT
+        ETag -
+            Yeh header resource ki unique identifier hoti hai.
+            Jab browser resource ko cache karta hai, toh woh ETag ko store karta hai.
+            Next request par browser yeh ETag bhejta hai taaki server ko check kar sake ki resource change hua hai ya nahi.
+            Ex -
+                ETag: "abc123"
+        Last-Modified -
+            Yeh header batata hai ki resource kab last modify hua tha.
+            Browser isse use karke server se check karta hai ki resource mein koi changes aaye hain ya nahi.
+            Ex -
+                Last-Modified: Tue, 21 Sep 2024 10:00:00 GMT
+* Caching Strategies -
+	Public vs. Private Caching -
+        •	Public Cache - Yeh cache ko shared environment mein store karta hai, jaise proxies.
+        •	Private Cache - Yeh cache ko user-specific content ke liye store karta hai, jaise user profile pages.
+	Revalidation -
+        •	Jab cache expire hota hai, browser server ko resource ko validate karne ke liye request bhejta hai.
+        •	Server agar resource ko change nahi karta, toh woh 304 Not Modified response bhejta hai, aur cache ko use kiya ja sakta hai.
+        Ex -
+            GET /api/resource HTTP/1.1
+            If-None-Match: "abc123"
+    Stale-While-Revalidate -
+        •	Is strategy mein agar cached resource expire ho gaya hai, toh browser stale resource ko show karta hai, lekin background mein server se fresh resource fetch karta hai.
+* Cache Invalidation -
+    Cache ko invalidate karna important hai jab resources change hote hain.
+    Yeh kuch methods se hota hai.
+        Versioning -
+            Resource URL mein version number include karna, jaise style.v1.css, style.v2.css.
+            Jab resource change hota hai, version number bhi change hota hai.
+        Purge -
+            Cache ko manual ya automated way mein clear karna, jise Content Delivery Network (CDN) use karte hain.
+* Ex of HTTP Caching -
+    Client Request -
+        Client jab ek resource request karta hai.
+        Ex -
+            GET /api/data HTTP/1.1
+            Host: example.com
+    Server Response -
+        Server response mein caching headers include karta hai.
+        Ex -
+            HTTP/1.1 200 OK
+            Cache-Control: max-age=3600
+            ETag: "abc123"
+            Content-Type: application/json
+            { "data": "some value" }
+    Subsequent Request -
+        Jab client phir se same resource request karta hai, toh browser ETag ko use karta hai.
+        Ex -
+            GET /api/data HTTP/1.1
+            If-None-Match: "abc123"
+            Host: example.com
+    Server Response to Revalidation -
+        Agar resource unchanged hai, toh server response deta hai.
+        Ex -
+            HTTP/1.1 304 Not Modified
+            Agar resource change ho gaya hota, toh server fresh data ke saath response karta.
+* Conclusion -
+    HTTP Caching web performance ko significantly improve karta hai by reducing latency, server load, aur bandwidth usage.
+    Caching strategies aur proper cache management se applications fast aur efficient bante hain.
 
 10. What is URL, Query & Path Parameters ?
 Explanation :-
-* URL - Unique address to locate a resource.
-* Query Parameters - ?key=value to filter data (after the ? symbol).
-* Path Parameters - /resource/{id} used to identify specific resources.
+* URL (Uniform Resource Locator) ek web resource ka address hai jo specific resources ko identify karta hai.
+* URLs mein parameters include kiye ja sakte hain jo server ko additional information provide karte hain.
+* Components of a URL -
+    Ek URL ke kuch key components hote hain.
+        Scheme -
+            Protocol specify karta hai, jaise http, https, ftp, etc.
+            Ex - https://
+        Host -
+            Domain name ya IP address jo resource ko host karta hai.
+            Example - example.com
+        Port (optional) -
+            Specific port number jo service ko access karta hai.
+            Ex - :443 for HTTPS
+        Path -
+            Resource ka path jo server par file ya endpoint ko locate karta hai.
+            Ex - /api/v1/users
+        Query String (optional) -
+            URL ke end par parameters specify karta hai, jisse data pass kiya ja sakta hai.
+            Ex - ?id=123&sort=asc
+        Fragment (optional) -
+            Page ka specific section ya anchor ko identify karta hai.
+            Ex - #section1
+* Complete URL Example - https://example.com:443/api/v1/users?id=123&sort=asc#section1
+* Path Parameters -
+    Path parameters URL ke path mein directly include hote hain.
+    Yeh typically resource ka identifier hota hai.
+    Ex -
+        •	URL - https://api.example.com/users/123
+        •	Yahan 123 user ID hai, jo specific user ko identify karta hai.
+* Usage -
+    Path parameters ko RESTful APIs mein use kiya jaata hai.
+    GET /users/123 → User ID 123 ke details fetch karne ke liye.
+* Query Parameters -
+    Query parameters URL ke end par ? se start hote hain aur & ke zariye multiple parameters ko separate karte hain.
+    Yeh server ko additional information provide karte hain.
+    Ex -
+        •	URL - https://api.example.com/products?category=electronics&sort=price
+        •	Yahan category aur sort query parameters hain.
+* Usage -
+    Query parameters ko filtering, sorting, ya pagination ke liye use kiya jaata hai.
+    GET /products?category=electronics&sort=price → Electronics products ko price ke hisaab se sort karna.
+* Ex of Path Parameter -
+    Request -
+        GET https://api.example.com/users/456
+    Response -
+        {
+            "id": 456,
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
+* Ex of Query Parameter -
+    Request -
+        GET https://api.example.com/products?category=books&sort=rating
+    Response -
+        [
+            { "id": 1, "name": "Book A", "rating": 4.5 },
+            { "id": 2, "name": "Book B", "rating": 4.0 }
+        ]
+* Conclusion -
+    URL, query, aur path parameters web APIs aur applications mein data ko identify karne aur manipulate karne ke liye essential components hain.
+    Path parameters specific resources ko target karte hain, jabki query parameters additional criteria provide karte hain, jaise filtering aur sorting.
 
 11. What is Content Negotiation in API Design ?
 Explanation :-
-* Process where the client and server agree on the content format (e.g., JSON, XML).
-* Header - Accept: application/json.
+* Content Negotiation ek mechanism hai jo client aur server ke beech resource representation ko negotiate karne ke liye use hota hai.
+* Iska matlab hai ki client specify kar sakta hai ki woh kis format mein response chahata hai (jaise JSON, XML, HTML), aur server uske hisaab se response bhejta hai.
+* Why is Content Negotiation Important -
+	Flexibility -
+        Different clients (web browsers, mobile apps, etc.) ko alag-alag formats ki zarurat hoti hai.
+        Content negotiation se server multiple formats ko support kar sakta hai.
+	Interoperability -
+        Yeh different systems ke beech compatibility ko ensure karta hai, jisse diverse clients ko access milta hai.
+	Performance -
+        Clients sirf un resources ko request kar sakte hain jo unhe chahiye, jisse unnecessary data transfer kam hota hai.
+* How Content Negotiation Works -
+    Content negotiation typically HTTP headers ke zariye kaam karta hai.
+    Jab client request bhejta hai, toh woh apne preferred formats ko specify karta hai.
+        Accept Header -
+            Client kaunsa content type accept kar sakta hai, yeh specify karta hai.
+            Ex -
+                GET /api/resource HTTP/1.1
+                Accept: application/json
+        Content-Type Header -
+            Yeh header server response ke content type ko define karta hai.
+            Ex -
+                Content-Type: application/json
+* Types of Content Negotiation -
+	Server-driven Negotiation
+        Server client ke request ko evaluate karta hai aur appropriate format mein response bhejta hai.
+        Ex -
+            Agar client Accept - application/json request karta hai, toh server JSON response deta hai.
+	Client-driven Negotiation
+        Client server ko specific format ke liye request karta hai.
+        Ex -
+            Client GET /api/resource.json request karta hai, jisse server JSON format return karta hai.
+	Content Negotiation via URL
+        URL ke path mein format specify karna.
+        Ex -
+            GET /api/resource.xml ya GET /api/resource.json.
+* Ex of Content Negotiation -
+    Client Request -
+        Client ek resource request karta hai aur preferred format specify karta hai.
+        Ex -
+            GET /api/users HTTP/1.1
+            Accept: application/json
+    Server Response -
+        Agar server JSON format support karta hai, toh woh response kuch is tarah se hoga.
+        Ex -
+            HTTP/1.1 200 OK
+            Content-Type: application/json
+            {
+                "users": [
+                    { "id": 1, "name": "Alice" },
+                    { "id": 2, "name": "Bob" }
+                ]
+            }
+    Agar client Accept -
+        application/xml request karta hai, toh server XML response de sakta hai.
+        Ex -
+            HTTP/1.1 200 OK
+            Content-Type: application/xml
+            <users>
+                <user id="1">Alice</user>
+                <user id="2">Bob</user>
+            </users>
+* Best Practices for Content Negotiation -
+	Clear Documentation - API documentation mein supported content types ko clearly mention karna.
+	Fallbacks - Agar requested format available nahi hai, toh server ek default format (usually JSON) mein response dena.
+	Error Handling - Agar client incorrect format request karta hai, toh appropriate HTTP status code (jaise 406 Not Acceptable) return karna.
+* Conclusion -
+    Content negotiation API design ka ek essential aspect hai jo client-server communication ko flexible aur efficient banata hai.
+    Yeh ensure karta hai ki clients unhe zarurat ke mutabiq response format receive karein, jisse overall user experience improve hota hai.
 
 12. What is TCP / IP ?
 Explanation :-
-* Transmission Control Protocol/Internet Protocol is the foundational protocol suite for networking.
-* Role - Ensures reliable data transmission over networks (error-checking, packet delivery).
+* TCP/IP (Transmission Control Protocol/Internet Protocol) ek foundational protocol suite hai jo internet aur network communication ke liye use hota hai.
+* Yeh protocols devices ko connect karne aur unke beech data transmission ko manage karne ke liye design kiye gaye hain.
+* Key Components of TCP/IP -
+	IP (Internet Protocol)
+        IP data packets ko source se destination tak route karta hai. Yeh packets ko network par unique address (IP address) ke through identify karta hai.
+        Types of IP -
+            IPv4 - 32-bit address space (e.g., 192.168.1.1).
+            IPv6 - 128-bit address space (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334), jo future ki zarurat ko dhyan mein rakhkar design kiya gaya hai.
+	TCP (Transmission Control Protocol)
+        TCP connection-oriented protocol hai jo reliable communication ensure karta hai.
+        Yeh data packets ko sequence mein deliver karta hai aur transmission ke dauran errors ko check karta hai.
+        Features of TCP -
+            Connection Establishment - TCP connection establish karne ke liye three-way handshake ka use karta hai.
+            Error Recovery - Agar packets lost ya corrupted hote hain, toh TCP unhe retransmit karta hai.
+            Flow Control - TCP data transmission ko control karta hai taaki sender receiver ko overload na kare.
+* How TCP/IP Works -
+	Data Encapsulation
+        Data ko TCP/IP stack mein encapsulate kiya jaata hai.
+        Yeh layers data ko different formats mein convert karti hain, jo network ke liye suitable hota hai.
+	Layered Architecture
+        TCP/IP model ko layers mein organize kiya gaya hai.
+        Application Layer -
+            HTTP, FTP, SMTP, etc. protocols yahan hote hain.
+            Yeh user applications ko network ke sath interact karne ka mauka dete hain.
+        Transport Layer -
+            TCP aur UDP (User Datagram Protocol) yahan hote hain.
+            TCP reliable connection provide karta hai, jabki UDP fast but unreliable hota hai.
+        Internet Layer -
+            IP yahan hota hai. Yeh data packets ko route karta hai.
+        Link Layer -
+            Physical hardware (Ethernet, Wi-Fi) ke liye responsible hai.
+* Three-Way Handshake -
+    TCP connection establish karne ke liye three-way handshake ka process follow hota hai.
+        SYN - Client server ko connection establish karne ke liye SYN packet bhejta hai.
+        SYN-ACK - Server client ko SYN-ACK packet bhejta hai, jo connection establishment ko confirm karta hai.
+        ACK - Client server ko ACK packet bhejta hai, jo connection successfully established hone ka indication hai.
+* Ex of Process -
+    Client sends -
+        SYN
+    Server replies -
+        SYN-ACK
+    Client sends -
+        ACK
+* Data Transmission -
+	Client data packets TCP ke through bhejta hai.
+    TCP packets ko sequence karta hai aur unki integrity check karta hai.
+    Receiver TCP packets ko receive karta hai, unhe verify karta hai, aur agar koi packet lost ho gaya hai, toh woh request karta hai.
+* Error Detection and Recovery -
+	TCP har packet ke sath checksum include karta hai, jo data integrity ko verify karta hai.
+	Agar packet ka checksum mismatch hota hai, toh packet ko retransmit kiya jaata hai.
+* Conclusion -
+    TCP/IP ek essential protocol suite hai jo internet aur networks ki backbone hai.
+    Yeh reliable data transmission aur communication ko ensure karta hai, jisse modern applications aur services ka operation possible hota hai.
 
 13. What is the Basics of DNS ?
 Explanation :-
-* Domain Name System converts human-readable domain names (e.g., google.com) into IP addresses.
-* Role - Acts like a phonebook for the internet.
+* DNS (Domain Name System) ek hierarchical naming system hai jo internet par resources ko human-readable domain names ke zariye identify karta hai.
+* Yeh system domain names ko IP addresses mein convert karta hai, jisse devices ek dusre se communicate kar sakein.
+* Key Functions of DNS -
+	Name Resolution
+        DNS ka primary function domain names ko IP addresses mein translate karna hai.
+        Ex - www.example.com ko 192.0.2.1 mein convert karna.
+	Domain Management
+        DNS domain names aur unke records ko manage karta hai, jaise A records, CNAME records, MX records, etc.
+	Load Distribution
+        DNS load balancing ka kaam karta hai, jisse multiple servers ke beech traffic distribute hota hai.
+* How DNS Works -
+	User Query -
+        •	Jab user browser mein URL enter karta hai, toh browser DNS resolver (typically ISPs ka) se request karta hai.
+	Recursive Query -
+        •	Resolver DNS records ko find karne ke liye recursive queries send karta hai, starting from the root DNS servers.
+	Root DNS Servers -
+        •	Yeh servers highest level par hote hain aur top-level domain (TLD) servers ke address provide karte hain (jaise .com, .org).
+	TLD Servers -
+        •	TLD servers domain name ke specific authoritative name servers ke address ko provide karte hain.
+	Authoritative Name Servers -
+        •	Yeh servers actual domain name ke corresponding IP address provide karte hain.
+	Caching -
+        •	DNS resolver IP address ko cache karta hai taaki future queries ko jaldi respond kiya ja sake.
+* Types of DNS Records -
+	A Record (Address Record) -
+        Domain name ko IPv4 address se map karta hai.
+        Ex -
+            example.com.  IN  A  192.0.2.1
+    AAAA Record (IPv6 Address Record) -
+        Domain name ko IPv6 address se map karta hai.
+        Ex -
+            example.com.  IN  AAAA  2001:0db8:85a3:0000:0000:8a2e:0370:7334
+    CNAME Record (Canonical Name Record) -
+        Domain name ko dusre domain name se map karta hai.
+        Ex -
+            www.example.com.  IN  CNAME  example.com.
+    MX Record (Mail Exchange Record) -
+        MX Record (Mail Exchange Record).
+        Ex -
+            example.com.  IN  MX  10 mail.example.com.
+    TXT Record (Text Record) -
+        Arbitrary text information store karta hai, jisse email verification aur domain ownership prove karne ke liye use hota hai.
+        Ex -
+            example.com.  IN  TXT  "v=spf1 include:_spf.example.com ~all"
+* DNS Caching -
+	DNS servers aur resolvers IP addresses ko cache karte hain taaki repeated queries ke liye faster responses mile.
+	Caching duration ko TTL (Time To Live) se control kiya jaata hai, jo batata hai ki record kitni der tak cache rahega.
+* Conclusion -
+    DNS internet ka ek essential component hai jo domain names ko IP addresses mein translate karta hai.
+    Yeh system users ko easily web resources access karne ki sahuliyat deta hai, jisse internet browsing seamless hoti hai.
+    DNS ki efficiency aur reliability modern internet services ke liye critical hai.
 
 */
