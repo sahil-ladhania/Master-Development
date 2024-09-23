@@ -49,7 +49,73 @@ Explanation :-
     ExpressJS ek powerful framework hai jo aapko web applications develop karne mein madad karta hai.
     Iske features aur flexibility ki wajah se ye backend development ke liye ek ideal choice hai.
 
-2. What is the Philosophy of ExpressJS ?
+2. What does this Code means ?
+const express = require('express');
+const {listen} = require("express/lib/application");
+console.log("express :", express);
+console.log("express :", typeof(express));
+const app = express();
+console.log("app : ", app);
+console.log("app :", typeof(app));
+const port = 3000;
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});
+console.log("listen :", listen());
+console.log("listen :", typeof(listen()));
+Explanation :-
+* const express = require('express'); -
+	This line imports the express module, which is the core function to create an Express application.
+	The express function initializes an Express application when called.
+	What happens in the console.log("express :", express) -
+        Output - The console will display the express function.
+        express is a function, which when executed (express()), returns an instance of an Express app.
+    What happens in the console.log("express :", typeof(express)) -
+        Output - "Function", Because express is a function.
+* const { listen } = require('express/lib/application') -
+    This line destructures the listen function from the application.js file in the Express library.
+	Normally, you call listen() on the app instance (e.g., app.listen()), but here it’s directly imported.
+	Why is listen() used here -
+        listen is a function that starts the server to listen on a specific port.
+        However, calling listen() directly (without arguments) will lead to unexpected behavior.
+* const app = express(); -
+    This line creates a new instance of an Express application.
+    The app object represents the main app.
+	With app, you define the routes, middleware, and how the app should respond to HTTP requests.
+	What happens in console.log("app : ", app) -
+        Output - The app object is a function, but it also contains many properties and methods used to handle routes, middleware, and server logic.
+    What happens in console.log("app : ", typeof(app)) -
+	•	Output - "Function", Because the app object is technically a function that can be called as middleware, even though it acts as an object containing methods.
+* app.get('/', (req, res) => {...}) -
+	This line defines a route that listens for GET requests on the root path ('/').
+	When the app receives a GET request to '/', it sends back the response 'Hello World!'.
+	Key Concept -
+        This is how Express routes are defined.
+        The first argument is the path ('/'), and the second argument is a callback that receives the request (req) and response (res) objects.
+* app.listen(port, () => {...}) -
+	This starts the Express server, making it listen on the specified port (3000 in this case).
+	The callback function inside listen() will be executed when the server starts successfully, and it logs "Example app listening on port 3000".
+	Key Concept -
+        app.listen() is the method used to bind the server to a port, allowing it to start handling requests.
+* console.log("listen :", listen()) -
+	Here, you are calling listen() directly, without arguments, which will result in unexpected behavior.
+    The listen() function normally expects a port number and callback, and calling it this way will either cause an error or return an undefined result.
+    Output - This will likely result in an error or return undefined.
+* Key Explanation -
+	express -
+        A function that initializes an Express application instance.
+        It is the core of the Express framework.
+	app -
+        An instance of the Express application.
+        This is where you define routes, middleware, and control the HTTP request/response cycle.
+	listen() -
+        A method used to start the server and listen on a specific port for incoming connections.
+        It returns an http.Server object, but it must be called with a port number.
+
+3. What is the Philosophy of ExpressJS ?
 Explanation :-
 * ExpressJS ki philosophy simplicity, flexibility, aur minimalism par adharit hai.
 * Iska main goal hai developers ko aisi tools provide karna jisse wo web applications easily aur efficiently develop kar sakein.
@@ -81,12 +147,12 @@ Explanation :-
     Ye developers ko minimal setup ke saath powerful web applications build karne ki capability deta hai.
     Iski modular structure aur middleware support ke wajah se aap apne applications ko customize kar sakte hain.
 
-3. How to setup and ExpressJS Environment ?
+4. How to setup and ExpressJS Environment ?
 Explanation :-
 * ExpressJS environment setup karna relatively simple hai.
 * Aapko Node.js aur npm ki zarurat hogi, jo ExpressJS aur iske dependencies ko manage karne ke liye use hote hain.
 
-4. How to run a Basic ExpressJS Server ?
+5. How to run a Basic ExpressJS Server ?
 Explanation :-
 * Basic Express server setup -
 	Create a server.js file.
@@ -103,7 +169,7 @@ Explanation :-
     Run the server using: node server.js.
 	Visit localhost:3000 in your browser to see the result.
 
-5. What is the Basics of Middleware in ExpressJS ?
+6. What is the Basics of Middleware in ExpressJS ?
 Explanation :-
 * Middleware functions ExpressJS mein aise functions hote hain jo request aur response cycle ke beech mein execute hote hain.
 * Ye functions request ko process karne, response ko modify karne, ya error handling ke liye use hote hain.
@@ -131,7 +197,7 @@ Explanation :-
     Ye aapko request processing, response modification, aur error handling mein flexibility deta hai.
     Aap built-in, third-party, aur custom middleware use kar sakte hain apne applications mein.
 
-6. How to Dubug in ExpressJS ?
+7. How to Dubug in ExpressJS ?
 Explanation :-
 * Debugging ek essential skill hai jab aap application develop kar rahe hote hain.
 * ExpressJS mein debugging ke liye kuch common techniques aur tools hain jinke through aap issues ko identify aur fix kar sakte hain.
