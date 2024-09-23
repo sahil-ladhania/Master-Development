@@ -1,0 +1,14 @@
+{
+  "name": "my-expressjs-tutorial",
+  "version": "1.0.0",
+  "description": "This is the tutorial for ExpressJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sahil Ladhania",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
