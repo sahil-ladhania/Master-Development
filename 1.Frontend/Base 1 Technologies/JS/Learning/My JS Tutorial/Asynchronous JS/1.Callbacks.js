@@ -10,7 +10,7 @@ Explanation :-
 Explanation :-
 * Iska use aksar "Events ko handle karne", "Asynchronous operations ko control karne", ya code ko modular banane ke liye hota hai.
 
-3. How it is used ?
+3. How it is used ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * Iska syntax ek function ko define karke, aur phir usko kisiaur function mein argument ke roop mein pass karke hota hai.
 
@@ -33,25 +33,9 @@ Explanation :-
 // });
 
 // Callback Example
-// console.log("Shuruaat");
-// setTimeout(() => {
-//     console.log("Callback ke andar 2000ms ke baad");
-//     console.log("Callback ke andar 2000ms ke baad");
-//     },5000);
-// console.log("Ant");
-
-// Exploring Callbacks
-// 1. Create a simple function that accepts a callback and calls it.
-function greet(name , callback) {
-    callback(name);
-}
-function printGreeting(name) {
-    console.log(`Hello , ${name}!`);
-}
-greet("Sahil Ladhania" , printGreeting);
-
-// 2. Use callbacks to perform simple operations after a delay.
-// 3. Learn how to handle errors using callbacks.
-// 4. Experience “Callback Hell” and understand its drawbacks.
-// 5. Refactor the nested callbacks to improve readability.
-// 6. Understand the limitations of callbacks and get a brief introduction to Promises.
+console.log("Shuruaat");
+setTimeout(() => {
+    console.log("Callback ke andar 2000ms ke baad");
+    console.log("Callback ke andar 2000ms ke baad");
+    },5000);
+console.log("Ant");

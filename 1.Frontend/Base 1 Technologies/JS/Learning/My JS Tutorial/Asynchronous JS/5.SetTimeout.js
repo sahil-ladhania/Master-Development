@@ -1,5 +1,5 @@
 /*
-1. setTimeout
+1. setTimeout --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * setTimeout ek function hai jo ek function ya kisi code ko nirdharit samay ke liye rokta hai.
 * Iska istemal tab hota hai jab aap kisi code ko thoda sa der ke liye rokna chahte hain.
@@ -7,7 +7,7 @@ Explanation :-
 * Note :
     function woh code hai jo aap execute karna chahte hain, aur delay woh samay hai jiska intezaar karna hai (milliseconds mein).
 
-2. setInterval
+2. setInterval --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * setInterval ek function hai jo ek function ya kisi code ko nirdharit samay ke ant tak baar-baar chalata hai.
 * Iska istemal tab hota hai jab aap kisi code ko regular intervals mein chalana chahte hain.
@@ -15,7 +15,7 @@ Explanation :-
 * Note :
     function woh code hai jo aap baar-baar chalana chahte hain, aur interval woh samay hai jiske antaral mein yeh chalta hai (milliseconds mein).
 
-3. clearInterval
+3. clearInterval --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * clearInterval ek function hai jo setInterval dwara shuru kiye gaye interval ko rokta hai.
 * Iska istemal tab hota hai jab aap ek running interval ko rukwana chahte hain.
@@ -23,7 +23,7 @@ Explanation :-
 * Note :
     intervalId woh ID hai jo setInterval ne diya hai.
 
-4. Closure
+4. Closure --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * Ek function ke andar doosre function ko define karne ka tareeka hai.
 * Closure ka use karke, hum ek function ke andar ek naya scope bana sakte hain jo us function ke variables ko access kar sakta hai, lekin dusre functions se alag hota hai.

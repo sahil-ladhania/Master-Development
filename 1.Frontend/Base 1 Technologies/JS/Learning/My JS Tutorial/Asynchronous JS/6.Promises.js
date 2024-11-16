@@ -1,6 +1,6 @@
 /*
 
-1. What is a Promise ?
+1. What is a Promise ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * Promise ek JavaScript object hai jo asynchronous operations ko handle karne mein madad karta hai.
 * Promise mai 3 States hi hote hai bs :
@@ -20,12 +20,12 @@ Explanation :-
 * Note :
     Initially, promise pending hota hai. Fir, ya toh resolved (fulfilled) hota hai ya rejected hota hai, in states mein badal jata hai.
 
-2. Why Promise is used ?
+2. Why Promise is used ? 
 Explanation :-
 * Asynchronous operations, jaise ki file reads, network requests, etc., ko organize aur manage karne ke liye use hota hai.
 * Callback hell se bachane mein madad karta hai, code ko readable banata hai.
 
-3. When Callback was there , Why did Promise was Introduced ?
+3. When Callback was there , Why did Promise was Introduced ? --------------------------------> IMP Concept
 Explanation :-
 * Callback Hell Avoidance -
     Callbacks ke nested structure se bachne ke liye.
@@ -44,7 +44,7 @@ Explanation :-
 * Standardization -
     Promises provide a standardized way to work with asynchronous code, making it easier for developers to understand and use.
 
-4. What are different methods of Promises ?
+4. What are different methods of Promises ? -----------------------------------------------------> Practical Topic
 Explanation :-
 * Promise.all() :
 	•	What it is - Aggregates multiple promises into a single promise that resolves when all of the input promises have resolved.

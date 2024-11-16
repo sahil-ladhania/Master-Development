@@ -1,7 +1,7 @@
 /*
 -----JS Engine : Google V8 Architecture-----
 
-1. JS Runtime Environment.
+1. JS Runtime Environment. --------------------------------------------------------------------------> IMP Concept
 Explanation :-
 * JS Engine ek software hai jo JavaScript code ko interpret aur execute karta hai.
 * Google V8 ek open-source JS Engine hai, jise Chrome browser aur Node.js use karte hain.

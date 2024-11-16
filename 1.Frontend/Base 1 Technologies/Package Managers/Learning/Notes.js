@@ -84,7 +84,7 @@ Explanation :-
 * Install npm - Typically installed with Node.js.
 * Use npm install -g npm to update.
 
-4. What is npm Versioning ?
+4. What is npm Versioning ? ------------------------------------------------------------------------------IMP Concept
 Explanation :-
 * npm packages use semantic versioning (Semver) to specify versions.
 * npm mein, versioning se aap track kar sakte ho ki kaunsi version stable hai aur kaun si version aapke project ke saath
@@ -115,7 +115,7 @@ Explanation :-
     npm init or npm init -y (for default setup).
     This creates a package.json file.
 
-2. How npm interacts with NodeJS ?
+2. How npm interacts with NodeJS ? ------------------------------------------------------------------------------IMP Concept
 Explanation :-
 * npm manages the dependencies listed in package.json and installs them into the node_modules directory.
 * Dependency Management -
@@ -159,7 +159,7 @@ Explanation :-
 * Run npm init in your project directory.
 * It guides you through creating a package.json file.
 
-2. How to understand the package.json Structure ?
+2. How to understand the package.json Structure ? ------------------------------------------------------------------------------IMP Concept
 Explanation :-
 * name
     Description - Project ya package ka naam.
@@ -190,7 +190,7 @@ Explanation :-
             "jest": "^26.6.3"
         }
 
-3. What does ^ and ~ and * means in "^4.17.1" or "~4.17.1" ?
+3. What does ^ and ~ and * means in "^4.17.1" or "~4.17.1" ? ------------------------------------------------------------------------------IMP Concept
 Explanation :-
 * ^ (Caret Operator) -
     Iska matlab hai ki npm minor aur patch versions ko update kar sakta hai, lekin major version ko nahi.
@@ -205,7 +205,7 @@ Explanation :-
 Explanation :-
 * Defines the versions of dependencies required for the project.
 
-5. How to use npm Scripts ?
+5. How to use npm Scripts ?  ------------------------------------------------------------------------------IMP Concept
 Explanation :-
 * Define custom scripts in scripts section of package.json.
 * Run with npm run script-name.
@@ -257,7 +257,7 @@ Explanation :-
 * Update - npm update package-name
 * Remove - npm uninstall package-name
 
-3. How to understand local dependencies and dev dependencies ?
+3. How to understand local dependencies and dev dependencies ? -----------------------------------------------------------IMP Concept
 Explanation :-
 * Local Dependencies -
     Ye wo packages hain jo aapke application ke runtime ke liye required hain.
@@ -331,7 +331,7 @@ Explanation :-
 * npm install - Install dependencies
 * npm uninstall - Remove dependencies
 
-3. What is .npmrc ?
+3. What is .npmrc ?  -----------------------------------------------------------IMP Concept
 Explanation :-
 * .npmrc ek configuration file hoti hai jo npm ke settings aur preferences define karti hai.
 * Ye file global ya project-specific level pe ho sakti hai.
@@ -339,9 +339,9 @@ Explanation :-
     •	Global - Usually user home directory me (~/.npmrc).
 	•	Project-Specific - Project ke root directory me (./.npmrc).
 
-4. How to customize npm's CLI through .npmrc ?
+4. How to customize npm's CLI through .npmrc ? -----------------------------------------------------------IMP Concept
 Explanation :-
-* Create or edit .npmrc file in your project or user home directory to set configuration options
+* Create or edit .npmrc file in your project or user home directory to set configuration options.
 
 5. How to use npm outdated and npm update ?
 Explanation :-
@@ -378,7 +378,7 @@ Explanation :-
 * Add to scripts section in package.json.
 * Example : "test": "mocha"
 
-3. What is Lifecycle Scripts ?
+3. What is Lifecycle Scripts ? -----------------------------------------------------------IMP Concept
 Explanation :-
 * Built-in npm scripts that run at different stages.
 * Lifecycle Scripts npm ke predefined hooks hain jo specific events ke dauran execute hote hain.
@@ -400,7 +400,7 @@ Explanation :-
 
 -----Understanding and Working with npm Registry-----
 
-1. What is Basics of npm Registry ?
+1. What is Basics of npm Registry ? -----------------------------------------------------------IMP Concept
 Explanation :-
 * Central repository where npm packages are published and fetched from.
 * npm Registry ek centralized database hai jo Node.js packages aur modules ko store aur distribute karta hai.
@@ -445,7 +445,7 @@ Explanation :-
 
 -----Advanced npm Topics-----
 
-1. How to understand package-lock.json File ?
+1. How to understand package-lock.json File ? -----------------------------------------------------------IMP Concept
 Explanation :-
 * Contains exact versions of dependencies installed, ensuring consistent installs across environments.
 * npm ke dependencies ke exact versions aur unke relationships ko lock karne ke liye use hota hai.
@@ -471,7 +471,7 @@ Explanation :-
 Explanation :-
 * npm ci installs dependencies from package-lock.json to ensure reproducible builds.
 
-3. What are some TroubleShooting Commonly faced Issues ?
+3. What are some TroubleShooting Commonly faced Issues ? -----------------------------------------------------------IMP Concept
 Explanation :-
 * Resolve conflicts, clean cache with npm cache clean --force, and check permissions.
 

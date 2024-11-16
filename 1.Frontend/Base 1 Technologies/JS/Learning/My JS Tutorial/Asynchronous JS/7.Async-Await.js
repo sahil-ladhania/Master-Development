@@ -14,17 +14,17 @@ Explanation :-
 * Async-Await ka use Promises se related code ko elegant taur par handle karne ke liye hota hai.
 * Ye syntax ko simplify karta hai aur code ko read karne mein madad karta hai.
 
-4. When Promises was there , Why did async await was Introduced ?
+4. When Promises was there , Why did async await was Introduced ? -----------------------------------> IMP Concept
 Explanation :-
 * Async-Await ko introduce karne ka motive Promises ke callback hell problem ko address karna tha.
 * Ye asynchronous code ki readability ko badhaata hai, jisse woh synchronous code ki tarah dikhe.
 
-5. What is try Block ?
+5. What is try Block ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * try block ka use hota hai code ke us hisse mein jahan par exceptions ya errors expected hote hain.
 * Jab bhi aap koi risky code likhte hain, jaise ki file reading ya network operations, to aap usko try block mein rakh sakte hain.
 
-6. What is catch Block ?
+6. What is catch Block ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * catch block tab kaam aata hai jab koi exception ya error try block ke andar occur hota hai.
 * Yeh block specify karta hai ki kaise handle karna hai exception ko.

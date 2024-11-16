@@ -6,7 +6,7 @@ Explanation :-
 * Situation hai jisme "Multiple nested callbacks hote hain, jo ki code ko complex aur mushkil banate hain".
 * Iske wajah se code horizontally lamba ho jata hai , which is not a Good Practice.
 
-2. How it is used ?
+2. How it is used ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * Callback Hell ka syntax multiple nested callbacks ke roop mein hota hai, jisme code ki readability aur maintainability bahut hi kam ho jati hai.
 

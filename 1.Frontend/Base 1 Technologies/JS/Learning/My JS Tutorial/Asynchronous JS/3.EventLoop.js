@@ -100,7 +100,7 @@ Explanation :-
 * Jab koi asynchronous task complete hota hai, jaise ki setTimeout ka timer, uska callback function Callback Queue mein chala jaata hai.
 * Callback Queue kaam karta hai First In, First Out (FIFO) principle par, yani jo pehle aaya woh pehle execute hoga.
 
-18. How does the event loop and async JS works ?
+18. How does the event loop and async JS works ? -----------------------------------------------> IMP Concept
 Explanation :-
 * Call Stack: Yeh ek stack hota hai jismein functions ka order maintain hota hai.
 * Jab koi function call hota hai, woh stack mein add hota hai.
@@ -189,8 +189,7 @@ fetch("https://api.netflix.com")
     });
 console.log("End");
 
-// 5. Code to Check How Priority is given to Microtask and Callback Queue works
-// behind the scenes in Browsers ?
+// 5. Code to Check How Priority is given to Microtask and Callback Queue works behind the scenes in Browsers ?
 console.log("Start");
 setTimeout(function cbTimeout() {
     console.log("Callback Queue - Timeout");
