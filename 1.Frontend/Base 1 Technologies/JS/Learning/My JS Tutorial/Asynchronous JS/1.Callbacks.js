@@ -6,15 +6,22 @@ Explanation :-
 * Callback function woh function hai jo doosre function ko argument ke roop mein diya jata hai.
 * Callback function ka basic concept yahi hai ki tu ek function ko dusre function mein argument ke taur par de raha hai, aur "Jab pehla function apna kaam khatam karega, toh woh dusre function ko call karega".
 
-2. Why it is used ?
+2. What are the types of Callback Function ?
+Explanation :-
+* Synchronous Callback - 
+    Callbacks aren’t always asynchronous; sometimes they execute immediately, especially in cases like iteration methods (map, filter, etc.).
+* Asynchronous Callback - 
+    Asynchronous callbacks are used to handle operations like fetching data, reading files, or waiting for user input.
+
+3. Why it is used ?
 Explanation :-
 * Iska use aksar "Events ko handle karne", "Asynchronous operations ko control karne", ya code ko modular banane ke liye hota hai.
 
-3. How it is used ? --------------------------------------------------------------------------> Practical Topic
+4. How it is used ? --------------------------------------------------------------------------> Practical Topic
 Explanation :-
 * Iska syntax ek function ko define karke, aur phir usko kisiaur function mein argument ke roop mein pass karke hota hai.
 
-4. Can you call one function inside another function ?
+5. Can you call one function inside another function ?
 Explanation :-
 * Yes , that is only called Callback Function.
 
@@ -32,7 +39,7 @@ Explanation :-
 //     console.log("Callback execute hua!");
 // });
 
-// Callback Example
+// Callback Example-1
 console.log("Shuruaat");
 setTimeout(() => {
     console.log("Callback ke andar 2000ms ke baad");

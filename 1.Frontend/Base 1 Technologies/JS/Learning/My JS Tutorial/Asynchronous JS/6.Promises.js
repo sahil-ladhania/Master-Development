@@ -10,6 +10,7 @@ Explanation :-
 * Pending -
     Initially, jab promise create hota hai, yeh state hota hai.
     Yahan se shuru hota hai aur kisi bhi resolution ya rejection tak pahunchne par badal sakta hai.
+    Means the result will be undefined.
 * Resolved -
     Jab promise successfully complete hota hai, toh is state mein chala jata hai.
     Yahan se aap result ko access kar sakte hain.

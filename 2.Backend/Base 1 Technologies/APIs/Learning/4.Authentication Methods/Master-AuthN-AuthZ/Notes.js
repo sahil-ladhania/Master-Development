@@ -18,7 +18,9 @@
 * Typically, a session ID or token is generated upon successful authentication and stored on the server.
 * Subsequent requests from the client include this session ID or token for authentication.
 * Server validates the session ID or token against its internal records to determine the client's authentication state.
-* Example: Traditional web applications using server-side sessions to manage user authentication state. Upon login, the server creates a session for the user and stores it in memory or a database. Subsequent requests from the client include the session ID, allowing the server to identify the user and maintain their authenticated state.
+* Example: 
+    Traditional web applications using server-side sessions to manage user authentication state. Upon login, the server creates a session for the user and stores it in memory or a database. 
+    Subsequent requests from the client include the session ID, allowing the server to identify the user and maintain their authenticated state.
 
 
 4. Statelesss AuthN.
@@ -86,19 +88,40 @@ See the Image Stored in this Folder.
 
 11. Hashing.
 What does it means - 
-    * Imagine you have a secret code that you use to lock your diary. Hashing is like creating a secret code for your password. It takes your password and turns it into a scrambled mess of characters that's hard to figure out. This makes it difficult for someone to figure out your actual password just by looking at the hash.
+    * Imagine you have a secret code that you use to lock your diary. 
+    * Hashing is like creating a secret code for your password. 
+    * It takes your password and turns it into a scrambled mess of characters that's hard to figure out. 
+    * This makes it difficult for someone to figure out your actual password just by looking at the hash.
+    * Hashing ek process hai jisme input data ko ek fixed-length string (hash) me convert kiya jata hai using a mathematical algorithm. 
+    * Ye process one-way hota hai, matlab aap hash se original data ko wapas nahi nikaal sakte.
 Purpose -
-    * One-Way process that converts a password or any data into a fixed-size string of characters, which is typically a hash value.
+    * "One-Way process" that converts a password or any data into a fixed-size string of characters, which is typically a hash value.
     * Primary purpose of hashing passwords before storing them in a database is to enhance security.
 How it Works -
     * When a user signs up and provides a password, the application hashes the password using a cryptographic hash function (e.g., bcrypt, SHA-256).
     * Resulting hash is a fixed-length string unique to the input, making it difficult to reverse engineer the original password.
 Why Hash Passwords -
-    * Security - Hashing prevents storing plaintext passwords in the database, reducing the risk of data breaches. Even if the database is compromised, attackers only obtain hashed values, which are challenging to convert back to the original passwords.
+    * Security - 
+        Hashing prevents storing plaintext passwords in the database, reducing the risk of data breaches. 
+        Even if the database is compromised, attackers only obtain hashed values, which are challenging to convert back to the original passwords.
+Why Hashing is a One-Way Process -
+    * Irreversible Algorithms -
+        •	Hash functions (e.g., SHA-256) complex mathematical operations use karte hain, jo original input ke structure ko loss kar dete hain jab wo transform hota hai.
+	    •	Jo output aata hai (hash) wo deterministic hota hai, matlab same input pe same hash milega, lekin usse original data ko reverse-engineer karke nahi nikala ja sakta.
+    * Fixed Length Output -
+        •	Chahe aap input me kitna bhi data daalein, hash hamesha ek fixed-length string hota hai.
+	    •	Agar aapke paas ek fixed-length hash hai, toh usse original data ko reconstruct karna impossible ho jata hai.
+    * Collision Resistance -
+        	•	Hash functions ka goal ye hota hai ki alag-alag inputs se alag-alag hashes milein. 
+            •	Agar koi collision (same hash for different inputs) hota hai, toh hashing algorithm fail ho jata hai, aur security pe effect padta hai.
+
 
 12. Salting.
 What does it means - 
-    * Let's say you have the same password as someone else. If both passwords are hashed without any additional information, they'll end up with the same hash. Salting is like adding a unique ingredient to each password before hashing it. This ingredient (salt) makes sure that even if two passwords are the same, their hashes will be different.
+    * Let's say you have the same password as someone else. 
+    * If both passwords are hashed without any additional information, they'll end up with the same hash. 
+    * Salting is like adding a unique ingredient to each password before hashing it. 
+    * This ingredient (salt) makes sure that even if two passwords are the same, their hashes will be different.
 Purpose -
     * To enhance the security of hashed passwords by making them more resistant to pre-computed dictionary attacks and rainbow table attacks.
 How it Works -
@@ -106,45 +129,70 @@ How it Works -
     * This salt is then appended to the password before hashing.
     * The salted password is then hashed, resulting in a unique hash even for identical passwords.
 Why Salting -
-    * Security -  Salting adds randomness to the hashing process, making it much harder for attackers to guess or pre-compute hashes for common passwords. It significantly strengthens password security, especially in the event of a data breach.
+    * Security -  
+        Salting adds randomness to the hashing process, making it much harder for attackers to guess or pre-compute hashes for common passwords. 
+        It significantly strengthens password security, especially in the event of a data breach.
 
 
 13. Encryption.
 What does it means - 
-    * Imagine you have a secret message that you want to send to your friend, but you don't want anyone else to read it. Encryption is like putting your message inside a locked box. Only your friend, who has the key, can unlock the box and read the message.
+    * Imagine you have a secret message that you want to send to your friend, but you don't want anyone else to read it. 
+    * Encryption is like putting your message inside a locked box. 
+    * Only your friend, who has the key, can unlock the box and read the message.
+    * Encryption ek process hai jisme data ko ek readable format se unreadable format (cipher text) me convert kiya jata hai using an encryption key. 
+    * Ye process two-way hota hai, matlab aap encrypted data ko decrypt karke original data ko wapas paa sakte ho.
 Purpose - 
-    * Encryption is a two-way process that involves converting data into a format that can be easily reversed using a decryption key.
+    * Encryption is a "two-way process" that involves converting data into a format that can be easily reversed using a decryption key.
     * Used to protect the confidentiality of data.
 How it Works -
     * Users' sensitive information (e.g., credit card details) may be encrypted before storing it in a database.
     * To view or use the original data, a decryption key is required.
 Why Use Encryption -
-    * Confidentiality - Encrypting sensitive data adds an extra layer of security. Even if unauthorized access occurs, the data remains unreadable without the decryption key.
-
+    * Confidentiality - 
+        Encrypting sensitive data adds an extra layer of security. 
+        Even if unauthorized access occurs, the data remains unreadable without the decryption key.
+Why Encryption is a Two-Way Process -
+    Reversible Proces -
+        •	Jab data ko encrypt kiya jata hai, toh usse ek encryption key se transform kiya jata hai. 
+        •	Encryption ka purpose yeh hota hai ki agar aapke paas right key ho, toh aap data ko wapas original format me decryption karke paa sakte ho.
+	    •	Decryption ke liye same key ya different key (depending on encryption type) use hoti hai jo data ko wapas readable form me convert kar deti hai.
+    Use of Keys -
+        	•	Encryption me keys ka use hota hai: Symmetric Encryption me same key use hoti hai for both encrypt and decrypt, jabki Asymmetric Encryption me alag-alag keys (public and private) use hoti hain.
 
 14. Decryption.
 What does it means - 
-    * This is the process of unlocking the box and turning the encrypted message back into its original form. Your friend uses the key to decrypt the message and see what you wrote.
+    * This is the process of unlocking the box and turning the encrypted message back into its original form. 
+    * Your friend uses the key to decrypt the message and see what you wrote.
 Purpose -
     * To retrieve the original, readable data from its encrypted form, allowing authorized parties to access and use the information.
 How it works -
     * Decryption algorithms use cryptographic keys to reverse the encryption process, transforming ciphertext back into plaintext.
     * Only parties with the correct decryption key can successfully decrypt and access the original data.
 Why Decryption -
-    * Data Access: Decryption is necessary to access and use encrypted data, allowing authorized parties to retrieve and utilize the original information securely.
+    * Data Access: 
+        Decryption is necessary to access and use encrypted data, allowing authorized parties to retrieve and utilize the original information securely.
 
 15. Signing.
 What does it mean -
     * Signing involves adding a digital signature to a piece of data, confirming its authenticity and integrity.
+    * Signing ek process hai jisme aap apne data (jaise message, document, etc.) ko digitally sign karte ho using a private key. 
+    * Ye signing data integrity aur authenticity ko ensure karta hai, aur yeh prove karta hai ki data aap se hi aaya hai aur isme koi tampering nahi hui hai.
 Purpose -
-    * To verify the origin and integrity of data.
-    * Used in authentication and ensuring data integrity during transmission.
+    •	Authenticity - Yeh confirm karta hai ki data kisne bheja.
+	•	Integrity - Yeh ensure karta hai ki data me koi tampering nahi hui hai.
 How it Works -
     * A cryptographic hash function is applied to the data, creating a unique fingerprint.
     * This fingerprint is then encrypted using a private key to generate the digital signature.
 Why Use Signing -
     * Ensures data hasn't been tampered with or altered during transmission.
     * Provides authentication and trust between parties.
+What is Digital Signing - 
+    Signing Process -
+        	•	Jab aap kisi data ko sign karte ho, aap apne private key se data ka hash create karte ho aur phir uss hash ko encrypt karte ho. 
+            •	Ye encrypted hash aapka digital signature hota hai.
+    Verification -
+        	•	Jo recipient hai, wo aapke public key ka use karke digital signature ko verify karta hai. 
+            •	Agar signature valid hai, toh recipient samajhta hai ki data aap se hi aaya hai aur usme koi changes nahi kiye gaye hain.
 
 
 16. Public Key.
@@ -173,7 +221,9 @@ Why Use Private Key -
 
 18. Encoding.
 What does it means - 
-    * Suppose you have a message written in a language that your friend doesn't understand. Encoding is like translating that message into a different language that both of you can understand. For example, converting text into Base64 encoding changes it into a format that's easier to transmit or store.
+    * Suppose you have a message written in a language that your friend doesn't understand. 
+    * Encoding is like translating that message into a different language that both of you can understand. 
+    * For example, converting text into Base64 encoding changes it into a format that's easier to transmit or store.
 Purpose -
     * To represent data in a format suitable for a specific communication protocol or storage mechanism, ensuring compatibility and readability.
 How it works -
@@ -185,14 +235,16 @@ Why Encoding -
 
 19. Decoding.
 What does it means - 
-    * This is the process of translating the encoded message back into its original form. It's like your friend translating the message from the encoded language back into the original language so they can understand it.
+    * This is the process of translating the encoded message back into its original form. 
+    * It's like your friend translating the message from the encoded language back into the original language so they can understand it.
 Purpose -
     * To retrieve the original data from its encoded form, allowing it to be processed or displayed in its native format.
 How it works -
     * Decoding algorithms reverse the encoding process, applying the inverse of the encoding rules to convert encoded data back to its original format.
     * For example, Base64 decoding transforms encoded ASCII characters back into binary data.
 Why Decoding -
-    * Data Retrieval - Decoding is essential for extracting and utilizing data that has been encoded for transmission or storage, restoring it to its original form for processing or display.
+    * Data Retrieval - 
+        Decoding is essential for extracting and utilizing data that has been encoded for transmission or storage, restoring it to its original form for processing or display.
 
 
 20. Session IDs.
@@ -229,7 +281,7 @@ See the Image Stored in this Folder.
 
 22. Local Storage VS Session Storage VS Cookies.
 Local Storage :-
-    * Description - Local Storage is a method available in modern web browsers for storing data persistently across browser sessions.
+    * Description - Local Storage is a method available in modern web browsers for storing data "persistently" across browser sessions.
     * Storage Duration - Data stored in Local Storage has no expiration date and remains until manually cleared by the user or overwritten by web applications.
     * Scope - Data stored in Local Storage is accessible to all pages from the same origin (domain).
     * Usage - Often used for storing user preferences, settings, or cached data that needs to persist between browser sessions.
@@ -263,17 +315,21 @@ Technical Implementation :-
         * After a successful authentication, the server generates an authentication token (e.g., JWT) for the user.
         * This token is securely stored in the Local Storage of the user's browser.
     Session Persistence -
-        * Local Storage provides a means to persistently store this token across browser sessions. This persistence ensures that the user remains authenticated even if they close the browser and return later.
+        * Local Storage provides a means to persistently store this token across browser sessions. 
+        * This persistence ensures that the user remains authenticated even if they close the browser and return later.
     Reducing Authentication Overhead -
         * Instead of requiring users to authenticate themselves on every interaction, the stored token allows the server to recognize and validate the user swiftly, enhancing the user experience.
 Benefits of Local Storage in Authentication :-
     Efficient Session Management - 
-        * Local Storage facilitates efficient session management by enabling the storage of authentication tokens client-side. This reduces the need for frequent server-side authentication checks.
+        * Local Storage facilitates efficient session management by enabling the storage of authentication tokens client-side. 
+        * This reduces the need for frequent server-side authentication checks.
     Improved Performance -  
         * Since authentication tokens are readily available locally, the authentication process becomes faster, contributing to an improved overall performance of the application.
     Enhanced User Experience - 
         * Users experience the convenience of being automatically recognized and authenticated without the hassle of repeated logins, contributing to a seamless and user-friendly interface.
-Note - Local Storage serves as a valuable tool in the authentication landscape, contributing to efficient session management and enhanced user experiences. However, its use should be tempered with a keen awareness of security considerations, adherence to best practices, and a strategic approach to token management.
+Note - 
+    Local Storage serves as a valuable tool in the authentication landscape, contributing to efficient session management and enhanced user experiences. 
+    However, its use should be tempered with a keen awareness of security considerations, adherence to best practices, and a strategic approach to token management.
 
 
 25. Session IDs & JWT Storage Options (Session Storage , Local Storage , Cookies).
@@ -290,7 +346,8 @@ JWTs with Local Storage or Cookies -
 
 
 26. Cookies vs. Local Storage for Storing JWT Tokens.
-When it comes to storing JWT (JSON Web Tokens), both cookies and local storage are commonly used, but they have distinct characteristics and use cases. Here's a comparison to help you choose the appropriate option for your specific scenario :-
+When it comes to storing JWT (JSON Web Tokens), both cookies and local storage are commonly used, but they have distinct characteristics and use cases. 
+Here's a comparison to help you choose the appropriate option for your specific scenario :-
     Cookies :-
         Security - 
             * Cookies can be more secure than local storage because they have an additional security feature called HTTP-only. 
@@ -320,7 +377,9 @@ Choosing Between Cookies and Local Storage :-
     For Authentication - Use cookies with HTTP-only flag for enhanced security, especially if you need to make authenticated API requests directly from the browser.
     For Client-Side Interactions - Use local storage if you primarily need to access the token on the client side and manage API requests manually.
     Considerations - Consider factors like security, automatic handling, and token expiration requirements when making your decision.
-Note - In many cases, a combination of both cookies and local storage might be used. Cookies can be employed for secure, HTTP-only storage, while local storage can be used for easy client-side access.
+Note - 
+    In many cases, a combination of both cookies and local storage might be used. 
+    Cookies can be employed for secure, HTTP-only storage, while local storage can be used for easy client-side access.
 
 
 27. What is Authorization ?
@@ -342,7 +401,9 @@ Flow of AuthZ in Stateless AuthN :-
     * Upon successful authentication (using JWT), the server verifies the token's signature and authenticity.
     * Middleware intercepts requests to protected routes and extracts the user's roles or permissions from the JWT claims.
     * Access is granted or denied based on the user's roles or permissions contained within the JWT claims.
-Note - In both cases, the authorization logic is similar, but the mechanism for storing and retrieving user authorization information differs. Stateful authorization relies on server-side session storage, while stateless authorization leverages the information encoded within the JWT token.
+Note - 
+    In both cases, the authorization logic is similar, but the mechanism for storing and retrieving user authorization information differs. 
+    Stateful authorization relies on server-side session storage, while stateless authorization leverages the information encoded within the JWT token.
 
 
 29. Authorization Header.
@@ -429,5 +490,95 @@ Bearer Token Authentication Type -
             .then(response => console.log(response.data))
             .catch(error => console.error('Error:', error));
         In this example, the Bearer token is included in the Authorization header of an Axios HTTP GET request.
+
+
+32. What are the two main ways of AuthZ ?
+* There are two major ways of AuthZ :-
+    Role Based Access Control (RBAC)
+    Attribute Based Access Control (ABAC)
+
+
+33. What is Role-Based Access Control (RBAC) ?
+* Access permissions are assigned based on roles. 
+* A role groups a set of permissions, and users are assigned roles.
+* Key Concepts - 
+    •	Roles - Logical grouping of permissions (e.g., Admin, Manager, User).
+	•	Permissions - Actions allowed for a resource (e.g., read, write, delete).
+	•	User Assignment - Users are mapped to roles.
+* How It Works - 
+    User is authenticated and their assigned roles are fetched.
+	The system checks whether the user’s role allows them to perform a requested action on a resource.
+	Decision: Allow or deny access.
+* Example -
+    In a project management tool.
+	    •	Admin can create, read, update, delete any project.
+	    •	Manager can create and update projects but cannot delete them.
+	    •	Employee can only read projects.
+* Advantages -
+	•	Simplicity - Easy to manage permissions through roles.
+	•	Scalability - Works well in environments with well-defined roles.
+	•	Audit-Friendly - Easier to track which roles have what permissions.
+* Challenges -
+	•	Rigid - Difficult to handle scenarios where permissions vary at a granular level.
+	•	Role Explosion - Too many roles may make management complex.
+* Flow of RBAC -
+    User Authentication - Authenticate the user and fetch their assigned roles from the database.
+	Role Lookup - Identify the permissions linked to the role(s).
+	Access Decision - Check if the role’s permissions allow the requested action on the resource.
+	Action Execution - Grant or deny access.
+* Example Flow -
+	•	User with role “Manager” requests to update a project.
+	•	System checks if “Manager” role has “update” permission for the “Project” resource.
+	•	If yes, the action is allowed; otherwise, it’s denied.
+
+
+34. What is Attribute-Based Access Control (ABAC) ?
+* Access is granted based on attributes of users, resources, or the environment.
+* Key Concepts - 
+    Attributes - 
+        •	User Attributes - User-specific (e.g., department, clearance level).
+	    •	Resource Attributes - Resource-specific (e.g., sensitivity, owner).
+	    •	Environmental Attributes - Context-specific (e.g., time, location).
+    Policy Rules - 
+        •	Logical rules combining attributes (e.g., “Allow if department=HR AND time=working_hours”).
+* How It Works - 
+    User is authenticated and their attributes are fetched.
+	Attributes of the resource and environment are evaluated.
+	Policy rules are applied to determine access.
+	Decision: Allow or deny access.
+* Example -
+    In a healthcare system.
+	    •	A doctor can view patient records only if the patient is assigned to them and it’s within working hours.
+	    •	A nurse can view records but cannot edit them.
+* Advantages -
+	•	Flexibility - Handles complex and dynamic access rules.
+	•	Granularity - Fine-grained control over access.
+	•	Adaptability - Can enforce policies based on changing conditions.
+* Challenges -
+	•	Complexity - Requires careful design of attributes and policies.
+	•	Performance - Attribute evaluation can be computationally expensive.
+* Flow of ABAC -
+    User Authentication - Authenticate the user and fetch their attributes.
+	Context Gathering - Fetch resource and environmental attributes (e.g., resource sensitivity, time).
+	Policy Evaluation -
+	    •	Combine attributes into a logical rule.
+	    •	Example Rule: User.department=Finance AND Resource.sensitivity=low AND Time=working_hours.
+	Access Decision - Grant or deny access based on policy evaluation.
+	Action Execution - Enforce the decision.
+* Example Flow -
+    •	A user with department=Finance requests to view a report.
+	•	The system evaluates if the Resource.sensitivity=low and Time=working_hours.
+	•	If the policy matches, access is granted; otherwise, denied.
+
+
+35. What is the Differences between RBAC and ABAC ?
+See the Image Stored in this Folder.
+
+
+36. What are the advantages and disadvantages of RBAC and ABAC ?
+See the Image Stored in this Folder.
+
+37. What to Choose for your app RBAC or ABAC ?
+See the Image Stored in this Folder.
 
 */
