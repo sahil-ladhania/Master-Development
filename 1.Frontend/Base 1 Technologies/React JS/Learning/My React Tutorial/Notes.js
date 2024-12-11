@@ -64,38 +64,50 @@ Explanation :-
 
 2. What is Library?
 Explanation :-
-* Library is a collections of prewritten code snippets that can be used and reused to perform certain tasks.
-* A particular JavaScript library code can be plugged into application code which leads to faster development and fewer vulnerabilities to have errors.
+* Library ek collection hota hai pre-written code ka, jo kisi specific task ko perform karne ke liye use hota hai. 
+* Jab aapko kisi functionality ki zarurat hoti hai, aap library ka use karte ho. 
+* Aap khud decide karte ho ki kab aur kaise library ko call karna hai.
 * Examples - React, jQuery.
 
 3. What is Framework?
 Explanation :-
-* Framework provides a basic foundation or structure for a website or an application.
-* Examples - Angular
+* Framework ek structure provide karta hai jisme aapko apna code likhna hota hai. 
+* Yeh aapko ek predefined flow aur rules follow karne ko kehta hai. 
+* Framework aapko guide karta hai ki aap kaise kaam karenge, aur aapko uske guidelines ke andar rehna padta hai.
+* Examples - Angular.
 
 4. Similarities between Library and Framework?
 Explanation :-
 * Frameworks and libraries are code written by third parties to solve regular/common problems or to optimise performance.
+* Code Reusability - Dono hi aapko code reuse karne ka option dete hain.
+* Pre-written Functions - Dono mein aapko pre-written code milta hai jo aapko apni app mein use karna hota hai.
+* Task Simplification - Dono aapke tasks ko simplify karte hain.
 
 5. Difference between Library and Framework?
 Explanation :-
 * A key difference between the two is "Inversion of control".
 * When using a library, the control remains with the developer who tells the application when to call library functions.
 * When using a framework, the control is reversed, which means that the framework tells the developer where code needs to be provided and calls it as it requires.
+* Control - Library mein aap control rakhte ho, jabki framework aapke code ka flow control karta hai.
+* Usage - Library ko aap zarurat ke hisaab se use karte ho, lekin framework mein aapko structure follow karna padta hai.
+* Flexibility - Library zyada flexible hoti hai, aap khud decide karte ho ki kab kis function ko call karna hai, par framework mein aapko ek predefined order mein kaam karna padta hai.
 
 6. What is Emmet ?
 Explanation :-
-* Emmet is the essential toolkit for web-developers. It allows you to type shortcuts that are then expanded into full-fledged boiler plate code for writing HTML and CSS.
+* Emmet is the essential toolkit for web-developers. 
+* It allows you to type shortcuts that are then expanded into full-fledged boiler plate code for writing HTML and CSS.
+* Emmet ek tool hai jo HTML aur CSS code likhne ko fast aur efficient banaata hai. 
+* Yeh aapko shorthand syntax use karne ka option deta hai, jisse aap bohot kam time mein bohot zyada code likh sakte ho.
 
-7. Create Hello World Program using only HTML?
+7. Create Hello World Program using only HTML? -------------> Explore
 Explanation :-
 * Refer to Prerequisite Folder in Namaste React Code.
 
-8. Create Hello World Program using only JavaScript?
+8. Create Hello World Program using only JavaScript? -------------> Explore
 Explanation :-
 * Refer to Prerequisite Folder in Namaste React Code.
 
-9. Create Hello World Program using only React?
+9. Create Hello World Program using only React? -------------> Explore
 Explanation :-
 * Refer to Prerequisite Folder in Namaste React Code.
 
@@ -103,88 +115,134 @@ Explanation :-
 Explanation :-
 * The crossorigin attribute in the script tag enables Cross-Origin Resource Sharing (CORS) for loading external JavaScript files from different origin than the hosting web page.
 * This allows the script to access resources from the server hosting the script, such as making HTTP requests or accessing data.
+* Cross-Origin ka matlab hai jab ek website ya application apne resources (like images, scripts, etc.) ko doosri website ya domain se access karne ki koshish karti hai. 
+* Yeh process “Cross-Origin Resource Sharing” (CORS) ke through control hota hai.
+* Key Points :
+	•	Same-Origin Policy - By default, web browsers ek same-origin policy follow karte hain, jisme ek website apne origin (domain, protocol, aur port) ke bahar resources access nahi kar sakti.
+	•	CORS - CORS ek security feature hai jo yeh allow karta hai ki ek domain doosre domain se resources securely share karein, jab server Access-Control-Allow-Origin header send karta hai.
+* Ex - 
+    Agar ek website www.example1.com apne backend API www.example2.com se data fetch karna chahti hai, toh agar example2.com CORS enable nahi karta, toh browser request block kar dega.
 
 11. What if you have already written HTML inside the "root" div ?
 Explanation :-
 * React will overwrite everything inside "root" and replaces with whatever given inside render.
+* Agar aapne pehle se hi HTML likh liya hai “root” div ke andar, toh agar aap React app ko is div mein mount karte ho, toh React automatically us existing HTML ko replace kar dega.
+* Key Points :
+    •	React ka kaam hota hai ki wo apne virtual DOM se real DOM ko update kare. Jab aap ReactDOM.render() ya ReactDOM.createRoot() call karte ho, toh wo root div ke andar jo bhi HTML hota hai, usko replace kar deta hai apne React component ke saath.
+	•	Agar aapne static HTML likha hai, toh wo React component ke render hone par overwrite ho jayega, aur React usko apne state aur component ke structure ke according update karega.
+* Ex - 
+    •	Agar aapka HTML kuch aise ho.
+        <div id="root">
+            <h1>Static HTML</h1>
+        </div>
+    •	Aur React mein likha ho.
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    Toh, React root div ke andar existing <h1> ko replace kar dega aur <App /> ko render karega.
 
------Doubt 1 : External Script Links-----
+-----Doubt 1 : External Script Links----- -----------------------------> Which links are we talking about ??????
 
 1.	What are these Links ?
 Explanation :-
 * These are script tags that load external JavaScript files, specifically the React and ReactDOM libraries.
+* Yeh script tags hote hain jo external JavaScript files ko load karte hain, specifically React aur ReactDOM libraries ko.
 
-2.	Why are we using these Links ?
+2.	Why are we using these Links ? 
 Explanation :-
 * These links are used to include React and ReactDOM in your HTML page so you can use them to build and render React components.
+* Yeh links React aur ReactDOM ko aapke HTML page mein include karne ke liye use kiye jaate hain, taki aap unhe React components banane aur render karne ke liye use kar sakein.
 
-3.	Why is the First Link used For ?
+3.	Why is the First Link used For ? 
 Explanation :-
 * The first link (react.development.js) is for loading the core React library, which provides the functionality to create components, manage state, and handle events.
+* Pehla link (react.development.js) React ki core library ko load karne ke liye hota hai, jo components banane, state manage karne, aur events handle karne ki functionality provide karta hai.
 
-4.	Why is the Second Link used For ?
+4.	Why is the Second Link used For ? 
 Explanation :-
 * The second link (react-dom.development.js) is for loading ReactDOM, which provides methods to interact with the DOM, like rendering React components to the web page.
+* Dusra link (react-dom.development.js) ReactDOM ko load karta hai, jo DOM ke saath interact karne ke liye methods provide karta hai, jaise ki React components ko web page par render karna.
 
-5.	What does this crossorigin used For ?
+5.	What does this crossorigin used For ? 
 Explanation :-
 * The crossorigin attribute is used to handle cross-origin requests.
 * It allows the script to be fetched with CORS (Cross-Origin Resource Sharing) to support scenarios like accessing scripts from a different domain.
+* crossorigin attribute cross-origin requests handle karne ke liye use hota hai. Yeh script ko CORS (Cross-Origin Resource Sharing) ke saath fetch karne ki permission deta hai, jisse aap different domain se scripts access kar sakte ho.
 
------Doubt 2 : React.createElement() Method-----
+-----Doubt 2 : React.createElement() Method----- -----------------------------> Which method are we talking about ??????
 
 1.	What is React.createElement() Method ?
 Explanation :-
 * It’s a method provided by React to create a React element, which is an "object" representing a DOM node or a component.
+* React.createElement() ek method hai jo ek React element create karta hai. 
+* Yeh method ek object return karta hai, jo DOM node ya ek React component ko represent karta hai. 
+* React elements actual DOM elements ko render karte hain.
 
 2.	Where are we getting createElement() Method From ?
 Explanation :-
 * The createElement() method is provided by the React library.
+* createElement() method React library se aata hai.
+* Yeh built-in method hai jo React elements ko create karne ke liye use hota hai.
 
 3.	What does createElement() take ?
 Explanation :-
-* It takes three arguments :
-	The type of the element (e.g., 'div', 'h1').
-	An object for attributes/props (e.g., { id: 'child' }).
-	Children elements or content (e.g., another React.createElement() or a string). For Adding Siblings use Array of React.createElement().
+Yeh method 3 arguments leta hai :
+	•	Type - Element ka type jaise ‘div’, ‘h1’, etc.
+	•	Props - Attributes ya properties ka object, jaise { id: 'child' }.
+	•	Children - Content ya nested React elements (ya string). Agar multiple siblings hain toh yeh ek array ho sakta hai.
 
 4.	What does createElement() create ?
 Explanation :-
 * It creates a React element "object", which describes what should be rendered to the DOM.
+* createElement() method ek React element “object” create karta hai, jo yeh batata hai ki DOM mein kya render hoga. 
+* Yeh ek virtual representation hota hai, jise React use karta hai to update the actual DOM.
 
 -----Doubt 3 : ReactDOM.createRoot() Method-----
 
 1.	What is ReactDOM.createRoot() Method ?
 Explanation :-
 * It’s a method provided by ReactDOM to create a root container where your React application will be rendered.
+* ReactDOM.createRoot() ek method hai jo ek root container create karta hai jahan React application render hoga. 
+* Iska use React 18 se introduce kiya gaya tha, jisme root element ko manage karne ka naya way diya gaya hai.
 
 2.	Where are we getting createRoot() Method From ?
 Explanation :-
 * The createRoot() method is provided by the ReactDOM library.
+* createRoot() method ReactDOM library se milta hai. 
+* ReactDOM library ko include karke aap is method ka use karte hain.
 
 3.	What does createRoot() take ?
 Explanation :-
 * It takes a DOM element as an argument, typically the element where you want to render your React components (e.g., document.getElementById('root')).
+* Yeh method ek DOM element leta hai, jo wo element hota hai jahan aap apne React components ko render karna chahte ho. 
+* Typically, yeh document.getElementById('root') hota hai.
+
 
 -----Doubt 4 : .render() Method-----
 
 1.	What is this .render() Method ?
 Explanation :-
 * The .render() method is used to render the React element (or components) to the DOM.
+* .render() method ka use React element ya component ko DOM mein render karne ke liye hota hai. 
+* Yeh method React elements ko virtual DOM se actual DOM mein convert karne ka kaam karta hai.
 
 2.	Where are we getting .render() Method From ?
 Explanation :-
 * The .render() method is provided by the "root object" returned by ReactDOM.createRoot().
+* .render() method ReactDOM.createRoot() se milta hai. 
+* Jab aap createRoot() call karte ho, toh yeh ek root container return karta hai, jisme .render() method available hota hai.
 
 3.	What does .render() take ?
 Explanation :-
 * It takes a React element (e.g., parent in your code) as an argument and renders it into the specified root DOM node.
+* .render() method ek React element ko argument ke roop mein leta hai. 
+* Iske through React component ko DOM mein render kiya jata hai.
+* Ex - 
+    root.render(<App />);
 
------Igniting Our App-----
+-----Igniting Our App----- ---------------------------------------------> Extremly important for understanding What React is and Why to use it ?
 
 1. What should we do to make our app production ready ?
 Explanation :-
-* Minify —> Optimization —>Clean console —> Bundle
+* Minify —> Optimization —> Clean console —> Bundle
 * Minify our file (Remove console logs, bundle things up).
 * Need a server to run things.
 
@@ -305,7 +363,7 @@ Explanation :-
 * Tree shaking is a process of removing the unwanted code that we do not use while developing the application.
 * In computing, tree shaking is a dead code elimination technique that is applied when optimizing code.
 
------Doubts-----
+-----Doubts----- ---------------------------------------------> Extremly important for understanding What React is and Why to use it ?
 
 1. What is Transitive Dependencies ?
 Explanation :-
@@ -376,7 +434,7 @@ Explanation :-
 * It’s used by tools like Babel, Autoprefixer, and Parcel to ensure your code is compatible with the specified browsers.
 * It helps define what browser versions your code should support.
 
------Laying The Foundation-----
+-----Laying The Foundation----- ---------------------------------------------> Extremly important for understanding What React is and Why to use it ?
 
 1. What is another way of starting the build of the project ?
 Explanation :-

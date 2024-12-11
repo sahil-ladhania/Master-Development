@@ -23,27 +23,27 @@ import {ThemeProvider} from "./Components/UseContext Hook/UseContext Practice/Pr
 function App() {
     return (
         <>
-            {/*<EventsPractice/>*/}
-            {/*<EventsQuestions/>*/}
-            {/*<UseStatePractice/>*/}
-            {/*<UseStateQuestions/>*/}
-            {/*<ConditionalRenderingQuestions/>*/}
-            {/*<UseEffectPractice/>*/}
-            {/*<UseEffectQuestions/>*/}
-            {/*<ParentComponent1/>*/}
-            {/*<ParentComponent2/>*/}
-            {/*<ParentComponent3/>*/}
-            {/*<ParentComponent4/>*/}
-            {/*<PropsQuestions/>*/}
-            {/*<ListAndKeysPractice/>*/}
-            {/*<ListAndKeysQuestions/>*/}
-            {/*<UseRefPractice/>*/}
-            {/*<UseRefQuestions/>*/}
+            <EventsPractice/>
+            <EventsQuestions/>
+            <UseStatePractice/>
+            <UseStateQuestions/>
+            <ConditionalRenderingQuestions/>
+            <UseEffectPractice/>
+            <UseEffectQuestions/>
+            <ParentComponent1/>
+            <ParentComponent2/>
+            <ParentComponent3/>
+            <ParentComponent4/>
+            <PropsQuestions/>
+            <ListAndKeysPractice/>
+            <ListAndKeysQuestions/>
+            <UseRefPractice/>
+            <UseRefQuestions/>
             <UseReducerPractice/>
-            {/*<UseReducerQuestions/>*/}
-            {/*<ThemeProvider>*/}
-            {/*    <MainComponent/>*/}
-            {/*</ThemeProvider>*/}
+            <UseReducerQuestions/>
+            <ThemeProvider>
+               <MainComponent/>
+            </ThemeProvider>
         </>
     )
 }

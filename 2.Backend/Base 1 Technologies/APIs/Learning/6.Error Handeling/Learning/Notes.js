@@ -392,7 +392,62 @@ Explanation :-
         •	Node.js me process-level errors ko handle karne ke liye hum process.on ka use karte hain.
 	    •	Jaise: process.on('uncaughtException'), process.on('unhandledRejection').
 
-3. What are Custom Error Class ?
+3. How Does Error Handling Middleware Work Under the Hood ?
+Explanation :-
+* Here’s how things work when you use error handling middleware.
+	Route or Service throws an error - 
+        When an error occurs in your controller or service (e.g., network issues, database issues, etc.), you simply throw the error (throw new Error(...)).
+        Jab aapke controller ya service mein koi error hota hai (jaise database ka connection fail hona, network error, etc.), toh aap throw keyword ka use karke error ko throw karte hain.
+        Jaise - throw new Error('Something went wrong');
+        Jab error throw hota hai, toh Express us error ko directly handle nahi karta. 
+        Instead, wo error bubble up karna start karta. Matlab, wo error propagate hota hai middleware chain ke through.
+        Express ki ek default error propagation mechanism hoti hai. Jab koi error throw hota hai, wo error us particular route handler ya service ke andar handle nahi hota. 
+        Instead, wo next middleware tak propagate ho jata hai.
+	Error Propagation - 
+        Express, by default, has an error propagation mechanism. When an error is thrown, it doesn’t get caught by your controller or service but instead “bubbles up” to the next middleware function.
+        Express ki ek default error propagation mechanism hoti hai. Jab koi error throw hota hai, wo error us particular route handler ya service ke andar handle nahi hota. 
+        Instead, wo next middleware tak propagate ho jata hai.
+        Example to Show Propagation - 
+            	•	Jab aap throw new Error() karte ho, toh wo error Express ko next function ke through pass ho jata hai.
+	            •	Agar aap error ko handle nahi karte ho, toh wo next middleware ko pass ho jata hai, jab tak ki error handler middleware tak nahi pahuncht.
+                •	Ex -
+                    // Controller
+                    app.get('/user', async (req, res, next) => {
+                        try {
+                            const user = await getUserFromDB();
+                            res.status(200).json(user);
+                        } catch (error) {
+                            ---> Agar yahan catch block mein error ho, toh wo throw karenge aur middleware ko pass hoga
+                            next(error);
+                        }
+                    });
+                    •	next(error) is used to pass the error to the next middleware (which is the error handler middleware).
+	Global Error Handler - 
+        The first middleware that matches this error is your error-handling middleware. This middleware will automatically receive the error object as the first argument, and it’s responsible for sending the appropriate response to the client.
+        Error ko bubble karne ke baad, Express apne middleware stack mein us error ko error-handling middleware tak pass kar dega. 
+        Yeh middleware automatically us error ko first argument ke roop mein accept karega.
+        Ex - 
+            // Global error handler middleware
+            app.use((err, req, res, next) => {
+                console.error(err); ---> Log the error (for debugging)
+                
+                res.status(500).json({
+                    message: "Something went wrong!",
+                    error: err.message ---> Just sending the error message to the client
+                });
+            });
+            Yahan:
+	            •	err parameter mein woh error aayega jo kisi bhi route handler ne throw kiya tha.
+	            •	Aap us error ko log kar sakte ho ya response bhej sakte ho.
+	Express Error Handling Order - 
+        Middleware in Express is executed in the order it’s defined. By placing your error-handling middleware at the end (after all route handlers), you ensure that if any route handler (or service) throws an error, the global error handler will catch it.
+        Express mein middleware order bahut important hai. Middleware execute hone ka sequence aapke app.use() ya route handler ke order pe depend karta hai.
+	        •	Routes sabse pehle run hoti hain.
+	        •	Uske baad agar koi error hoti hai, toh error-handling middleware us error ko catch karta hai.
+        Agar aap error handler middleware ko last mein rakhte ho, toh wo har route ke baad execute hoga, jo ki ensure karega ki agar koi route ya service error throw kare, toh wo error properly handle ho jaye.
+
+
+4. What are Custom Error Class ?
 Explanation :-
 * Custom Error Classes ka use hum tab karte hain jab hume apne specific errors ko handle karna ho, jo generic errors se alag ho. 
 * Custom errors ka fayda ye hota hai ki hum apne application ki specific error types ko define kar sakte hain aur unhe easily handle kar sakte hain. 
