@@ -574,7 +574,6 @@ Bearer Token Authentication Type -
 35. What is the Differences between RBAC and ABAC ?
 See the Image Stored in this Folder.
 
-
 36. What are the advantages and disadvantages of RBAC and ABAC ?
 See the Image Stored in this Folder.
 
