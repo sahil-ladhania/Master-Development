@@ -1,402 +1,519 @@
 # Web Warriors (All about Internet)
 
-## Internet Working
-### 1. Start with the Basics
-- 1.1. **What is an IP Address?**
-	- **What is an IP address, and why is it important?**
-	- **What is the difference between public and private IP addresses?**
+## 1. How the Internet Works
+### Introduction to the Concept of the Internet
+- The Internet is a global network of interconnected computers that communicate and share information.
+- It is based on packet-switching, where data is broken into packets, sent to its destination, and reassembled.
+- **Key technologies** :
+	- **IP (Internet Protocol)** - 
+		- Determines how devices communicate over the network.
+	- **TCP (Transmission Control Protocol)** - 
+		- Ensures reliable data transfer.
+- **Example** - When you send an email, it travels through multiple computers (routers) to reach the recipient’s email server.
 
-- 1.2. **What is a Domain Name System (DNS)?**
-	- **What is the purpose of DNS?**
-	- **How does DNS resolve domain names to IP addresses?**
-    - **What happens when DNS fails (DNS caching and fallback)?**
+### Overview of the World Wide Web (WWW)
+- WWW is a system of interlinked web pages and resources accessed through the Internet.
+- Invented by **Tim Berners-Lee** in 1989.
+- Works on HTTP/HTTPS protocols to enable communication between browsers (clients) and servers.
+- The web is only a part of the Internet. Other services like email, FTP, and gaming also use the Internet.
 
-- 1.3. **What is a URL?**
-	- **What are the components of a URL (protocol, domain, path, query, fragment)?**
-	- **How does a browser process a URL?**
+### How Data is Transferred Across Networks
+1.	Data is broken into smaller units called packets.
+2.	Each packet is labeled with source and destination IP addresses.
+3.	Packets travel independently through various routers.
+4.	At the destination, packets are reassembled in the correct order.
+5.	Protocols like TCP/IP ensure accuracy and reliability.
+- **Example** - Streaming a YouTube video involves packets being sent from YouTube’s server to your device.
 
-- 1.4. **What is a Server?**
-	- **What are the types of servers (web, mail, database)?**
-	- **How do servers handle client requests?**
+### Understanding IP Addresses, Domain Names, and Routing
+- **IP Address**
+	- Unique identifier for devices on a network (like a postal address for computers).
+	- **Types** :
+		- **IPv4** - 32-bit addresses (e.g., 192.168.0.1).
+		- **IPv6** - 128-bit addresses for a larger address space.
 
-- 1.5. **What is a Client?**
-	- **What is the role of a client in the Internet?**
+- **Domain Names**
+	- Human-readable names mapped to IP addresses.
+	- **Example** - www.google.com maps to an IP like 142.250.72.206.
 
-- 1.6. **What are Packets?**
-	- **Why is data broken into packets?**
-	- **What happens when a packet is lost or corrupted?**
+- **Routing**
+	- The process of finding the best path for data packets to travel from source to destination.
+	- Routers play a key role by forwarding packets between networks.
 
-- 1.7. **What are Protocols?**
-	- **What are protocols, and why are they necessary?**
-	- **Key protocols: HTTP, HTTPS, TCP/IP.**
+### Key Concepts
+1. **Internet Service Providers (ISPs)**
+	- ISPs provide access to the Internet.
+	- They connect homes and businesses to the backbone of the Internet.
+	- **Examples** - Airtel, Jio, Comcast.
 
-- 1.8. **What is a Router?**
-	- **What is the role of a router in data transmission?**
+2. **Routers**
+	- Devices that direct data packets between networks.
+	- Use routing tables to decide the best path for packets.
 
-- 1.9. **What is a Modem?**
-	- **How does a modem connect a local network to an ISP?**
-	- **What are the differences between a modem and a router?**
+3. **DNS (Domain Name System)**
+	- Translates human-readable domain names into machine-readable IP addresses.
+	- Acts like a phonebook for the Internet.
 
-- 1.10. **What is an ISP (Internet Service Provider)?**
-	- **What services do ISPs provide?**
-
-### Core Internet Concepts
-- 2.1. **What is HTTP/HTTPS?**
-	- **How does HTTP work?**
-	- **What is HTTPS, and how does it provide security (TLS/SSL)?**
-
-- 2.2. **What is Caching?**
-	- **What types of caching exist (browser caching, server caching, CDN)?**
-	- **How does caching improve performance?**
-
-- 2.3. **What is Web Browsing?**
-	- **How do browsers fetch and display web pages?**
-	- **What is the browser’s rendering engine?**
-
-- 2.4. **What is Cloud Computing?**
-	- **How does cloud computing work?**
-	- **What are the types of cloud services (IaaS, PaaS, SaaS)?**
-
-- 2.5. **What is a CDN (Content Delivery Network)?**
-	- **How do CDNs reduce latency?**
-	- **What is the role of edge servers in CDNs?**
-
-### Deeper Layers of the Internet
-- 3.1. **Protocol Layer**
-	- **What is the TCP/IP model, and how do its layers function?**
-	- **How do TCP and UDP differ?**
-
-- 3.2. **Application Layer**
-	- **How do web applications communicate using APIs?**
-
-- 3.3. **Domain Name System (DNS)**
-	- **How does DNS caching work?**
-
-### Advanced Topics
-- 4.1. **Security**
-	- **What is encryption, and how does it protect data?**
-	- **What are TLS/SSL certificates?**
-	- **What are common threats (e.g., DDoS attacks, phishing)?**
-
-- 4.2. **Data Transmission**
-	- **What are latency, bandwidth, and throughput?**
-
-- 4.3. **Internet Governance**
-	- **Who controls the Internet (ICANN, IETF)?**
-
-- 4.4. **The Role of CDNs**
-	- **How do CDNs handle content delivery?**
-
-### The Evolution of the Internet
-- 5.1. **History of the Internet**
-	- **How did ARPANET evolve into the modern Internet?**
-	- **What are the key milestones in Internet history?**
-
-- 5.2. **Modern Developments**
-	- **How does 5G impact Internet usage?**
-	- **What is IoT (Internet of Things)?**
-
+**Example Workflow of Internet Communication**
+1.	You type www.google.com in your browser.
+2.	The browser queries a DNS server to get the IP address for Google.
+3.	The browser sends an HTTP request to the server at that IP address.
+4.	Google’s server sends back the requested data (e.g., the Google homepage).
 
 ## 2. DNS Magic and Internals
-### Understand the Basics of Networking
-- 1.1.	**What is an IP Address?**
-	- **What is IPv4?**
-	- **What is IPv6?**
-	- **Why do we need IP addresses?**
 
-- 1.2.	**What is a Domain Name?**
-	- **How does a domain name map to an IP address?**
-	- **Why use domain names instead of IP addresses?**
+### What is DNS (Domain Name System)?
+- DNS is a system that translates domain names (like www.google.com) into IP addresses (like 142.250.72.206) that computers can understand.
+- It acts as the phonebook of the Internet:
+- Humans use domain names.
+- Machines use IP addresses to locate and communicate with each other.
 
-- 1.3.	**What is a Protocol?**
-	- **What are TCP and UDP, and how are they used in DNS?**
-	- **What are the differences between TCP and UDP?**
+### Why is DNS needed?
+- It’s easier for humans to remember names than numerical IPs.
+- DNS ensures a smooth connection between users and web servers.
 
-### Understand DNS Basics
-- 2.1.	**What is DNS?**
-	- **Why is DNS called the “phonebook of the internet”?**
-	- **How does DNS fit into the overall structure of the internet?**
+### How DNS Resolves Domain Names to IP Addresses
+1.	**User Action** - You type a URL in your browser (e.g., www.example.com).
+2.	**Browser Cache** - The browser checks its cache for the IP address.
+3.	**Operating System Cache** - If not found, the OS checks its DNS cache.
+4.	**DNS Resolver Query** - The OS sends the request to a DNS resolver (usually provided by your ISP).
+5.	**Recursive Query** - The resolver queries the DNS hierarchy:
+	- **Root DNS Server** - Provides the address of the TLD (Top-Level Domain) server (e.g., .com).
+	- **TLD Server** - Provides the address of the authoritative DNS server for the domain.
+	- **Authoritative DNS Server** - Returns the IP address for the domain (e.g., 192.0.2.1).
+6.	**Browser Communication** - The browser uses the IP address to connect to the web server.
 
-- 2.2.	**What are DNS Records?**
-	- **What are the different types of DNS records (A, AAAA, MX, CNAME, TXT, etc.)?**
-	- **How are these records used in practice?**
-    
-- 2.3.	**What is a DNS Resolver?**
-	- **What is the difference between a recursive resolver and an authoritative nameserver?**
-	- **What role does the resolver play in DNS lookups?**
+### Types of DNS Records
+- DNS records define specific details about a domain. 
+- Common types include :
+1.	**A Record** - Maps a domain name to an IPv4 address. 
+	**Example** - example.com -> 192.0.2.1
+2.	**CNAME Record** - Alias for another domain.
+	**Example** - blog.example.com -> www.example.com
+3.	**MX Record**: Specifies mail servers for a domain.
+	**Example** - Handles email delivery for example.com.
+4.	**TXT Record** - Provides text information, often for verification (e.g., SPF records for email security).
+5.	**AAAA Record** - Maps a domain name to an IPv6 address.
+	**Example** - example.com -> 2001:0db8:85a3::8a2e:0370:7334
 
-### Learn Key Internet Concepts
-- 3.1.	**What is the Client-Server Model?**
-	- **How do clients (like browsers) communicate with servers?**
-	- **How does DNS fit into the client-server model?**
+### DNS Hierarchy
+1.	**Root DNS Servers** :
+	Top-most level of the DNS hierarchy.
+	Handle requests for top-level domains (TLDs) like .com, .org, .net.
+2.	**TLD Servers** :
+	Manage specific top-level domains (e.g., .com TLD servers handle .com domains).
+	**Example** - .com, .edu, .gov.
+3.	**Authoritative DNS Servers** :
+	Provide the final answer for domain queries.
+	Contain the actual DNS records for a domain.
 
-- 3.2.	**What is HTTP/HTTPS?**
-	- **How does HTTP differ from HTTPS?**
-	- **Why is HTTPS important?**
+### How Browsers Query DNS Servers
+1.	**Recursive Queries** :
+	The DNS resolver does all the work to retrieve the IP address by querying multiple servers.
+	The client only waits for the final response.
+2.	**Iterative Queries** :
+	The client queries each server (Root → TLD → Authoritative) step by step.
 
-- 3.3.	**What is URL Structure?**
-	- **What are the components of a URL (protocol, domain, path, query string)?**
-	- **How does a URL map to a DNS query?**
+### Key Concepts
+1. **Recursive Queries**
+	- The DNS resolver queries servers on behalf of the client until it finds the correct IP address.
 
-### Learn DNS Internals
-- 4.1.	**What is Time-to-Live (TTL)?**
-	- **What happens when TTL expires?**
-	- **How does TTL affect DNS caching and propagation?**
-- 4.2.	**What is Caching?**
-	- **What are the levels of DNS caching (browser, OS, ISP, recursive resolvers)?**
-	- **How does caching improve performance and reduce latency?**
-- 4.3.	**What is DNS Hierarchy?**
-	- **What are root servers?**
-	- **What are TLD (Top-Level Domain) servers?**
-	- **What are authoritative nameservers?**
-- 4.4.	**What are the two types of DNS Queries?**
-	- **What is a recursive query?**
-	- **What is an iterative query?**
+2. **Caching**
+	- DNS servers and browsers cache DNS records to reduce query times for frequently visited sites.
+	- Cache reduces the load on DNS servers.
 
-### Dive Deeper into DNS Magic and Internals
-- 5.1.	**What is DNS Resolution Process?**
-	- **How does a domain name get resolved step by step?**
-	- **What happens during recursive and iterative resolution?**
-- 5.2.	**What is DNS Caching?**
-	- **How does DNS caching work at different levels?**
-	- **What happens if a DNS cache is stale or incorrect?**
-- 5.3.	**What is DNS Security?**
-	- **What is DNS spoofing or cache poisoning?**
-	- **How does DNSSEC work to secure DNS?**
-- 5.4.	**What is Load Balancing with DNS?**
-	- **What is round-robin DNS?**
-	- **How does GeoDNS work for distributing traffic?**
-- 5.5.	**What is CDN and DNS?**
-	- **How do CDNs use DNS to serve content faster?**
-	- **What is the role of DNS in reducing latency for CDNs?**
-- 5.6.	**What is DNS Propagation?**
-	- **What causes propagation delays?**
-	- **How can propagation delays be minimized?**
-- 5.7.	**What is Anycast DNS?**
-	- **How does Anycast DNS route users to the nearest server?**
-	- **Why is Anycast important for DNS performance?**
-- 5.8.	**What is DNS Over HTTPS (DoH)?**
-	- **How does DoH secure DNS queries?**
-	- **What are the advantages and disadvantages of DoH?**
-- 5.9.	**What is DNS Over TLS (DoT)?**
-	- **How is DoT different from DoH?**
-	- **How does DoT enhance privacy and security?**
+3. **TTL (Time-to-Live)**
+	- DNS records have a TTL value that specifies how long they can be cached.
+	- **Example** - If a record’s TTL is 3600 seconds, it will remain in the cache for 1 hour.
+
+**Example Workflow of a DNS Query**
+1.	User types www.google.com in their browser.
+2.	The browser checks its cache.
+3.	If not found, the OS queries the ISP’s DNS resolver.
+4.	The resolver queries :
+	- Root DNS Server → TLD Server (.com) → Authoritative DNS Server.
+5.	The authoritative server returns the IP address for www.google.com.
+6.	The browser uses the IP address to load the website.
 
 ## 3. Server-Client Architecture
-### Foundational Terms to Know (Before diving into Server-Client Architecture)
-- 1.1	**What is an IP Address?**
-	- **What is the role of an IP address in networking?**
-	- **What is the difference between IPv4 and IPv6?**
-- 1.2.	**What is a Port?**
-	- **Why do we use ports in networking?**
-	- **What is the difference between well-known ports, registered ports, and dynamic/private ports?**
-- 1.3.	**What is a Protocol?**
-	- **What role do protocols play in communication between devices?**
-	- **What are common types of protocols in networking?**
-- 1.4.	**What is HTTP Protocol?**
-	- **How does HTTP work in the context of the web?**
-	- **How is HTTP different from other protocols (e.g., FTP, SMTP)?**
-- 1.5.	**What is TCP/IP Protocol?**
-	- **How does TCP/IP help in communication between devices over the internet?**
-	- **What is the difference between TCP and UDP?**
-- 1.6.	**What is HTTP Request & Response?**
-    - **What are the components of an HTTP request (e.g., method, headers, body)?**
-	- **What are the components of an HTTP response (e.g., status code, headers, body)?**
-- 1.7.	**What is a URL?**
-	- **What is the structure of a URL (e.g., scheme, domain, path, query)?**
-	- **How does a browser use a URL to access resources on a server?**
-- 1.8.	**What are Status Codes?**
-	- **What are the most common HTTP status codes (e.g., 200, 404, 500)?**
-	- **What does each status code signify in terms of request and response?**
-- 1.9.	**What is a Browser?**
-	- **How does a browser communicate with the server using HTTP?**
-	- **What is the browser’s role in the client-server architecture?**
-- 1.10.	**What is a Web Server?**
-	- **What does a web server do in response to client requests?**
-	- **How does a server process HTTP requests and send back responses?**
-- 1.11.	**What is Request-Response Cycle?**
-	- **How does the client send requests and receive responses from the server?**
-	- **What happens inside a server when it receives a request from the client?**
-- 1.12.	**What is REST (Representational State Transfer)?**
-	- **What principles define RESTful architecture?**
-	- **What is the role of REST in client-server communication?**
-### Key Topics Inside Server-Client Architecture (To gain a deep understanding)
-- 2.1.	**What is the Client-Server Model?**
-	- **How does the client-server architecture work in a simple client-server interaction?**
-	- **What are the advantages of using this model?**
-- 2.2.	**What is the Role of the Server?**
-	- **What does a server do when it receives a client request?**
-	- **How does the server interact with databases or other systems to generate responses?**
-- 2.3.	**What is the Role of the Client?**
-	- **What does the client do in a client-server interaction?**
-	- **How does the client initiate requests, and how does it display the response to the user?**
-- 2.4.	**What are HTTP Methods?**
-	- **What are the most common HTTP methods used in the client-server architecture (GET, POST, PUT, DELETE)?**
-	- **What role does each method play in the request-response cycle?**
-- 2.5.	**What is Request and Response Structure?**
-	- **What are the different parts of an HTTP request (headers, body, query parameters)?**
-	- **What does an HTTP response consist of (headers, body, status code)?**
-	- **How are data (like HTML, JSON, images) embedded in responses?**
-- 2.6.	**What is Stateless Communication?**
-	- **What does “stateless” mean in the context of HTTP?**
-	- **Why is HTTP considered a stateless protocol?**
-	- **How does stateless communication affect the server-client interaction?**
-- 2.7.	**What is Stateful Communication?**
-	- **What does “stateful” communication mean?**
-	- **How do servers maintain state between requests (e.g., sessions, cookies)?**
-	- **How does stateful communication differ from stateless?**
-- 2.8.	**What are Some Types of Servers?**
-	- **What are the different types of servers involved in the client-server model (Web Server, Application Server, Database Server)?**
-	- **How do these servers interact with one another in a full-stack architecture?**
-- 2.9.	**What is Web Security?**
-	- **What is the importance of securing the communication between client and server?**
-	- **What is HTTPS, and how does it work?**
-	- **What are common web security threats (e.g., SQL Injection, Cross-Site Scripting)?**
-- 2.10.	**What are Two Caching Mechanisms?**
-	- **What is Client-Side Caching (e.g., browser caching, local storage)?**
-	- **What is Server-Side Caching (e.g., caching with Redis, database query caching)?**
-	- **How do both caching mechanisms improve performance in server-client interactions?1.	What is the Client-Server Model?**
-	- **How does the client-server architecture work in a simple client-server interaction?**
-	- **What are the advantages of using this model?**
+
+### What is a Client-Server Model?
+	- The Client-Server Model is a network structure where:
+	- Clients (users or devices) request services or resources.
+	- Servers provide those resources or services.
+
+**Analogy** :
+- Think of a restaurant:
+	- Client - Customer placing an order.
+	- Server - Waiter who delivers the food (service).
+
+### Differences Between Client and Server in Web Applications
+| **Aspect**   | **Client**                          | **Server**                         |
+|--------------|-------------------------------------|------------------------------------|
+| **Role**     | Requests data or services.         | Processes and serves requested data. |
+| **Examples** | Web browsers, Mobile apps.         | Web servers, API servers.         |
+| **Location** | End-user devices (laptops, phones).| Centralized systems (cloud or on-premises). |
+| **Technology** | Frontend (HTML, CSS, JS).        | Backend (Node.js, Django, etc.).  |
+
+### HTTP Request-Response Cycle
+- The HTTP Request-Response Cycle defines how clients and servers communicate over the web.
+- **Steps** :
+	1.	**Client Request** :
+		- The client sends an HTTP request to the server via a browser or an app.
+		- **Example** - Typing www.example.com in a browser.
+	2.	**Server Processes Request** :
+		- The server interprets the request (e.g., fetch data, process logic).
+	3.	**Server Sends Response**:
+		- The server sends an HTTP response containing the requested resource or an error message.
+	4.	**Client Displays the Response** :
+		- The browser renders the received data (e.g., a webpage).
+
+### How Browsers Act as Clients
+- Browsers like Chrome, Firefox, and Edge act as HTTP clients.
+- They send requests (e.g., GET or POST) to servers.
+- Render the response (HTML, CSS, JS) for users to see.
+
+### Introduction to Web Servers
+- A Web Server is software or hardware that hosts websites and serves resources to clients.
+- Common Web Servers :
+1.	Apache -
+	- Open-source, widely used.
+	- Known for flexibility and configuration options.
+2.	Nginx -
+	- Lightweight and fast.
+	- Handles high traffic efficiently.
+3.	Node.js -
+	- JavaScript runtime for building scalable server-side applications.
+
+**Web Hosting** :
+- Web Hosting is a service that stores web applications on servers and makes them accessible over the Internet.
+
+**Hosting Providers** :
+- **Shared Hosting** - Multiple sites on one server (e.g., Bluehost).
+- **Cloud Hosting** - Distributed across multiple servers (e.g., AWS, Google Cloud).
+
+### Key Concepts
+1. **Client-Side vs Server-Side**
+	- **Client-Side** :
+		- Refers to code executed in the user’s browser.
+		- **Example** - Rendering UI with HTML, CSS, and JS.
+	- **Server-Side** :
+		- Refers to code executed on the server.
+		- **Example** - Validating user input, accessing databases.
+
+2. **Request Headers**
+	- Metadata sent by the client in an HTTP request.
+	- **Examples** -
+		- Host: Domain name (e.g., example.com).
+		- User-Agent: Browser details (e.g., Chrome/112).
+
+3. **Response Codes**
+	- HTTP status codes sent by the server to indicate the result of a request:
+		- **200 OK** - Success.
+		- **404 Not Found** - Resource not found.
+		- **500 Internal Server Error** - Server issue.
+
+**Example Workflow** :
+1.	You type www.example.com in a browser.
+2.	The browser (client) sends an HTTP request to the server hosting example.com.
+3.	The server processes the request and sends back an HTML page.
+4.	The browser displays the webpage to you.
 
 ## 4. Internet Protocols
-- 1.1. **What is a Protocol?**
-    - **What does a protocol mean in the context of networking and communication?**
-    - **How do they help different devices communicate effectively?**
-    - **What are the key features of a protocol (syntax, semantics, timing)?**
-- 1.2. **What is the OSI Model?**
-    - **What are the 7 layers in the OSI model, and what does each layer do?**
-    - **How does the OSI model help in understanding network communication and protocols?**
-    - **How does the OSI model differ from the TCP/IP model? Which one is more commonly used today?**
-- 1.3. **What are the Types of Protocols?**
-    - **What are the different types of protocols?**
-    - **What are some Common Types of Protocols ?**
-- 1.4. **What is the Internet Protocol Suite (TCP/IP)?**
-    - **What is the TCP/IP model, and how does it map to the OSI model?**
-    - **What is the role of the Internet Protocol in addressing and routing?**
-    - **What is TCP, and how does it ensure reliable data delivery?**
-    - **How does UDP differ from TCP in terms of reliability and speed?**
-    - **How do TCP and IP work together to make the internet function?**
-- 1.5. **What are Some Most Important Application Layer Protocols?**
-    - **How does HTTP work, and why is it the foundation of web communication?**
-    - **What is the difference between HTTP and HTTPS, and why is security important in web communication?**
-    - **How does FTP work for transferring files over the network?**
-    - **How is SMTP used in email communication?**
-    - **How does DNS resolve domain names into IP addresses?**
-    - **What are POP3 and IMAP, and how do they function in email retrieval?**
-- 1.6. **What are Some Most Important Transport Layer Protocols?**
-    - **How does TCP ensure reliable communication? What is flow control and error handling in TCP?**
-    - **What are the pros and cons of using UDP, and in which scenarios is it ideal?**
-    - **How do port numbers function in the transport layer to direct traffic?**
-- 1.7. **What are Some Most Important Routing Protocols?**
-    - **What’s the difference between static and dynamic routing?**
-    - **How does RIP work, and what are its limitations?**
-    - **How does OSPF work to route data within large networks?**
-    - **What is BGP, and why is it crucial for routing between different networks on the internet?**
-- 1.8. **What is Addressing and Name Resolution?**
-    - **What is an IP address, and what are the differences between IPv4 and IPv6?**
-    - **How does subnetting work, and why is it important for efficient use of IP addresses?**
-    - **What is a MAC address, and how is it different from an IP address?**
-    - **How does DNS work to map domain names to IP addresses?**
-    - **How does DHCP automatically assign IP addresses to devices on a network?**
-- 1.9. **What are Some Most Important Security Protocols?**
-    - **How do SSL/TLS protocols ensure secure communication over the web?**
-    - **How does HTTPS use SSL/TLS to encrypt data between the client and server?**
-    - **How does a VPN work to securely connect users to a remote network over the internet?**
-    - **What is IPSec, and how does it provide security at the network layer?**
-    - **How do firewalls work to filter traffic, and what is the role of NAT in securing a network?**
 
-## 5. TCP/IP
-- 1.1. **What is TCP/IP Model?**
-    - **What are the layers of the TCP/IP model?**
-    - **What does each layer do?**
-    - **How does the TCP/IP model compare to the OSI model?**
-    - **Why is the TCP/IP model important?**
-    - **What are the roles of the different layers in networking?**
-    - **How does each layer communicate with the others?**
-    - **What are the protocols used in each layer of the TCP/IP model?**
-    - **Which protocols are found in the Application layer?**
-    - **Which protocols are found in the Transport layer?**
-	- **What protocols are part of the Internet layer?**
-	- **Which protocols are involved in the Link layer?**
-- 1.2. **What is TCP ?**
-    - **What are the main functions of TCP?**
-    - **How does TCP ensure reliable communication?**
-	- **How does TCP achieve ordered delivery of packets?**
-	- **How does the Three-Way Handshake work?**
-	- **What is SYN (synchronize), SYN-ACK, and ACK?**
-	- **Why is the Three-Way Handshake needed in TCP?**
-	- **What are the key features of TCP?**
-	- **What are the TCP segments and their structure?**
-	- **What is the TCP header?**
-	- **What fields are in the TCP header (source port, destination port, sequence number, etc.)?**
-	- **How does TCP handle retransmission of lost packets?**
-    - **What is TCP’s acknowledgment mechanism?**
-- 1.3. **What is IP ?**
-	- **What is the role of IP in networking?**
-	- **How does IP address a device?**
-	- **What is the difference between IPv4 and IPv6?**
-	- **How are IP addresses structured?**
-	- **What are the parts of an IP address?**
-	- **What is subnetting and how does it work?**
-	- **What is a subnet mask and how does it relate to an IP address?**
-	- **What is the purpose of Routing in IP?**
-	- **How do routers use routing tables to forward packets?**
-	- **What is the difference between static and dynamic routing?**
-	- **How does IP handle packet fragmentation and reassembly?**
-	- **What are the key components of an IP packet?**
-	- **What is the IP header?**
-	- **What fields are in the IP header (source IP, destination IP, TTL, protocol, etc.)?**
-	- **What is NAT (Network Address Translation)?**
-	- **How does NAT work and why is it important in modern networking?**
+### Introduction to Network Protocols
+- Network protocols are standardized rules and conventions that enable communication between devices over a network.
+- **Purpose** : 
+	- Ensure :
+		- **Data integrity** - Accurate delivery of information.
+		- **Data formatting** - Consistent structure for interoperability.
+		- **Reliable communication** - Handling errors and maintaining order.
 
-## 6. UDP (User Datagram Protocol)
-- 1.1. **What is UDP Protocol ?**
-    - **What layer does UDP operate in the OSI model?**
-    - **What does “connectionless” mean in UDP?**
-    - **How does data transmission happen in UDP?**
-    - **What are the main characteristics of UDP?**
-- 1.2. **Difference between TCP and UDP.**
-    - **What are the core differences between TCP and UDP?**
-    - **Why is UDP faster than TCP?**
-    - **When is UDP preferred over TCP?**
-    - **What are the trade-offs when using UDP?**
-    - **How does UDP work in streaming (Video/Audio)?**
-    - **How is UDP used in VoIP (Voice over IP)?**
-    - **Why is UDP considered insecure?**
+### Why Are Protocols Needed?
+1.	**Communication Standardization** :
+	- Devices from different manufacturers can communicate seamlessly.
+	- **Example** - Your PC (Windows) can connect to a server running Linux.
+2.	**Error Handling** :
+	- Detects and resolves errors in data transmission.
+	- **Example** - Retransmitting lost packets.
+3.	**Efficient Data Transfer** :
+	- Breaks large data into smaller chunks, sends them in sequence, and reassembles at the destination.
+	- **Example** - Downloading a file from a server.
 
-## 7. TCP Handshakes and 3-Way Handshakes
-- 1.1. **What is a Handshake?**
-- 1.2. **What is the purpose of Handshake?**
-- 1.3. **What is the 3-Way Handshake?**
-- 1.4. **Why is a 3-Way Handshake Needed?**
-- 1.5. **What Happens After the 3-Way Handshake?**
-- 1.6. **How to close a connection ?**
+### Types of Network Protocols
+- Network protocols can be broadly categorized based on their function :
+1.	**Application Layer** - Protocols used for user-level communication.
+		- **Example** - HTTP, FTP, DNS.
+2.	**Transport Layer** - Ensures reliable or fast data delivery.
+		- **Example** - TCP, UDP.
+3.	**Network Layer** - Handles addressing and routing.
+		- **Example** - IP.
+4.	**Data Link Layer** - Ensures error-free transmission over the physical medium.
+		- **Example** - Ethernet.
 
-## 8. HTTP & HTTPS Protocols
-- 1.1. **What is HTTP Terminology ?**
-    - **What is URL?**
-	- **What does a URL consist of? (protocol, domain, path, query parameters)**
-	- **How does a browser resolve a URL to an IP address?**
-	- **What is HTTP Request Methods?**
-    - **What are the common HTTP methods (GET, POST, PUT, DELETE, etc.)?**
-	- **When should each method be used?**
-	- **What is HTTP Headers?**
-	- **What are headers in an HTTP request/response?**
-	- **How headers influence the behavior of HTTP requests/responses?**
-	- **What is HTTP Status Codes?**
-	- **What do status codes mean?**
-	- **How are status codes categorized (e.g., 1xx, 2xx, 3xx, 4xx, 5xx)?**
-- 1.2. **What are these Security Concepts ?**
-	- **What is Encryption?**
-	- **What is the purpose of encryption in web communication?**
-	- **How does encryption protect sensitive data?**
-	- **Difference between symmetric and asymmetric encryption.**
-	- **What are encryption algorithms (e.g., AES, RSA)?**
-	- **What is SSL/TLS?**
-	- **What is the role of SSL and TLS in securing communication?**
-	- **What is the SSL/TLS handshake process?**
-	- **How SSL/TLS certificates work and the role of public/private keys?**
-- 1.3. **How many versions of HTTP are there ?**
-- 1.4. **What is the difference between each versions of HTTP ?**
-- 1.5. **What is the difference between HTTP and HTTPS ?**
+### 4.1 TCP/IP Protocol Suite
+
+### What is TCP/IP?
+- Stands for Transmission Control Protocol/Internet Protocol.
+- A foundational suite of protocols used for communication over the Internet.
+
+### Key Features:
+- Layered Model.
+- Divided into 4 layers :
+	1.	**Application Layer** - Interacts with user applications.
+	2.	**Transport Layer** - Handles reliable data transfer.
+	3.	**Internet Layer** - Manages addressing and routing.
+	4.	**Network Interface Layer** - Manages physical transmission.
+- End-to-End Communication :
+	- Ensures data is transmitted reliably between source and destination.
+
+### TCP (Transmission Control Protocol)
+- Ensures reliable, ordered, and error-checked delivery of data.
+
+### How TCP Works:
+1.	**Data Segmentation** :
+		- Breaks large data into smaller packets.
+2.	**Error Detection & Retransmission** :
+		- Lost or corrupted packets are retransmitted.
+3.	**Acknowledgment** :
+		- Sender and receiver confirm successful data delivery.
+
+### Key Concepts:
+- **Port Numbers** - Identify specific applications on a device.
+- **Example** - Port 80 (HTTP), Port 443 (HTTPS).
+- **Three-Way Handshake** - Establishes a reliable connection (discussed in detail in Topic 5).
+
+### IP (Internet Protocol)
+- **Purpose** - Provides logical addressing and routing.
+- **IP Address** - A unique identifier for devices on a network.
+- **Example** - 192.168.1.1.
+
+### Key Features:
+1.	**Routing** :
+		- Determines the best path for data to reach its destination.
+2.	**Types of IP** :
+		- **IPv4** - 32-bit addresses (e.g., 192.168.0.1).
+		- **IPv6** - 128-bit addresses for more devices (e.g., 2001:0db8:85a3::8a2e:0370:7334).
+
+### 4.2 UDP (User Datagram Protocol)
+
+### What is UDP?
+- A lightweight protocol for fast, connectionless communication.
+
+### Features:
+1.	**No Connection Establishment** :
+		- Data is sent without prior setup (no handshake).
+2.	**Unreliable** :
+		- No guarantee of delivery or order.
+
+### Advantages:
+	- Faster than TCP.
+	- Suitable for real-time applications (e.g., video streaming, gaming).
+
+**Example Use Case** :
+	- Video Calls - Dropped frames are acceptable, as the focus is on speed, not reliability.
+
+### Comparison: TCP vs UDP
+| Feature        | TCP                                   | UDP                         |
+|----------------|---------------------------------------|-----------------------------|
+| **Connection** | Connection-oriented (requires handshake). | Connectionless.             |
+| **Reliability**| Reliable (error checking, retransmission). | Unreliable.                 |
+| **Speed**      | Slower due to error handling.        | Faster due to minimal overhead. |
+| **Use Case**   | Web browsing, File downloads.        | Streaming, Gaming.          |
+
+**Example Workflow for TCP/IP** :
+	1.	A user types www.google.com in a browser.
+	2.	The DNS resolves the domain to an IP (e.g., 142.250.190.78).
+	3.	TCP establishes a connection between the browser (client) and Google’s server.
+	4.	Data is transmitted over the IP protocol, ensuring correct routing.
+
+## 5. TCP Handshakes and 3-Way Handshakes
+
+### What is a 3-Way Handshake in TCP?
+- The 3-Way Handshake is the process used to establish a reliable connection between a client and a server over TCP (Transmission Control Protocol). 
+- This ensures that both parties are ready to begin communication and are synchronized.
+
+### Purpose of the Handshake
+- Reliable Connection - Ensures both client and server are ready to send and receive data.
+- Synchronization - Makes sure both sides agree on sequence numbers (used to keep track of packets).
+- Error-Free Communication - Ensures no data loss by using acknowledgments and sequence numbers.
+
+### The Three Phases of the Handshake
+1.	**SYN (Synchronize)** -
+	- The client sends a SYN (synchronize) message to the server. 
+	- This message contains a random sequence number to initialize the communication.
+	- Client → Server: “Let’s start communication. 
+	- Here’s my sequence number (let’s call it x)”
+**Example** :
+	- Client -> SYN = x
+2.	**SYN-ACK (Synchronize-Acknowledge)**:
+	- The server receives the SYN message and acknowledges it by sending back a SYN-ACK message. 
+	- This message acknowledges the client’s sequence number and also includes the server’s own sequence number to synchronize the connection.
+	- **Server → Client** - “I received your SYN (sequence x) and here’s my SYN (sequence y).”
+**Example** :
+	- Server -> SYN-ACK = y, ACK = x + 1
+3.	**ACK (Acknowledge)**:
+	- The client receives the SYN-ACK message from the server. 
+	- It acknowledges the server’s sequence number and confirms the connection is established by sending an ACK message.
+	- **Client → Server** - “I received your SYN-ACK (sequence y). Let’s proceed with data transfer.”
+	- This completes the handshake, and both parties can now begin data transmission.
+**Example** :
+	Client -> ACK = y + 1
+
+### Diagram of 3-Way Handshake:
+1. Client → SYN = x
+2. Server → SYN-ACK = y, ACK = x + 1
+3. Client → ACK = y + 1
+
+### Key Concepts Involved in the 3-Way Handshake:
+- **Sequence Numbers** - 
+	- TCP assigns a sequence number to each byte of data for reliable ordering. 
+	- These numbers help both parties track the data correctly.
+- **Example** :
+	- Client sends data starting with sequence number x.
+	- Server responds with sequence number y, which is used to track the server’s response.
+	- **Acknowledgments** - After each message, the recipient sends an acknowledgment to confirm receipt and readiness to continue.
+
+### Why the 3-Way Handshake is Needed
+1.	**Synchronization** - Ensures that both the client and server are ready to exchange data, and they know the correct sequence of data.
+2.	**Avoiding Data Loss** - Ensures that no data is lost during transmission by establishing sequence numbers and acknowledgments.
+3.	**Flow Control** - It helps in regulating the data transfer by using sequence numbers and acknowledgments.
+
+### How Data Transmission Happens After the Handshake
+- Once the 3-way handshake is completed :
+	1.	The client and server can start exchanging data.
+	2.	**TCP Segments** - Data is broken into smaller segments, each containing:
+		- **Sequence number** - To indicate the order.
+		- **Acknowledgment number** - To confirm the receipt of data.
+		- **Payload** - The actual data being transmitted.
+
+### Flow of Data Post-Handshaking:
+1.	**Client → Server** - Sends data packets with sequence number.
+2.	**Server → Client** - Acknowledges the receipt of packets and may send its own data.
+3.	**Client → Server** - Confirms receipt of the server’s packets.
+
+- Closing the Connection
+
+- Once data transmission is complete, the connection is closed using a 4-Way Handshake.
+	1.	FIN (Finish): One side (usually the client) sends a FIN message to indicate it wants to close the connection.
+	2.	The other side (usually the server) sends an acknowledgment.
+	3.	Both sides then send their own FIN messages to close the connection.
+
+**Example Scenario**
+- Let’s assume a client (browser) wants to establish a connection with a server to load a website:
+	1.	**SYN** - The client sends a SYN request to the server, asking to start communication.
+		- **Client → Server** - “SYN = 100” (sequence number 100)
+	2.	**SYN-ACK** - The server responds with a SYN-ACK, acknowledging the client’s request and initiating its own.
+		- **Server → Client** - “SYN = 200, ACK = 101”
+	3.	**ACK** - The client receives the server’s response and sends an acknowledgment.
+		- **Client → Server** - “ACK = 201”
+- Once this is complete, data transfer begins, and both the client and server can send HTTP requests and responses to load the web page.
+
+## 6. HTTP & HTTPS Protocols
+
+### Introduction to HTTP (HyperText Transfer Protocol) and HTTPS (Secure version of HTTP)
+- **HTTP** :
+	- HyperText Transfer Protocol is the foundation of data communication on the web. 
+	- It is an application-layer protocol used for transmitting hypertext (web pages) over the internet.
+- **HTTP Request-Response Cycle** :
+	- A client (usually a web browser) sends an HTTP request to a server.
+	- The server processes the request, retrieves the requested resource (e.g., a webpage), and sends an HTTP response back to the client.
+- **HTTPS** :
+	- HyperText Transfer Protocol Secure is the secure version of HTTP. 
+	- It uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to encrypt the communication between the client and server.
+- **Why HTTPS ?**
+	- **Encryption** - Ensures that the data being transmitted is encrypted, making it unreadable to any third parties.
+	- **Authentication** - Verifies that the server you are communicating with is the correct one (through SSL certificates).
+	- **Integrity** - Ensures the data is not altered during transmission.
+
+### What Happens During an HTTP Request-Response Cycle?
+1.	Client Sends an HTTP Request : 
+	- The client (typically a web browser) sends an HTTP request to the server to fetch a resource, such as a webpage, image, or data.
+	- The request is sent using a specific HTTP method (GET, POST, PUT, DELETE, etc.).
+- **Example** :
+	```javascript
+		GET /index.html HTTP/1.1
+		Host: www.example.com
+	```
+
+2.	**Server Processes the Request** :
+	- The web server (e.g., Apache, Nginx) receives the request and processes it. 
+	- The server checks if the requested resource is available and if the client has permission to access it.
+
+3.	**Server Sends an HTTP Response** :
+	- The server returns an HTTP response, which contains the requested resource and a status code that indicates the outcome of the request.
+	- A successful request returns a 200 OK status code, while a not-found resource returns a 404 Not Found status code.
+- **Example** :
+	```javascript
+	HTTP/1.1 200 OK
+	Content-Type: text/html
+	Content-Length: 1234
+
+	<html>...content...</html>
+	```
+
+4.	**Client Receives the Response** :
+	- The client (browser) processes the response, displays the content (e.g., webpage), and renders it to the user.
+
+### Understanding HTTP Status Codes
+- HTTP status codes are used by servers to indicate the result of a client’s request. 
+- The most common categories are :
+	- **2xx (Success)** - The request was successfully received, understood, and accepted.
+		- **200 OK** - The request was successful, and the server returns the requested resource.
+		- **201 Created** - The resource was successfully created (typically used for POST requests).
+	- **3xx (Redirection)** - The client must take additional action to complete the request.
+		- **301 Moved Permanently** - The resource has permanently moved to a new URL.
+		- **302 Found** - The resource is temporarily located at a different URL.
+	- **4xx (Client Errors)** - The request contains bad syntax or cannot be fulfilled by the server.
+		- **400 Bad Request** - The server cannot process the request due to malformed syntax.
+		- **404 Not Found** - The requested resource could not be found on the server.
+	- **5xx (Server Errors)** - The server failed to fulfill a valid request.
+		- **500 Internal Server Error** - The server encountered an unexpected condition that prevented it from fulfilling the request.
+		- **502 Bad Gateway** - The server, while acting as a gateway or proxy, received an invalid response from an upstream server.
+
+### Introduction to SSL/TLS and How It Secures Data During Transmission
+- SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are cryptographic protocols used to secure communication over a computer network. 
+- TLS is the successor of SSL, and it is the protocol used today for secure HTTPS connections.
+- **How SSL/TLS Works** :
+	- Encryption: Ensures that the data transferred between the client and server is unreadable by anyone who intercepts the communication.
+	- Authentication: Verifies the identity of the server through an SSL Certificate, ensuring the client communicates with the correct server.
+	- Integrity: Ensures that the data has not been tampered with during transmission.
+- **SSL/TLS Handshake** :
+	- The process by which the client and server establish a secure connection using SSL/TLS involves several steps -
+		1.	**Client Hello** - The client sends a message to the server, initiating the handshake and proposing encryption algorithms.
+		2.	**Server Hello** - The server responds with its chosen encryption algorithms and sends its SSL certificate (containing the public key).
+		3.	**Client Verification** - The client verifies the server’s certificate using the trusted certificate authority (CA).
+		4.	**Session Key Generation** - The client and server exchange keys to establish a secure session.
+		5.	**Secure Data Transfer** - Data is now encrypted, and the client and server communicate securely.
+
+### Key Concepts in HTTP & HTTPS
+- **HTTP Methods** :
+	- GET: Retrieves data from the server.
+	- POST: Sends data to the server to create a resource.
+	- PUT: Updates an existing resource on the server.
+	- DELETE: Removes a resource from the server.
+- **Request Headers** - HTTP headers sent by the client provide additional information about the request, such as User-Agent (browser information), Content-Type (format of the data being sent), and Authorization (authentication credentials).
+- **Response Headers** - HTTP headers sent by the server provide metadata about the response, such as Content-Type (the type of data being returned) and Set-Cookie (to set cookies).
+- **SSL/TLS Certificates** - Digital certificates issued by a Certificate Authority (CA) that authenticate the identity of a website and enable secure communications.
+- **Certificate Authorities (CAs)** - Trusted organizations that issue digital certificates for websites, ensuring that the site is legitimate and secure.
+
+### How HTTPS Works Compared to HTTP
+1.	**Insecure HTTP** - 
+	- Data sent over HTTP is not encrypted and can be intercepted or altered by third parties (e.g., man-in-the-middle attacks).
+2.	**Secure HTTPS** - 
+	- HTTPS uses SSL/TLS encryption to protect the data, ensuring confidentiality and integrity during transmission. 
+	- Additionally, HTTPS verifies the identity of the server to prevent impersonation.
+- **Example of an HTTPS Request** -
+	1.	**Client → Server** - The client (browser) sends a request using HTTPS.
+		```javascript
+			GET /index.html HTTP/1.1
+        	Host: www.example.com
+		```
+	2.	**Server → Client** - The server responds with the requested resource and encrypts the data using SSL/TLS.
+		```javascript
+		HTTP/1.1 200 OK
+		Content-Type: text/html
+		Content-Length: 1234
+
+		<html>...encrypted content...</html>
+		```

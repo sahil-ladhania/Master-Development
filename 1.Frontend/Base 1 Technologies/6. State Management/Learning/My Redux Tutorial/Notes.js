@@ -602,6 +602,78 @@ Explanation :-
     npm run dev / npm start
     
 
+-----Redux Persist-----
+
+1. What Problem we will face if we dont use Redux Persist ?
+Explanation :-
+* Redux state is stored in memory.
+* When the page reloads or the app refreshes, the Redux store is reset to its initial state because the store resides in the browser’s memory, which is cleared on refresh.
+* This is why your Redux state data (e.g., user data post-login) is lost upon refreshing the page.
+
+2. What is the Solution for Persisting State in Redux ?
+Explanation :-
+* Redux Persist solves this problem by persisting (saving) the Redux state to a storage mechanism (e.g., localStorage, sessionStorage, or IndexedDB).
+* On app initialization, it rehydrates (restores) the Redux state from the chosen storage.
+
+3. Why do we even need Redux Persist ?
+Explanation :-
+* State Persistence Across Sessions -
+	Prevent loss of critical state data like user authentication, preferences, etc., during a page refresh.
+* Improved User Experience -
+	The user doesn’t need to log in or reconfigure settings every time the app reloads.
+* Data Consistency -
+	Ensures that your app maintains consistent data across reloads.
+* Customizable -
+	You can choose which parts of the Redux state to persist and which to ignore.
+
+4. How Redux Persist works ?
+Explanation :-
+* Storage Mechanism -
+	Redux Persist uses a storage mechanism to save state, such as localStorage (persistent) or sessionStorage (temporary).
+* State Serialization -
+	The state is serialized into JSON format and stored in the storage mechanism.
+* Rehydration -
+	When the app initializes, Redux Persist retrieves the saved state and merges it with the store.
+
+5. What are these methods and what they do ?
+Explanation :-
+* persistReducer - 
+    Yeh Redux reducer ko wrap karta hai aur usme persistence ka logic add karta hai.
+* persistStore - 
+    Yeh Redux store ke saath ek persistor create karta hai jo data ko save aur restore karega.
+* combineReducers - 
+    Yeh sabhi reducers ko combine karke ek root reducer banata hai.
+    Ab Redux store me auth, user, aur restaurant states available hongi.
+* persistConfig(Not a Method) - 
+    It is a configuration Object.
+    key - Yeh root key hai jo localStorage me Redux state ko store karne ke liye use hoti hai.
+    storage - Kaunsa storage use hoga (Default is Local Storage).
+    whitelist - Jiska state persist krna ho.
+    blacklist - Jiska state persist nhi krna ho.
+* persistReducer - 
+    Is function ka kaam hai root reducer ko wrap karna aur persistence logic add karna.
+    Ab persistedReducer wo reducer hai jo Redux Persist ke saath kaam karega.
+* persistStore - 
+    Yeh Redux store ke saath ek persistor create karta hai jo state ko persist karega.
+    Har baar jab app reload hoti hai, yeh persisted state ko restore karega.
+* serializableCheck: false - 
+    Ye isiliye set kiya gaya hai taaki non-serializable data (like functions or complex objects) warnings na de.
+* persistStore - 
+    Yeh Redux store ka saath ek persistor create karta hai jo state ko persist aur rehydrate karega.
+* PersistGate - 
+    Yeh Redux Persist ka component hai jo tab tak children render nahi karta jab tak persisted state rehydrate na ho jaye.
+
+6. What is the step by step process to setup Redux Persist ?
+Explanation :-
+* Reducer Setup -
+	Redux reducers ko combine karke ek root reducer banate hain.
+* Persisted Reducer -
+	Redux Persist ka configuration set karte hain aur root reducer ko persistReducer ke saath wrap karte hain.
+* Store & Persistor - 
+	configureStore ke saath Redux store aur persistStore ke saath persistor banate hain.
+* App Wrapping -
+	Redux Provider aur PersistGate ko React app ke top-level components ke around wrap karte hain.
+
 -----Setting Up the Redux Store-----
 
 1. What is Redux Store ?
