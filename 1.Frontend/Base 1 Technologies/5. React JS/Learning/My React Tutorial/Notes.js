@@ -2242,18 +2242,41 @@ Explanation :-
 33. What is the need of it ?
 Explanation :-
 * Code Reusability - Custom Hooks help in extracting repetitive logic, making your components cleaner and more maintainable.
+* Clean & Maintainable Components - Keep your components simpler by moving logic into a Hook.
+* Testability & Isolation - You can test the logic inside a Hook independently, making your application more robust.
 
 34. How to create Custom Hooks ?
 Explanation :-
 * To create a Custom Hook, write a function that uses built-in Hooks (like useState, useEffect, etc.) and prefix the function name with “use”.
 * This function can then be used in any component.
 
-35. What are some Hooks Best Practices ?
+35. What are the Core Principles of Custom Hooks ?
+Explanation :-
+* Naming Convention - Typically start with “use” (e.g. useFetchData, useFormHandler) to follow React’s rules and let other developers know it’s a Hook.
+* No Conditional Invocations - Must be called at the top level of your custom Hook’s function (i.e., don’t call Hooks conditionally or inside loops).
+* Returning Values - You can return any type of data or functions. Decide what makes the most sense for the feature or piece of logic (e.g., return a state value and a function to update it).
+
+36. What are some Example Use Cases for Custom Hooks ?
+Explanation :-
+* Data Fetching - Encapsulate fetching logic (loading, error handling, data storage) in a custom Hook.
+* Form Handling - Manage form states, validations, and input changes in a reusable Hook.
+* Media Queries or Event Listeners - For instance, track window width changes or scroll positions.
+* Authentication Logic - Share login/logout or user session logic across multiple components.
+
+37. What is the Step-by-Step Guide to Creating a Custom Hook ?
+Explanation :-
+* Identify Repetitive Logic - Find a piece of code that’s used by at least two components.
+* Extract into a Function - Create a new JavaScript function in a separate file (named something like useXYZ.js) starting with “use”.
+* Use Built-in Hooks if Needed - Inside that function, you can use React’s built-in Hooks (useState, useEffect, etc.) to manage stateful logic.
+* Return What’s Needed - Export only the relevant data and functions to the components that use it.
+* Import & Use - In other components, call this custom Hook just like you’d call any built-in Hook.
+
+38. What are some Hooks Best Practices ?
 Explanation :-
 * Hooks Best Practices :
-	•	Only call Hooks at the top level of a component.
-	•	Only call Hooks from React functions or Custom Hooks.
-	•	Keep dependencies up to date in useEffect, useMemo, and useCallback.
-	•	Avoid unnecessary re-renders by using useCallback and useMemo wisely.
+    * Only call Hooks at the top level of a component.
+	* Only call Hooks from React functions or Custom Hooks.
+	* Keep dependencies up to date in useEffect, useMemo, and useCallback.
+    * Avoid unnecessary re-renders by using useCallback and useMemo wisely.
 
 */

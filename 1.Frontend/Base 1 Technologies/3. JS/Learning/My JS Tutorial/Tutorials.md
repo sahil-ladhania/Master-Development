@@ -1,9 +1,7 @@
-console.log("From Tutorial.js File !!!");
-console.log("-----------------------------------------------")
+# Practical JS
 
-// -----Practical Stuff-----
-
-// Variable Scopes
+## Variable Scopes
+```javascript
 console.log("Scopes Example");
     // 1. Global Scope
     var globalVariable = "I am a Global Variable.";
@@ -30,9 +28,11 @@ console.log("Scopes Example");
         // console.log(blockVariable); -----> Error : blockVar is not defined
     }
     blockScopeExample();
+```
 
-// Variable Declarations
-    // 1. var Declaration : | Function-scoped | Can be Redeclared | Hoisted | Can be Updated |
+## Variable Declarations
+* 1. `var` Declaration : | Function-scoped | Can be Redeclared | Hoisted | Can be Updated |
+```javascript
     console.log("var Declaration Example");
     function varExample() {
         var x1 = 10;
@@ -47,8 +47,9 @@ console.log("Scopes Example");
     var y1 = "Hello";
     var y1 = "World"; // Same Variable Defined Again -> Redeclaration is Allowed
     console.log(y1);
-
-    // 2. let Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Can be Updated |
+```
+* 2. `let` Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Can be Updated |
+```javascript
     console.log("let Declaration Example");
     function letExample() {
         let x2 = 10;
@@ -64,8 +65,9 @@ console.log("Scopes Example");
     // let y2 = "World"; -----> Error: Identifier 'y2' has already been declared
     y2 = "World"; // Can be Updated
     console.log(y2);
-
-    // 3. const Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Cannot be Updated | Mutable if it's an Object or Array |
+```
+* 3. `const` Declaration : | Block-scoped | Cannot be Redeclared in the same scope | Hoisted but not Initialized | Cannot be Updated | Mutable if it's an Object or Array |
+```javascript
     console.log("const Declaration Example");
     function constExample() {
         const x3 = 10;
@@ -89,8 +91,10 @@ console.log("Scopes Example");
     const arr1 = [1,2,3];
     arr1.push(4);
     console.log(arr1);
+```
 
-// Hoisting
+## Hoisting
+```javascript
 console.log("Hoisting Example");
     // 1. Hoisting in var : | Declarations are Hoisted and Initialized with Undefined | No Temporal Dead Zone |
     console.log("Hoisting in var Example");
@@ -114,8 +118,10 @@ console.log("Hoisting Example");
     // console.log(hoistedConst); -----> Error: Cannot access 'hoistedConst' before initialization. Results in a ReferenceError because hoistedConst is in the TDZ(Temporal Dead Zone).
     const hoistedConst = "I am Hoisted.";
     console.log(hoistedConst);
+```
 
-// Primitive Datatypes
+## Primitive Datatypes
+```javascript
 console.log("Primitive Datatype Example");
     // String
     console.log("String Example");
@@ -165,8 +171,10 @@ console.log("Primitive Datatype Example");
     console.log(symbol1);
     console.log(symbol2);
     console.log(symbol1 == symbol2);
+```
 
-// Non-Primitive Datatypes
+## Non-Primitive Datatypes
+```javascript
     // Arrays
     console.log("Array Example");
     let array = [1,2,3,4,5];
@@ -231,8 +239,10 @@ console.log("Primitive Datatype Example");
     deepCopyObj.b.c = 42;
     console.log(originalObj2.b.c); // Expected output: 2
     console.log(deepCopyObj.b.c);  // Expected output: 42
+```
 
-// Type Conversion
+## Type Conversion
+```javascript
     // Type Coersion(Implicit Type Conversion) -> "Apne Aap Conversion"
     console.log("Type Coresion Example");
     let result1 = "5" - 2;
@@ -245,8 +255,10 @@ console.log("Primitive Datatype Example");
     let str = "123";
     let num = Number(str);
     console.log(num);
+```
 
-// Equality Comparisons
+## Equality Comparisons
+```javascript
     // == (Equality Operator)
     console.log("Equality Operator Example");
     console.log(5 == "5");
@@ -261,10 +273,12 @@ console.log("Primitive Datatype Example");
     console.log("Object.is() Example");
     console.log(Object.is(5 , "5"));
     console.log(Object.is(5 , 5));
+```
 
-// Expressions and Operators
-    // Conditional (Ternary) Operator
-    // condition ? expressionIfTrue : expressionIfFalse;
+## Expressions and Operators
+* Conditional (Ternary) Operator
+    `condition ? expressionIfTrue : expressionIfFalse;`
+    ```javascript
     console.log("Ternary Operator Example");
     let age = 18;
     let canVote = age >= 18 ? "Yes , You can Vote." : "No , You cant Vote.";
@@ -282,8 +296,10 @@ console.log("Primitive Datatype Example");
     let name2 = "World";
     let message = greeting2 + ", " + name + " ! ";
     console.log(message);
+    ```
 
-// Functions
+## Functions
+    ```javascript
     // Function Statement
     function a1(){
         console.log("This way of creating Function is called Function Statement.");
@@ -304,8 +320,10 @@ console.log("Primitive Datatype Example");
     let arrowFunction = () => {
         console.log("I am an Arrow Function.");
     }
+    ```
 
-// How JS Code is Executed ?
+## How JS Code is Executed ?
+```javascript
 console.log("JS Code Execution !!!");
 var n = 2;
 function square(num) {
@@ -314,8 +332,10 @@ function square(num) {
 }
 var square2 = square(n);
 var square4 = square(4);
+```
 
-// How Functions work in JS ?
+## How Functions work in JS ?
+```javascript
 console.log("Function Working !!!") // ----> Debug this in Sources Panel to See How Functions Work
 var x = 1;
 a();
@@ -329,8 +349,10 @@ function b() {
     var x = 100;
     console.log(x);
 }
+```
 
-// What is the Shortest JS Program ?
+## What is the Shortest JS Program ?
+```javascript
     // Empty .js File. ---> Debug this in sources Panel on Chrome.
     var a = 10;
     function b() {
@@ -340,14 +362,18 @@ function b() {
     console.log(a);
     // console.log(x); ----> ReferenceError : x is not defined
     console.log(this.a);
+```
 
-// What is Undefined vs Not Defined ?
+## What is Undefined vs Not Defined ?
+```javascript
 console.log(s); // This will Give undefined
 var s = 10;
 console.log(s);
 console.log(z); // This will Give Not Defined
+```
 
-// What is Scope | Scope Chain | Lexical Environment in JS ? How does it work with Call Stack ?
+## What is Scope | Scope Chain | Lexical Environment in JS ? How does it work with Call Stack ?
+```javascript
 function outerFunction() {
     var outerVar = "I am outer";
     function innerFunction() {
@@ -357,19 +383,25 @@ function outerFunction() {
     innerFunction();
 }
 outerFunction();
+```
 
-// What is Temporal Dead Zone ?
+## What is Temporal Dead Zone ?
+```javascript
 console.log(myVar); // ReferenceError: Cannot access 'myVar' before initialization
 let myVar = "Hello!";
+```
 
-// What is a Block ?
+## What is a Block ?
+```javascript
 {
     let x = 10; // Block ke andar hai, sirf is block mein accessible
     console.log(x); // 10
 }
 console.log(x); // Error: x is not defined
+```
 
-// What is a Shadowing ?
+## What is a Shadowing ?
+```javascript
 let x = 20; // Global Scope
 function shadowingExample() {
     let x = 10; // Local Scope, shadows the global x
@@ -377,23 +409,29 @@ function shadowingExample() {
 }
 shadowingExample();
 console.log(x); // 20, Global x is not affected
+```
 
-// What is a Illegal Shadowing ?
+## What is a Illegal Shadowing ?
+```javascript
 let x = 10;
 function illegalShadowing() {
     var x = 20; // Error: Identifier 'x' has already been declared
 }
 illegalShadowing();
+```
 
-// What is Lexical Block Scope ?
+## What is Lexical Block Scope ?
+```javascript
 let a = "global";
 {
     let a = "block scoped";
     console.log(a); // "block scoped"
 }
 console.log(a); // "global"
+```
 
-// What are Closures in JS ?
+## What are Closures in JS ?
+```javascript
 function outerFunction() {
     let outerVar = "I am outer";
     function innerFunction() {
@@ -403,13 +441,17 @@ function outerFunction() {
 }
 const myClosure = outerFunction();
 myClosure(); // Output: "I am outer"
+```
 
-// What are Pure Functions ?
+## What are Pure Functions ?
+```javascript
 function add(a, b) {
     return a + b;
 }
+```
 
-// What are Higher-Order Functions ?
+## What are Higher-Order Functions ?
+```javascript
 function greet(name) {
     return function(message) {
         console.log(`${message}, ${name}!`);
@@ -417,24 +459,33 @@ function greet(name) {
 }
 const greetJohn = greet("John");
 greetJohn("Hello"); // Output: "Hello, John!"
+```
 
-// What are Function Composition ?
+## What are Function Composition ?
+```javascript
 const add = (a) => (b) => a + b;
 const double = (x) => x * 2;
 const addAndDouble = (a, b) => double(add(a)(b));
 console.log(addAndDouble(2, 3)); // Output: 10
+```
 
-// What is map ?
+## What is map ?
+```javascript
 const numbers = [1, 2, 3, 4, 5];
 const doubled = numbers.map(num => num * 2);
 console.log(doubled); // Output: [2, 4, 6, 8, 10]
+```
 
-// What is filter ?
+## What is filter ?
+```javascript
 const numberss = [1, 2, 3, 4, 5];
 const evens = numberss.filter(num => num % 2 === 0);
 console.log(evens); // Output: [2, 4]
+```
 
-// What is reduce ?
+## What is reduce ?
+```javascript
 const numbersss = [1, 2, 3, 4, 5];
 const sum = numbersss.reduce((acc, curr) => acc + curr, 0);
 console.log(sum); // Output: 15
+```
