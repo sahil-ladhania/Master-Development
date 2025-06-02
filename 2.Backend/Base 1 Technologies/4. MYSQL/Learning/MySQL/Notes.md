@@ -106,8 +106,8 @@
 
 ### 11. Few Notes about SQL.
 ### Answer :
-* SQL is a declarative language that allows us to describe what we want to achieve rather than how to achieve it.
-* SQL is case-insensitive.
+* SQL is a **declarative language** that allows us to describe what we want to achieve rather than how to achieve it.
+* SQL is **case-insensitive**.
 * SQL statements are made up of clauses e.g. SELECT, FROM, WHERE, etc.
 * SQL is a standard language based on the ISO/IEC 9075 standard.
 * There are many different flavors of SQL that are based on the SQL standard.
@@ -122,34 +122,71 @@
 
 ### 12. In Which order a SQL Query runs and What is precedence of all the major clauses like this `SELECT a FROM b WHERE c GROUP BY d HAVING e` ?
 ### Answer :
-* The precedence is like this :
-    `FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`
-* `FROM` Clause
-	* **What it does :**
-        * Specifies the table(s) to retrieve data from.
-	    * This is the very first step, where the database engine identifies the source of the data (in this case, table b).
-* `WHERE` Clause
-	* **What it does :**
-	    * Filters rows based on the condition c.
-	    * Only rows that satisfy the WHERE condition are passed along to the next stage.
-* `GROUP BY` Clause
-	* **What it does :**
-	    * Groups the filtered rows by the column(s) specified, which is d here.
-	    * This step aggregates rows into groups, allowing for aggregate functions to be applied in later stages.
-* `HAVING` Clause
-	* **What it does :**
-	    * Filters groups created by the GROUP BY clause based on a condition (in this case, e).
-	    * Unlike WHERE, which filters individual rows, HAVING filters groups, often using aggregate functions.
-* `SELECT` Clause
-	* **What it does :**
-	    * Determines which columns or computed values to include in the final result.
-        * In this step, the column a is selected for the output.
-* `ORDER BY` Clause
-    * **What it does :**
-	    * If included, this clause would sort the final result set.
-* `LIMIT` Clause
-    * **What it does :**
-	    * Restricts the number of rows returned by the query.
+* **First, Understand the Problem SQL Solves** : 
+* Imagine SQL as a data processing pipeline.
+* SQL ka kaam hota hai -
+    * Data ko table se uthao → filter karo → group karo → process karo → display karo
+    * Lekin, hum jo query likhte hain, woh “English” jaisi hoti hai, execution ka order usse alag hota hai.
+* **Execution Order of SQL Clauses (Real Flow)** :
+
+| Step | Clause     | Explanation (First-Principle Style) |
+|------|------------|--------------------------------------|
+| 1️⃣   | FROM       | Sabse pehle SQL ko pata hona chahiye data aa kaha se raha hai. So, it starts with loading the table(s). Jo joins hain, wo bhi yahi pe process hote hain. |
+| 2️⃣   | WHERE      | Ab pura table aa gaya. Ab row-level filtering hoti hai. Jo condition match karta hai, wahi rows aage jaayengi. Aggregates abhi allowed nahi. |
+| 3️⃣   | GROUP BY   | Jo rows bachi hain, unhe ab groups me divide karte hain based on the column(s). Jaise tum bolte ho: “group all rows by department_id”. |
+| 4️⃣   | HAVING     | Ab har group ban gaya. Ab tum keh sakte ho: filter only those groups jinka SUM(salary) > 50000. Ye GROUPS par filter hota hai. |
+| 5️⃣   | SELECT     | Ab decide hota hai: final output me kya dikhana hai? Columns, aliases, aggregate values — sab yahin decide hote hain. |
+| 6️⃣   | ORDER BY   | Final result aa gaya. Ab usko sort karo, jaise ASC/DESC. |
+| 7️⃣   | LIMIT      | Aur finally, agar tum keh rahe ho ki “top 10 results chahiye”, to SQL wahi 10 rows return karega. |
+
+* **Visualizing It With Example** : 
+```sql
+SELECT department_id, COUNT(*) 
+FROM employees 
+WHERE salary > 50000 
+GROUP BY department_id 
+HAVING COUNT(*) > 5 
+ORDER BY COUNT(*) DESC 
+LIMIT 3;
+```
+* **Let’s think like SQL here** -
+	1.	FROM: “Okay, I’ll read all rows from employees”
+	2.	WHERE: “Hmm, only those where salary > 50000… got it.”
+	3.	GROUP BY: “Now I’ll group these filtered rows by department_id”
+	4.	HAVING: “Wait, I’ll only keep those groups jinka count > 5”
+	5.	SELECT: “Okay, show department_id and COUNT(*)”
+	6.	ORDER BY: “Sort them by count descending”
+	7.	LIMIT: “Return only top 3 groups”
+
+* **Why SELECT is Later Even Though We Write It First** -
+    * Tum SELECT sabse pehle likhte ho because tumhe output chahiye.
+    * But SQL engine ko pehle data ko gather, filter, and group karna padta hai tab jaake vo decide kar sakta hai ki output me kya dikhana hai.
+    * Imagine if you say -
+    ```sql
+    SELECT name, COUNT(*) 
+    FROM employees 
+    GROUP BY department_id;
+    ```
+    * Ye galat hai — tum SELECT me name use kar rahe ho but usko GROUP nahi kiya. Isiliye SQL enforce karta hai: pehle grouping karo, tab SELECT.
+    * **Mnemonic (Shortcut)** -
+    ```
+    F-W-G-H-S-O-L
+    FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
+    ```
+    * 🔑 FROM is the Source,
+    * 🔎 WHERE is Row filter,
+    * 🧺 GROUP BY makes Buckets,
+    * 🚫 HAVING removes bad Buckets,
+    * 📤 SELECT picks what to show,
+    * ↕️ ORDER BY sorts,
+    * 📉 LIMIT controls the number.
+* **WHERE vs HAVING** -
+
+| Clause | Filters on           | Works with Aggregates? |
+|--------|----------------------|-------------------------|
+| WHERE  | Individual rows      | ❌ No                   |
+| HAVING | Groups (after GROUP BY) | ✅ Yes              |
+
 
 ### 13. Why This Order Matters ?
 ### Answer :
@@ -778,6 +815,73 @@
         CONSTRAINT constraint_name CHECK (condition)
     );
 ```
+### 8. Types of Keys in SQL.
+### Answer :
+* **Superkey** - Kisi table ka aisa set of columns jisse har row uniquely identify ho.
+* **Candidate Key** - Minimal superkey (no extra column).
+* **Primary Key (PK)** - Chuni hui candidate key jo table ka unique identifier hoti hai. NULL nhi hona chayia.
+* **Alternate Key (AK)** - Baaki candidate keys jo primary key nahi banti.
+* **Foreign Key (FK)** - Ek table ka column ya set of columns jo dusri table ke primary key ko reference karta hai.
+* **Composite Key** - Jab primary key multiple columns ka combination ho.
+* **Surrogate Key** - System-generated (e.g., auto-increment) key jo real-world attribute se match nahi karti.
+
+### Example 1: User Table
+
+| Column Name     | Description                  | Key Types                                      |
+|-----------------|------------------------------|------------------------------------------------|
+| user_id         | System-generated identifier  | PK, Surrogate Key, Candidate Key, Superkey     |
+| email           | User's email address (unique)| AK, Candidate Key, Superkey                    |
+| username        | Unique login name            | Candidate Key, Superkey                        |
+| password_hash   | Hashed login password        | –                                              |
+
+```sql
+CREATE TABLE User (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(100) UNIQUE,
+  username VARCHAR(50) UNIQUE,
+  password_hash VARCHAR(255)
+);
+```
+
+### Example 2: Inventory Table (Composite & Foreign Keys)
+
+| Column Name   | Description           | Key Types                                      |
+|---------------|-----------------------|------------------------------------------------|
+| product_id    | ID of the product     | Composite PK, FK → Product(prod_id)            |
+| warehouse_id  | ID of the warehouse   | Composite PK, FK → Warehouse(wh_id)            |
+| quantity      | Available stock       | –                                              |
+
+```sql
+CREATE TABLE Inventory (
+  product_id INT,
+  warehouse_id INT,
+  quantity INT,
+  PRIMARY KEY (product_id, warehouse_id),
+  FOREIGN KEY (product_id) REFERENCES Product(product_id),
+  FOREIGN KEY (warehouse_id) REFERENCES Warehouse(warehouse_id)
+);
+```
+
+* **Note** :
+Sample Data: User Table
+
+| user_id | email     | username | password_hash |
+|---------|-----------|----------|----------------|
+| 1       | a@x.com   | alice    | …              |
+| 2       | b@y.com   | bob      | …              |
+
+* Superkey examples -
+	* (user_id)
+	* (email, username)
+	* (user_id, email, username)
+    * Inme sab unique hain, par 3. mein extra columns hain.
+
+* Candidate Key examples -
+	* (user_id) — minimal, hataoge to uniqueness khatam
+	* (email) — bhi minimal unique
+	* (username) — agar username bhi unique ho business rule se
+* Super Key Vs Candidate Key - Saare candidate keys superkeys hote hain, lekin har superkey candidate key nahi (kyunki kuch mein extra column hota hai).
+
 
 ## Multi Table Queries
 
@@ -803,7 +907,36 @@
 * **Many to Many (M:M)** :
     * A many-to-many relationship occurs when multiple records in one table are related to multiple records in another table. 
     * This type of relationship is typically implemented using a junction table.
-    * A junction table is a table that is used to store the relationship between two tables. 
+    * A junction / pivot / bridge table is a table that is used to store the relationship between two tables. 
+    * **Why is Pivot Table used** - 
+        * **Assume kar :**
+	        * Ek table hai students
+	        * Ek table hai courses
+        * **Ab :**
+	        * Ek student kai courses le sakta hai
+	        * Ek course mein kai students ho sakte hain
+        * Toh agar hum sirf do hi table rakhein — toh kahaan store karenge kis student ne kaunsa course liya?
+        * **Galat tareeke** - Extra columns daalna
+        * Agar hum students table mein course1_id, course2_id, course3_id daal dein…
+        * Toh -
+	        * Ye flexible nahi hai (limit ho jayegi)
+	        * Redundant data hoga
+	        * Querying tough ho jaayegi
+        * **Solution** - Pivot table (aka mapping or junction table)
+            * Isliye hum banate hain ek naya table — jise kehte hain student_course
+            * Usme 2 columns honge -
+	            * student_id
+	            * course_id
+                * Ab tum har ek student-course combination ko ek row mein store kar sakte ho :
+
+                | student_id | course_id |
+                |------------|-----------|
+                | 1          | 101       |
+                | 1          | 102       |
+                | 2          | 101       |
+                | 3          | 103       |
+
+                * Is table ka kaam hai -“Bridge” banakar dikhana ki kaunsa student kaunsa course le raha hai.
     * It contains foreign keys from both tables that it is bridging.
     * In our bookstore, a book can be purchased by multiple customers, and a customer can purchase multiple books. 
     * We can represent this relationship using a sales table as a junction table.
@@ -814,6 +947,7 @@
 ### 1. What are Joins ?
 ### Answer :
 * Used to combine rows from two or more tables, based on a related column between them.
+* “Ek ya zyada tables ke data ko unke common columns ke basis pe jodna (combine karna)”.
 
 ### 2. How many types of JOIN are there ?
 ### Answer :
@@ -830,6 +964,8 @@
 ### Answer :
 * Returns the records with matching values in both tables.
 * Operation compares each row of the first table with each row of the second table to find all pairs of rows that satisfy the join predicate.
+* **Formula** -
+    * `INNER JOIN = Fetches Matching records from both Tables`
 * **Few things to consider in case of INNER JOIN** :-
     * It is a default join in SQL.
     * If you mention JOIN in your query without specifying the type, SQL considers it as an INNER JOIN.
@@ -842,6 +978,26 @@
     INNER JOIN table2
     ON table1.column_name = table2.column_name;
 ```
+* **Breakdown of Syntax** - 
+
+| Part               | Kya Karta Hai                                        |
+|--------------------|------------------------------------------------------|
+| SELECT             | Jo columns chahiye final output mein                |
+| FROM table1        | Pehla table jisko tum base maan rahe ho            |
+| INNER JOIN table2  | Dusra table jisko join karna hai                   |
+| ON                 | Kaunsi condition pe match karna hai dono tables ka data |
+
+* **ON Clause ka mtlb** -
+    * ON clause ka kaam hota hai - “Batana ki dono tables ke kin columns ko compare karna hai for matching rows.”
+    * Ye JOIN condition hoti hai.
+    * Iske bina SQL ko pata hi nahi chalega ki match kaise karna hai.
+    * ON clause mein koi bhi common field ho sakti hai — foreign key, indexed field, ya business logic-based field.
+    * General Rule - `ON table1.columnX = table2.columnY`
+    * Tum kisi bhi column ko match kara sakte ho jiska business ya relational sense banta ho.
+	* Mostly ye `Foreign Key = Primary Key` hota hai (but not always).
+    * **First-Principle Analogy** -
+        * “Main table1 ka ek row utha raha hoon… kya table2 mein koi aisa row hai jiska value is column pe same ho?”
+        * Agar haan — combine kar do, nahi — ignore ya NULL (JOIN type ke hisaab se)
 ![Alt text](INNER-JOIN-DIAGRAM.png)
 
 
@@ -849,6 +1005,8 @@
 ### Answer :
 * Combines rows from two or more tables based on a related column between them and returns all rows from the left table (table1) and the matched rows from the right table (table2).
 * If there is no match, the result is `NULL` on the right side.
+* **Formula** -
+    * `LEFT JOIN = INNER JOIN + Additional Records From Left Table`
 * **Syntax of LEFT(OUTER) JOIN** :-
 ```sql
     SELECT column_name(s)
@@ -859,8 +1017,6 @@
 * **How SQL LEFT JOIN Works** :-
     * LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2).
     * Result is `NULL` from the right side, if there is no match.
-* **Formula of LEFT(OUTER)-JOIN** `IMP`:
-    * `Inner Join + Additional Records From Left Table`
 
 ![Alt text](LEFT(OUTER)-JOIN.png)
 
@@ -869,6 +1025,8 @@
 ### Answer :
 * Returns all records from the right table (table2), and the matched records from the left table (table1).
 * If there is no match, the result is NULL on the left side.
+* **Formula** -
+    * `RIGHT JOIN = INNER JOIN + Additional Records From Right Table`
 * **Syntax of RIGHT(OUTER) JOIN** :-
 ```sql
     SELECT column_name(s)
@@ -883,15 +1041,23 @@
 
 ### 6. FULL(OUTER) JOIN.
 ### Answer :
+* UNION in MYSQL.
 * Method to combine rows from two or more tables, based on a related column between them.
 * Returns all rows from the left table (table1) and from the right table (table2).
 * Combines the results of both left and right outer joins and returns all (matched or unmatched) rows from the tables on both sides of the join clause.
+* **Formula** -
+    * `FULL JOIN = LEFT JOIN + RIGHT JOIN`
 * **Syntax of FULL(OUTER) JOIN** :-
 ```sql
     SELECT column_name(s)
     FROM table1
-    FULL OUTER JOIN table2
-    ON table1.column_name = table2.column_name;
+    LEFT JOIN table 2
+    ON table1.column_name = table2.column_name
+    UNION
+    SELECT column_name(s)
+    FROM table1
+    RIGHT JOIN table 2
+    ON table1.column_name = table2.column_name
 ```
 ![Alt text](FULL(OUTER)-JOIN.png)
 

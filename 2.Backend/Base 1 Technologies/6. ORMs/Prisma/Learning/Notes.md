@@ -1,6 +1,6 @@
 # Introduction to ORMs
 
-## 1. What are ORMS ?
+## 1. What are ORMs ?
 ## Explanation :-
 * Object-Relational Mapping.
 * It is a technique that connects databases (like SQL) with programming languages by mapping database tables to objects.
@@ -17,6 +17,8 @@
 * **Mapping** - 
     * Ye vo process hai jisme objects aur tables ke beech ka connection create hota hai. 
     * Mapping ka matlab hai ki hum code ke objects aur unke attributes ko directly database ke tables aur unke columns ke sath connect karte hain.
+
+![Logo](./assets/ORM.png)
 
 ## 2. Why do we even need ORMs ? Cant we directly use express with DB ?
 ## Explanation :-
@@ -129,6 +131,39 @@
 	    * **Mongoose (MongoDB ke liye)** - Ye JavaScript/Node.js mein use hone waala ORM hai jo MongoDB ke liye tailored hai.
 	    * **Django ODM (Django ke liye)** - Ye Python-based Django framework mein MongoDB ke liye use kiya ja sakta hai.
 
+## 6. What are ODMs ?
+## Explanation :-
+* Object-Document Mapping.
+* Ye ek technique hai jo programming language ke objects ko document-oriented databases (jaise MongoDB) ke collections aur documents se map karta hai.
+* Isse hum database documents ko apne application ke objects ki tarah treat kar sakte hain, bina raw queries likhe.
+* **Object (Programming world)** -
+    * Software mein, hum classes aur objects ka use karte hain.
+    * Jaise JavaScript ya Python mein, ek “User” class bana ke uske properties define karte hain.
+* **Document (Database world)** -
+    * Document databases mein data JSON/BSON format mein store hota hai.
+    * Ek collection rows ki jagah documents ka group hota hai, jisme fields aur nested sub-documents ho sakte hain.
+* **Mapping** -
+    * Ye process objects aur documents ke beech connection banata hai.
+    * Aap apne code mein objects ko update karte ho, ODM library wo changes document DB mein reflect karti hai.
+* **Examples** -
+    * **Mongoose (Node.js + MongoDB)** – kaafi popular ODM hai, schema define karo aur phir .find(), .save(), .update() methods use karo.
+    * **Typegoose (TypeScript wrapper)** – Mongoose ka TypeScript-friendly wrapper, schema definitions type-safe banata hai.
+
+![Logo](./assets/ODM.png)
+
+## 7. What are some Key Differences between ORM and ODM ?
+## Explanation :-
+
+| **Aspect**         | **ORM (SQL)**                               | **ODM (NoSQL/Document)**                                |
+|--------------------|---------------------------------------------|----------------------------------------------------------|
+| **Storage Model**  | Tables & Rows                               | Collections & Documents (JSON/BSON)                      |
+| **Schema**         | Fixed schema, migrations required           | Flexible/Optional schema, easy to change                 |
+| **Joins/Relations**| JOIN statements, foreign keys               | Embedded documents or manual references                 |
+| **Query Language** | SQL (SELECT, JOIN, GROUP BY…)               | JSON-style queries (e.g., `{ age: { $gt: 18 } }`)       |
+| **Transactions**   | ACID transactions built-in                  | Limited multi-document transactions (DB dependent)       |
+| **Use-case**       | Structured data with strict relations       | Hierarchical or semi-structured data, rapid development  |
+
+
 ## 6. What is Prisma ?
 ## Explanation :-
 * Prisma ek modern ORM hai jo mainly Node.js aur TypeScript applications mein relational databases ke saath kaam karne ke liye use hota hai. 
@@ -198,10 +233,10 @@
 
 ## 1. Why Does Prisma Use This Object Syntax ?
 ## Explanation :-
-* When you write SQL by hand (e.g., SELECT * FROM user WHERE userId = 2;), you’re describing exactly how the database should filter, aggregate, or join data. 
+* When you write SQL by hand (e.g., `SELECT * FROM user WHERE userId = 2;`), you’re describing exactly how the database should filter, aggregate, or join data. 
 * With Prisma, you’re describing the query in a JavaScript/TypeScript-friendly object structure. 
 * Prisma then translates that structure into the actual SQL queries behind the scenes.
-* Below is a conceptual breakdown of how each SQL clause—SELECT, FROM, WHERE, GROUP BY, HAVING—maps into Prisma’s syntax and why it’s structured that way.
+* Below is a conceptual breakdown of how each SQL clause — `SELECT` , `FROM` , `WHERE` , `GROUP BY` , `HAVING` - maps into Prisma’s syntax and why it’s structured that way.
 * **JavaScript Ecosystem** :
     * Prisma queries are plain JavaScript/TypeScript objects. 
     * That means your code is type-safe (if you’re using TypeScript) and integrates naturally with the rest of your JS app.
@@ -216,26 +251,85 @@
 ## 2. What are Prisma Query Components ?
 ## Explanation :-
 * `SELECT` Clause
-* In SQL, SELECT determines which columns you want to retrieve.
-	* **In Prisma** : You specify what fields you want returned under a select object or you can include all fields by default.
-	* This design is type-safe. If you mark a field in the select that doesn’t exist in your Prisma schema, you’ll get an error before you even run the query.
+    * **In SQL** : 
+        * SELECT determines which columns you want to retrieve.
+        ```sql
+            SELECT * FROM Customer;
+        ```
+	* **In Prisma** : 
+        * You specify what fields you want returned **under a select object** or you can include all fields by default.
+        ```javascript
+            const allCustomers = await prisma.customer.findMany();
+        ```
+        * `prisma` → tumhara PrismaClient instance
+        * `.findMany()` → SQL ka SELECT *
+	    * This design is type-safe. If you mark a field in the select that doesn’t exist in your Prisma schema, you’ll get an error before you even run the query.
 * `FROM` Clause
-* In SQL, FROM indicates which table(s) you’re querying.
-	* **In Prisma** : The FROM concept is encapsulated by the model you’re calling, e.g. prisma.user means you are operating on the “user” table.
-	* You typically see it as prisma.user.findMany(...), prisma.user.findUnique(...), etc.
+    * **In SQL** : 
+        * FROM indicates which table(s) you’re querying.
+	* **In Prisma** : 
+        * The FROM concept is encapsulated by the model you’re calling, e.g. prisma.user means you are operating on the “user” table.
+	    * You typically see it as prisma.user.findMany(...), prisma.user.findUnique(...), etc.
 * `WHERE` Clause
-* In SQL, WHERE filters rows based on conditions.
-	* **In Prisma** : The where property is an object describing these conditions.
-	* Fields are key-value pairs that represent column-value checks (where: { userId: someValue }), or more complex conditions with operators like gt, lt, in, etc.
+    * **In SQL** : 
+        * WHERE filters rows based on conditions.
+        ```sql
+            SELECT * 
+            FROM Customer
+            WHERE age > 18
+            AND status = 'ACTIVE';
+        ```
+	* **In Prisma** : 
+        * The **where property is an object** describing these conditions.
+        ```javascript
+            const filtered = await prisma.customer.findMany({
+                where: {
+                    age: { gt: 18 },
+                    status: 'ACTIVE',
+                },
+            });
+        ```
+        * where object me har field ke liye filter operators -
+	        * gt (greater than), lt (less than), equals, contains, etc.
+	    * Multiple conditions default “AND” se judte hain. Agar “OR” chahiye -
+        ```sql
+            where: {
+                OR: [
+                    { status: 'ACTIVE' },
+                    { age: { lt: 18 } },
+                ]
+            }
+        ```
+	    * Fields are key-value pairs that represent column-value checks (where: { userId: someValue }), or more complex conditions with operators like gt, lt, in, etc.
 * `GROUP BY` Clause
-* In SQL, GROUP BY groups rows sharing certain field values, often used with aggregate functions (COUNT, SUM, etc.).
-	* **In Prisma** : There’s a specific groupBy method you can call on the Prisma client (for example, prisma.user.groupBy(...)).
-	* The configuration object for groupBy in Prisma often includes which fields to group on, which aggregates to compute, and conditions (like a where filter) if needed.
-	* Internally, Prisma will generate the correct SQL with GROUP BY behind the scenes.
+    * **In SQL** : 
+        * GROUP BY groups rows sharing certain field values, often used with aggregate functions (COUNT, SUM, etc.).
+        ```sql
+            SELECT region, COUNT(*) AS cnt
+            FROM Customer
+            GROUP BY region;
+        ```
+	* **In Prisma** : 
+        * There’s a specific groupBy method you can call on the Prisma client (for example, prisma.user.groupBy(...)).
+        ```javascript
+            const grouped = await prisma.customer.groupBy({
+                by: ['region'],
+                _count: { _all: true },
+            });
+            // result: [{ region: 'North', _count: { _all: 12 } }, …]
+        ```
+    	* `groupBy` → grouping method
+	    * `by` → fields ki list jinpe group karna hai
+	    * `_count`/`_sum`/`_avg`/`_min`/`_max` → aggregation selections
+	    * The configuration object for groupBy in Prisma often includes which fields to group on, which aggregates to compute, and conditions (like a where filter) if needed.
+	    * Internally, Prisma will generate the correct SQL with GROUP BY behind the scenes.
 * `HAVING` Clause
-* In SQL, HAVING is like a WHERE but applies to grouped data (i.e., results of GROUP BY).
-	* **In Prisma** : When using groupBy, you can specify filters on the aggregated data in the same object. Prisma calls this property having in some versions, or merges it with where depending on the aggregator function.
-	* The idea is the same: filter out grouped results that don’t meet certain aggregate conditions.
+    * **In SQL** : 
+        * HAVING is like a WHERE but applies to grouped data (i.e., results of GROUP BY).
+	* **In Prisma** : 
+        * When using groupBy, you can specify filters on the aggregated data in the same object. 
+        * Prisma calls this property having in some versions, or merges it with where depending on the aggregator function.
+	    * The idea is the same: filter out grouped results that don’t meet certain aggregate conditions.
 
 ## 3. How Prisma Translates to SQL ?
 ## Explanation :-
@@ -253,7 +347,7 @@
 
 You rarely see the raw SQL, because Prisma’s main goal is to abstract that away for developer productivity and type-safety.
 
-## 4. Why Do We Nest Objects in Prisma Queries ?
+## 4. Why Do We Nested Objects in Prisma Queries ?
 ## Explanation :-
 * When you use Prisma, many of its filters (like startsWith, contains, lt, gt, etc.) are accessed via nested objects. 
 * This nested object structure is how Prisma differentiates between :
@@ -287,7 +381,7 @@ You rarely see the raw SQL, because Prisma’s main goal is to abstract that awa
 ```javascript
     where: { name: "Alice" }
 ```
-* But if you want something like name LIKE "A%", then Prisma’s approach is :
+* But if you want something like name `LIKE "A%"`, then Prisma’s approach is :
 ```javascript
     where: {
         name: { startsWith: "A" }
@@ -302,8 +396,8 @@ You rarely see the raw SQL, because Prisma’s main goal is to abstract that awa
 * **Multiple Conditions = Arrays**
     * **Real-World Use Case** - You often want to chain many conditions with AND or OR. 
     * **For Example** :
-        * (a \lor b \lor c)
-        * (x \land y \land z)
+        * (a \or b \or c)
+        * (x \and y \and z)
     * **Array Is More Natural** - Each element in the array is itself a condition object. 
     * For instance :
     ```javascript
@@ -462,26 +556,31 @@ You rarely see the raw SQL, because Prisma’s main goal is to abstract that awa
 	        * **Why/When** - When you only need the first matching record, not all.
 	        * **Usage** - Commonly used when you expect just one result.
 	        * **Difference** - Returns only the first match; might be helpful when you’re unsure of how many results there are.
+            * **Returns** - Single object (pahla match)
         * **findFirstOrThrow** : 
         	* **What** - Similar to findFirst, but throws an error if no matching record is found.
 	        * **Why/When** - When you require a record and cannot proceed without it.
 	        * **Usage** - Use when you expect the record to exist and need to handle errors if it doesn’t.
 	        * **Difference** - Throws an error if nothing is found, unlike findFirst, which returns null.
+            * **Returns** - Single object (pehla match) ya exception throw
         * **findMany** : 
         	* **What** - Finds multiple records that match the given filter.
 	        * **Why/When** - When you need a list of matching records.
 	        * **Usage** - Used for queries where multiple records are expected.
 	        * **Difference** - Unlike findFirst, it returns an array of matching results.
+            * **Returns** - Array of objects
         * **findUnique** :
         	* **What** - Finds a single record that matches the unique filter (e.g., by primary key).
 	        * **Why/When** - When you’re looking for a specific, unique record.
 	        * **Usage** - Ideal for queries where you know there’s only one matching record (e.g., id).
 	        * **Difference** - It is used for finding a unique, singular record based on unique fields.
+            * **Returns** - Single object (uniquely match) ya null
         * **findUniqueOrThrow** : 
         	* **What** - Similar to findUnique, but throws an error if no matching record is found.
 	        * **Why/When** - When you need to ensure the record exists and can’t continue without it.
 	        * **Usage** - Use it when you’re certain the record should exist and want an error if it’s missing.
             * **Difference** - Unlike findUnique, it throws an error when no record is found.
+            * **Returns** - Single object (uniquely match) ya exception throw
 * **Update** -
     * Modify existing records.
     * **Example** -
@@ -525,13 +624,59 @@ You rarely see the raw SQL, because Prisma’s main goal is to abstract that awa
 ## 3. What are some advanced Prisma Client Features ?
 ## Explanation :-
 * **Relations** -
-    * Query related data across models.
-    * **Example** -
-        ```javascript
-        const usersWithPosts = await prisma.user.findMany({
-            include: { posts: true }
-        });
-        ```
+    * Prisma me joins model relations se handle hote hain.
+    * Types of JOINs in Prisma :
+        * INNER
+        * LEFT
+        * RIGHT
+        * **Schema Example** - 
+            ```javascript
+                model Customer {
+                id       Int       @id @default(autoincrement())
+                name     String
+                addresses Address[] 
+                }
+
+                model Address {
+                id          Int      @id @default(autoincrement())
+                city        String
+                customerId  Int
+                customer    Customer @relation(fields: [customerId], references: [id])
+                }
+            ```
+            * **INNER JOIN using Raw SQL** :
+                ```sql
+                    SELECT c.name, a.city
+                    FROM Customer c
+                    INNER JOIN Address a
+                    ON c.id = a.customerId;
+                ```
+            * **INNER JOIN using Prisma** :
+                ```javascript
+                    const joined = await prisma.customer.findMany({
+                        where: { addresses: { some: {} } },  // inner join filter
+                        select: {
+                            name: true,
+                            addresses: { select: { city: true } }
+                        },
+                    });
+                ```
+            * **LEFT JOIN using Prisma** :
+                * Prisma ka include left join jaisa behave karta hai.
+                ```javascript
+                    const leftJoined = await prisma.customer.findMany({
+                        include: { addresses: true }
+                    });
+                    // agar kisi customer ke paas addresses nahin, to addresses: []
+                ```
+            * **RIGHT JOIN using Prisma** :
+                * Prisma me direct right join nahi, but aise kar sakte ho.
+                ```javascript
+                    const rightJoined = await prisma.address.findMany({
+                        include: { customer: true }
+                    });
+                    // sab addresses milenge + linked customer
+                ```
 * **Filtering** -
     * Add conditions to your queries.
     * **Example** -

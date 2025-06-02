@@ -27,32 +27,32 @@
 
 ### Understanding IP Addresses, Domain Names, and Routing
 - **IP Address**
-	- Unique identifier for devices on a network (like a postal address for computers).
+  - Unique identifier for devices on a network (like a postal address for computers).
 	- **Types** :
 		- **IPv4** - 32-bit addresses (e.g., 192.168.0.1).
 		- **IPv6** - 128-bit addresses for a larger address space.
 
 - **Domain Names**
-	- Human-readable names mapped to IP addresses.
+  - Human-readable names mapped to IP addresses.
 	- **Example** - www.google.com maps to an IP like 142.250.72.206.
 
 - **Routing**
-	- The process of finding the best path for data packets to travel from source to destination.
+  - The process of finding the best path for data packets to travel from source to destination.
 	- Routers play a key role by forwarding packets between networks.
 
 ### Key Concepts
 1. **Internet Service Providers (ISPs)**
-	- ISPs provide access to the Internet.
-	- They connect homes and businesses to the backbone of the Internet.
+   - ISPs provide access to the Internet.
+   - They connect homes and businesses to the backbone of the Internet.
 	- **Examples** - Airtel, Jio, Comcast.
 
 2. **Routers**
-	- Devices that direct data packets between networks.
-	- Use routing tables to decide the best path for packets.
+   - Devices that direct data packets between networks.
+   - Use routing tables to decide the best path for packets.
 
 3. **DNS (Domain Name System)**
-	- Translates human-readable domain names into machine-readable IP addresses.
-	- Acts like a phonebook for the Internet.
+   - Translates human-readable domain names into machine-readable IP addresses.
+   - Acts like a phonebook for the Internet.
 
 **Example Workflow of Internet Communication**
 1.	You type www.google.com in your browser.

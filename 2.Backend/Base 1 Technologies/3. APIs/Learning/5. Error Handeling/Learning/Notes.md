@@ -31,6 +31,21 @@
         ```
 
 ### 2. What are some Built-in Error Types ?
+* **Built-in Error** - Aise error objects jo JavaScript language ke andar hi predefined hote hain.
+* Yeh errors tab throw hote hain jab koi common programming mistake ya koi unexpected situation aati hai.
+* Built-in errors are standard error classes provided by JavaScript.
+* Inko automatically JS engine throw karta hai jab koi galti hoti hai, jaise syntax galti, undefined variable access, wrong type use, etc.
+* Common Built-in Error Types in JS :
+
+| **Error Type**   | **Kab aata hai? (When it occurs)**                                                                 |
+|------------------|----------------------------------------------------------------------------------------------------|
+| **ReferenceError** | Jab aap undefined variable ko access karte ho.<br>**Example:** `console.log(x)` (agar `x` define nahi hai) |
+| **TypeError**      | Jab aap invalid operation karte ho kisi variable pe.<br>**Example:** `null.toString()`           |
+| **SyntaxError**    | Jab aapki code likhne ki syntax galat hoti hai.<br>**Example:** `if true {}`                     |
+| **RangeError**     | Jab koi value expected range ke bahar chali jaati hai.<br>**Example:** `new Array(-1)`           |
+| **EvalError**      | Jab `eval()` function ka misuse hota hai.<br>**Note:** Ye rare hai, mostly modern JS mein nahi aata |
+| **URIError**       | Jab aap galat URI functions use karte ho.<br>**Example:** `decodeURI('%')`                       |
+
 * ReferenceError - 
     * Tab aata hai jab aap kisi undefined variable ko access karte ho.
     * Ex - 
@@ -65,25 +80,25 @@
 * Yeh humein error ko samajhne aur debug karne mein madad karte hain.
 * Anatomy of an Error Object - 
     * Error object ke kuch important properties hote hain jo humein error ke baare mein information dete hain , such as :-
-        * name - Error ka type batata hai.
-        * message - Error ka description deta hai.
-        * stack - Error ka stack trace batata hai (code mein kaha-kaha error hua hai).
-* Ex - 
-    ```javascript
-        try {
-            console.log(undefinedVariable); // Undefined variable
-        }
-        catch (error) {
-            console.log("Name:", error.name);  // Error type
-            console.log("Message:", error.message); // Error description
-            console.log("Stack:", error.stack);     // Error location
-        }
-    ```
-    * Output -
-        * Name - ReferenceError
-        * Message - undefinedVariable is not defined
-        * Stack - ReferenceError: undefinedVariable is not defined at anonymous:2:15
-* Custom Errors - 
+        * **name** - Error ka type batata hai.
+        * **message** - Error ka description deta hai.
+        * **stack** - Error ka stack trace batata hai (code mein kaha-kaha error hua hai).
+    * **Example** - 
+        ```javascript
+            try {
+                console.log(undefinedVariable); // Undefined variable
+            }
+            catch (error) {
+                console.log("Name:", error.name);  // Error type
+                console.log("Message:", error.message); // Error description
+                console.log("Stack:", error.stack);     // Error location
+            }
+        ```
+        * **Output** -
+            * Name - ReferenceError
+            * Message - undefinedVariable is not defined
+            * Stack - ReferenceError: undefinedVariable is not defined at anonymous:2:15
+* **Custom Errors** - 
     * Kabhi-kabhi built-in errors se zyada specific errors ki zarurat hoti hai, tab hum custom errors banate hain. 
     * Isme hum Error class ko extend karte hain aur apne properties add karte hain.
     * Ex - 
@@ -110,39 +125,39 @@
 ### 4. What are some Error Handeling Mechanism ?
 * Error handling ke through hum apne code mein hone wale unexpected situations ko gracefully manage karte hain. 
 * JavaScript mein error handle karne ke kuch core mechanisms hote hain.
-    * try Block - 
+    * **try Block** - 
         * Isme woh code likha jata hai jo error throw kar sakta hai. 
-        * Agar koi error hoti hai, toh try block turant stop ho jata hai aur catch block execute hota hai.
-    * catch Block -
+        * Agar koi error hota hai, toh try block turant stop ho jata hai aur catch block execute hota hai.
+    * **catch Block** -
         * Isme error ko handle kiya jata hai. 
-        * Yeh block error object ko access kar sakta hai.
-    * finally Block -
+        * Yeh block **error object** ko access kar sakta hai.
+    * **finally Block** -
         * Yeh block hamesha execute hota hai, chahe error aaye ya na aaye. 
         * Cleanup operations (e.g., resource release) ke liye useful hai.
-* Ex -
-    ```javascript
-        try {
-            let result = 10 / 0; // No error here
-            console.log("Result:", result);
-            console.log(undefinedVariable); // This will throw an error
-        } 
-        catch (error) {
-            console.log("Caught an error!");
-            console.log("Error Name:", error.name);
-            console.log("Error Message:", error.message);
-        } 
-        finally {
-            console.log("This block will always execute!");
-        }
-    ```
-* Throwing Errors - 
-    * throw keyword se hum manually errors ko throw kar sakte hain. 
+    * **Example** -
+        ```javascript
+            try {
+                let result = 10 / 0; // No error here
+                console.log("Result:", result);
+                console.log(undefinedVariable); // This will throw an error
+            } 
+            catch (error) {
+                console.log("Caught an error!");
+                console.log("Error Name:", error.name);
+                console.log("Error Message:", error.message);
+            } 
+            finally {
+                console.log("This block will always execute!");
+            }
+        ```
+* **Throwing Errors** - 
+    * `throw` keyword se hum manually errors ko throw kar sakte hain. 
     * Iska use tab hota hai jab hum specific conditions ke basis par error generate karna chahein.
-    * Ex - 
+    * **Example** - 
         ```javascript
             function divide(a, b) {
                 if (b === 0) {
-                throw new Error("Cannot divide by zero!"); // Manually throwing an error
+                    throw new Error("Cannot divide by zero!"); // Manually throwing an error
                 }
                 return a / b;
             }
@@ -153,11 +168,11 @@
                 console.log("Error caught:", error.message);
             }
         ```
-* Asynchronous Error Handling - 
+* **Asynchronous Error Handling** - 
     * Asynchronous operations (like API calls, file reads) ke errors handle karne ke liye different methods hote hain.
-        * async/await with try...catch -
+        * `async/await with try...catch` -
             * Async functions mein error ko handle karne ke liye try...catch block use hota hai.
-            * Ex - 
+            * **Example** - 
                 ```javascript
                     async function fetchData() {
                         try {
@@ -171,9 +186,9 @@
                     }
                     fetchData();
                 ```
-        * Promises with .catch() -
+        * `Promises with .catch()` -
             * Promises ka error handle karne ke liye .catch() method use hota hai.
-            * Ex - 
+            * **Example** - 
                 ```javascript
                     let promise = new Promise((resolve, reject) => {
                         reject("Something went wrong!");
@@ -190,12 +205,12 @@
 ### 5. What is Error Propogation ?
 * Error propagation ka matlab hai ki jab ek function mein error hoti hai, toh woh error kaise aur kahaan tak propagate (spread) hoti hai. 
 * JavaScript mein errors propagate karne ke do main scenarios hote hain.
-    * Synchronous Error Propagation
-	* Asynchronous Error Propagation
-* Synchronous Error Propagation -
-    * Jab ek function ke andar koi error throw hoti hai aur woh function kisi aur function ke andar call hua hota hai, toh error “upar” ke calling functions tak propagate hoti hai. 
+    * **Synchronous Error Propagation**
+	* **Asynchronous Error Propagation**
+* **Synchronous Error Propagation** -
+    * Jab ek function ke andar koi error throw hoti hai aur woh function kisi aur function ke andar call hua hota hai, toh error **“upar”** ke calling functions tak propagate hoti hai. 
     * Agar kisi level par try...catch block nahi hai, toh error global scope tak chali jaati hai.
-    * Ex - 
+    * **Example** - 
         ```javascript
             function level1() {
                 level2(); // Calling level2
@@ -210,16 +225,16 @@
                 console.log("Caught error:", error.message);
             }
         ```
-        * Output -
+        * **Output** -
             * Caught error - An error occurred in level2!
-        * Explanation -
+        * **Explanation** -
 	        * level2() ne error throw kiya.
 	        * Error level1() tak propagate hua.
 	        * level1() ke bahar try...catch block tha, toh error handle ho gaya.
-* Asynchronous Error Propagation - 
+* **Asynchronous Error Propagation** - 
     * Asynchronous operations (like setTimeout, API calls) mein errors turant propagate nahi hoti. 
     * Yeh error promises ya callbacks ke andar hoti hai aur unhein alag handle karna padta hai.
-    * Ex : Without Handling Asynchronous Error -
+    * **Example : Without Handling Asynchronous Error** -
         ```javascript
             function asyncOperation() {
                 setTimeout(() => {
@@ -233,22 +248,22 @@
                 console.log("Caught error:", error.message); // Won't catch this
             }
         ```
-        * Output -
+        * **Output** -
 	        * Console mein koi error catch nahi hoga.
 	        * Global error uncaught rahega.
-* Key Takeaways -
-	* Synchronous errors automatically propagate upar ke call stack tak, jab tak kisi level par try...catch block ho.
-	* Asynchronous errors ko manually handle karna padta hai using try...catch, .catch(), ya callbacks.
+* **Key Takeaways** -
+	* **Synchronous errors automatically propagate** upar ke call stack tak, jab tak kisi level par try...catch block ho. -----> `IMP`
+	* **Asynchronous errors ko manually** handle karna padta hai using try...catch, .catch(), ya callbacks. -----> `IMP`
 	* Agar asynchronous errors ko handle nahi kiya, toh yeh global uncaught errors ban jaate hain.
 
 ### 6. What is Error Bubbling ?
 * Error bubbling ka matlab hai ki jab ek error kisi function ke andar throw hoti hai, toh woh “bubble up” karti hai call stack ke through upar ke calling functions tak, jab tak usse handle na kiya jaye. 
 * Agar error handle nahi hoti, toh woh global scope tak pahunch jaati hai aur program crash ho sakta hai.
-* Key Points About Error Bubbling -
-	* Default Behavior - Errors automatically bubble up unless explicitly caught.
-	* Propagation Path - Errors propagate from the innermost function (jahan error throw hoti hai) to the outermost function (global scope).
-	* Effect on the Call Stack - Jab tak error kisi try...catch block ke andar handle nahi hoti, woh call stack ke through upar propagate karti hai.
-* Example : Error Bubbling in Synchronous Code - 
+* **Key Points About Error Bubbling** -
+	* **Default Behavior** - Errors automatically bubble up unless explicitly caught.
+	* **Propagation Path** - Errors propagate from the innermost function (jahan error throw hoti hai) to the outermost function (global scope).
+	* **Effect on the Call Stack** - Jab tak error kisi try...catch block ke andar handle nahi hoti, woh call stack ke through upar propagate karti hai.
+* **Example : Error Bubbling in Synchronous Code** - 
     ```javascript
         function innerFunction() {
             throw new Error("An error occurred in innerFunction!");
@@ -266,13 +281,13 @@
         }
         outerFunction();
     ```
-    * Output - 
+    * **Output** - 
         * Caught error - An error occurred in innerFunction!
-    * Explanation -
+    * **Explanation** -
 	    * innerFunction() ne error throw kiya.
 	    * Error bubble up karke middleFunction() tak gaya, fir outerFunction() tak.
 	    * outerFunction() ke andar try...catch block tha, isliye error handle ho gaya.
-* Example : Error Bubbling Without Handling - 
+* **Example : Error Bubbling Without Handling** - 
     ```javascript
         function innerFunction() {
             throw new Error("Uncaught error in innerFunction!");
@@ -285,17 +300,17 @@
         }
         outerFunction(); // No try-catch block
     ```
-    * Output -
+    * **Output** -
         * Uncaught Error: Uncaught error in innerFunction!
             at innerFunction
             at middleFunction
             at outerFunction
-    * Explanation -
+    * **Explanation** -
 	    * Koi bhi try...catch block nahi tha, isliye error global scope tak bubble up ho gayi.
-* Error Bubbling in Asynchronous Code - 
-    * Asynchronous code mein errors bubble up karne ka default behavior nahi hota. 
-    * Errors ko manually handle karna padta hai.
-* Example : Without Handling Asynchronous Error -
+* **Error Bubbling in Asynchronous Code** - 
+    * **Asynchronous code** mein errors **bubble up** karne ka **default behavior nahi hota**. 
+    * **Errors** ko **manually handle** karna padta hai.
+* **Example : Without Handling Asynchronous Error** -
     ```javascript
         function asyncOperation() {
             setTimeout(() => {
@@ -304,31 +319,53 @@
         }
         asyncOperation();
     ```
-    * Output - 
+    * **Output** - 
         * Uncaught Error : Uncaught async error!
-    * Explanation -
+    * **Explanation** -
         * Error bubble up nahi hoti kyunki asynchronous operations ka nature hi alag hota hai.
-* When Does Error Bubbling Stop -
+* **When Does Error Bubbling Stop** -
     * Error bubbling tabhi stop hoti hai jab.
 	    * Error ko kisi try...catch block mein handle kar diya jaye.
 	    * Error ko explicitly handle na karne par woh global error ban jaati hai.
-* Best Practices for Handling Bubbling -
-	* Always Use Try-Catch Blocks - Jahan error hone ki possibility zyada ho, wahan try...catch block lagayein.
-	* Global Error Handlers - Backend apps mein uncaught errors ko process.on ya middleware se handle karein.
-	* Centralized Error Handling - Especially for frameworks like Express, error middleware ka use karein.
+* **Best Practices for Handling Bubbling** -
+	* **Always Use Try-Catch Blocks** - Jahan error hone ki possibility zyada ho, wahan try...catch block lagayein.
+	* **Global Error Handlers** - Backend apps mein uncaught errors ko process.on ya middleware se handle karein.
+	* **Centralized Error Handling** - Especially for frameworks like Express, error middleware ka use karein.
 
-### 7. What is the difference between res.status().send() and throw new Error ?
-![Alt text](res.status.send_Vs_throw-new-Error.png)
+### 7. What is the difference between Error Propogation and Error Bubbbling ?
 
-### 8. What is the difference between Error Propogation and Error Bubbbling ?
+| **Point**      | **Error Propagation**                                 | **Error Bubbling**                                               |
+|----------------|--------------------------------------------------------|------------------------------------------------------------------|
+| **Kya hai?**   | General process of error moving up the call stack     | Visual/behavioral way to describe the same upward movement       |
+| **Use case?**  | Discussed in context of sync/async error handling     | More often in sync (can be confused with DOM bubbling in frontend) |
+| **Analogy**    | "Error pass ho raha hai" (error is being passed up)   | "Bubble upar uth raha hai" (bubble is rising up)                |
+| **Level**      | Concept (logical flow of error)                       | Action/Effect (how error moves in actual execution flow)         |
+
+![Alt Text](PropogationVsBubbling.png)
 ![Alt text](ErrorPropogation_Vs_ErrorBubbling.png)
+
+### 8. What is the difference between res.status().send() and throw new Error ?
+![Alt text](res.status.send_Vs_throw-new-Error.png)
 
 ### 9. When we use throw new Error , Which concept is being used Error Propogation or Error Bubbling ?
 * When you use throw new Error, the concept being used depends on how and where the error is handled. 
 * It can lead to either Error Propagation or Error Bubbling based on the situation.
-* Scenario 1 : Error Propagation -
+* **Scenario 1 : Error Propagation — YOU DECIDE to Handle It (Recommended ✅)** -
+    * Jab tu intentionally error ko catch kar raha hai kahin upar wale function ya middleware mein, tab tu error propagate hone de raha hai with control.
+    * **Use when** -
+	    * Tujhe error ka meaningful response dena hai (e.g. HTTP 400, 401, 500)
+	    * Tu Express backend bana raha hai (centralized error handler)
+	    * Tu async/await ya Promise chain likh raha hai
+        ```javascript
+            // Middleware
+            app.use((err, req, res, next) => {
+                console.error(err.message);
+                res.status(500).json({ error: "Something broke!" });
+            });
+        ```
+        * Yeh error propagate hua middleware tak — tu control mein tha — tu ne handle kiya.
     * If you explicitly handle or forward the error to another part of the system (e.g., middleware, higher-order functions), it is Error Propagation.
-    * Ex - 
+    * **Example** - 
         ```javascript
             function firstFunction() {
                 try {
@@ -348,11 +385,21 @@
                 console.error(err.message); // Error is explicitly passed up
             }
         ```
-        * Explanation - 
+        * **Explanation** - 
             * Yahan error ko explicitly firstFunction se propagate kiya gaya.
-* Scenario 2 : Error Bubbling -
+* **Scenario 2 : Error Bubbling — DEFAULT SYSTEM Behavior (Risky ❌)** -
+    * Jab tu error ko ignore karta hai (na try-catch use karta hai, na .catch(), na middleware), tab JS engine khud se error bubble hone deta hai — jab tak woh crash na kar de app ko.
+    * **Happens when** -
+	    * Tu throw karta hai but try-catch nahi lagata
+	    * Tu Promise me reject karta hai, par .catch() bhool jaata hai
+	    * Tu async function call karta hai, but await ke baad catch nahi karta
+    * **Problem** -
+	    * Unexpected crashes
+	    * Uncaught exceptions
+	    * Bad user experience
+	    * No proper logging or response
     * If you throw an error and let it automatically move up the call stack without explicitly forwarding it, it is Error Bubbling.
-    * Ex - 
+    * **Example** - 
         ```javascript
             function secondFunction() {
                 throw new Error("Something went wrong!"); // Automatic bubbling
@@ -364,16 +411,23 @@
                 console.error(err.message); // Error caught here after bubbling
             }
         ```
-        * Explanation - 
+        * **Explanation** - 
             * Yahan error automatically bubble hoke call stack ke upar wale handler tak pahuchti hai.
-* Which Concept is Used -
-	* Error Propagation - 
+
+| **Situation**            | **Use Error Propagation ✅**                                      | **Avoid Error Bubbling ❌**                                           |
+|--------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
+| App Development (Node/Express) | ✅ Always use error propagation with centralized handler          | ❌ Never leave errors to bubble without handling                      |
+| React / Frontend Apps    | ✅ Use Error Boundaries for controlled propagation                 | ❌ Bubbling may crash the entire UI                                   |
+| Promises / Async-Await   | ✅ Always catch with `.catch()` or `try...catch`                   | ❌ Bubbling leads to `Uncaught Promise Rejection` in console          |
+
+* **Which Concept is Used** -
+	* **Error Propagation** - 
         * Jab aap throw new Error ka use karte hain aur error ko manually kisi higher layer me forward karte hain (e.g., next(err) in Express or re-throw in a catch block).
-	* Error Bubbling - 
+	* **Error Bubbling** - 
         * Jab aap error throw karte hain aur usse handle karne ke liye rely karte hain ki woh automatically call stack ke through bubble kare.
-* Key Point -
-	* throw new Error is just a tool to generate an error.
-	* Whether it is Error Propagation or Error Bubbling depends on what happens after the error is thrown.
+* **Key Point** -
+	* throw new Error is just a tool to generate an error. `IMP`
+	* Whether it is Error Propagation or Error Bubbling depends on what happens after the error is thrown. ------> `IMP`
 
 
 ## Backend Specific Error Handling
