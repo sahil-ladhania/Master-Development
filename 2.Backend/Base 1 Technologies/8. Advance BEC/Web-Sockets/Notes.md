@@ -146,3 +146,13 @@ socket.on('pong', msg => console.log("Server replied:", msg));
    - Emit custom events
    - Try broadcasting: `io.emit("news", data)`
    - Join rooms: `socket.join("room1")`
+
+## Scaling Web-Sockets !!!
+
+### 1. Why cant simply do Horizontal Scaling to Scale Web-Sockets ?
+### Explanation :-
+![BC Diagram](./Problem_Scaling_WebSockets.png)
+
+### 2. What is the Solution for the above Issue ?
+### Explanation :-
+![BC Diagram](./Solution_Scaling_WebSockets.png)

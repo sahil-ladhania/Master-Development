@@ -12,6 +12,33 @@
 ## Kafka Usage Example
 ![Alt Text](./Kafka_Usage_Example.png)
 
+## Kafka Architecture Problem Example
+![Alt Text](./Kafka_Arch_Problem_Example.png)
+
+## Kafka Architecture Solution Example
+![Alt Text](./Kafka_Arch_Solution_Example.png)
+
+## Kafka With 1 Consumer Example
+![Alt Text](./Kafka_With_1_Consumer.png)
+
+## Kafka With 2 Consumer Example
+![Alt Text](./Kafka_With_2_Consumer.png)
+
+## Kafka With 3 Consumer Example
+![Alt Text](./Kafka_With_3_Consumer.png)
+
+## Kafka Partitions and Consumer Rule 1
+![Alt Text](./Rule-1.png)
+
+## Kafka Partitions and Consumer Rule 2
+![Alt Text](./Rule-2.png)
+
+## Kafka Partitions and Consumer Rule 2 Solution - Use Consumer Groups
+![Alt Text](./Consumer-Groups.png)
+
+## 2 Main Architecture : Queues & Pub-Sub
+![Alt Text](./Queue_Pub-Sub_Arch.png)
+
 ## 1. Kafka kya hai?
 ## Explanation :-
 * Apache Kafka ek distributed event-streaming platform hai.
